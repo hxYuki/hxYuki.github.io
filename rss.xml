@@ -10,8 +10,34 @@
         </author>
         <description>思想从时光中溶出凝结</description>
         <language>zh-CN</language>
-        <pubDate>Wed, 27 Oct 2021 16:45:24 +0000</pubDate>
-        <lastBuildDate>Wed, 27 Oct 2021 16:45:24 +0000</lastBuildDate>
+        <pubDate>Tue, 16 Nov 2021 05:54:43 +0000</pubDate>
+        <lastBuildDate>Tue, 16 Nov 2021 05:54:43 +0000</lastBuildDate>
+        <item>
+            <guid isPermalink="true">https://hxyuki.github.io/2021/11/%E8%AE%A9%E9%9D%99%E6%80%81%E7%9A%84%E5%8D%9A%E5%AE%A2%E9%A3%9E%E8%B5%B7%E6%9D%A5/</guid>
+            <title>让静态的博客飞起来</title>
+            <link>https://hxyuki.github.io/2021/11/%E8%AE%A9%E9%9D%99%E6%80%81%E7%9A%84%E5%8D%9A%E5%AE%A2%E9%A3%9E%E8%B5%B7%E6%9D%A5/</link>
+            <category term="生命在于折腾" scheme="https://hxyuki.github.io/categories/%E7%94%9F%E5%91%BD%E5%9C%A8%E4%BA%8E%E6%8A%98%E8%85%BE/" />
+            <category term="MyBlog" scheme="https://hxyuki.github.io/categories/%E7%94%9F%E5%91%BD%E5%9C%A8%E4%BA%8E%E6%8A%98%E8%85%BE/MyBlog/" />
+            <category term="言尽于行" scheme="https://hxyuki.github.io/tags/%E8%A8%80%E5%B0%BD%E4%BA%8E%E8%A1%8C/" />
+            <category term="开发之外的事" scheme="https://hxyuki.github.io/tags/%E5%BC%80%E5%8F%91%E4%B9%8B%E5%A4%96%E7%9A%84%E4%BA%8B/" />
+            <category term="Github Codespaces" scheme="https://hxyuki.github.io/tags/Github-Codespaces/" />
+            <category term="Github Actions" scheme="https://hxyuki.github.io/tags/Github-Actions/" />
+            <category term="Algolia" scheme="https://hxyuki.github.io/tags/Algolia/" />
+            <pubDate>Tue, 16 Nov 2021 05:54:43 +0000</pubDate>
+            <description><![CDATA[ &lt;p&gt;最近终于算是折腾完了博客、主题这些&lt;s&gt;要命&lt;/s&gt;的东西，中途还给咱选择的主题修了 BUG &lt;span class=&#34;spoiler&#34; title=&#34;你知道得太多了&#34;&gt;一度还因为 BUG 想自己写主题来着的说&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;不过，终于，现在一切都已经妥当，让 CDN 什么的先在一边放着吧！我要开始输出了！我看着托管博客的仓库，突然邪念大起：&lt;/p&gt;
+&lt;p&gt;『用 Github Actions 自动部署博客已经是基操了，再加上 Github Codespaces 岂不是就再也不用被仓库的位置限制了？』&lt;/p&gt;
+&lt;p&gt;不过这套流程的难点还是在于要配置好 Github Actions 的自动部署，大体流程而言都差不多，生成一对密钥，公钥放  &lt;code&gt;[username].github.io&lt;/code&gt;  ，私钥放到博客源仓库的  &lt;code&gt;secret&lt;/code&gt;  中，在市场里找一套部署 Hexo 的 Action 就大功告成 ——&lt;/p&gt;
+&lt;p&gt;Star 最多的 hexo-action 只有简单的部署操作，而本博客启用了基于 algolia 的搜索功能，需要在部署前将改动同步至 Algolia ，又不想花时间再精挑细选了，于是动了下脑子，基于 hexo-action 添加了一份执行  &lt;code&gt;hexo a&lt;/code&gt;  的选项&lt;sup class=&#34;footnote-ref&#34;&gt;&lt;a href=&#34;#fn1&#34; id=&#34;fnref1&#34;&gt;[1]&lt;/a&gt;&lt;/sup&gt;，这下就完美解决了个人的需求，可以愉快的随处&lt;ruby&gt;写&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;guan&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt; 文章&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;shui&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; 了！&lt;/p&gt;
+&lt;hr class=&#34;footnotes-sep&#34; /&gt;
+&lt;section class=&#34;footnotes&#34;&gt;
+&lt;ol class=&#34;footnotes-list&#34;&gt;
+&lt;li id=&#34;fn1&#34; class=&#34;footnote-item&#34;&gt;&lt;p&gt;个人魔改的 hexo action 为  &lt;code&gt;hxYuki/hexo-action@master&lt;/code&gt;  欢迎取用。 &lt;a href=&#34;#fnref1&#34; class=&#34;footnote-backref&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/section&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">https://hxyuki.github.io/2021/10/CSharp%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E6%93%8D%E4%BD%9C/</guid>
             <title>C# 的一些问题操作</title>
@@ -76,7 +102,7 @@
 &lt;p&gt;该类符号用于进行值验证，与正则表达式接近，但似乎无法实现详细的提示，需要进一步实现尝试。&lt;/p&gt;
 &lt;/div&gt;
 &lt;h3 id=&#34;从声明文件生成其配置文件&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#从声明文件生成其配置文件&#34;&gt;#&lt;/a&gt; 从声明文件生成其配置文件&lt;/h3&gt;
-&lt;p&gt;既然这么一个声明文件是具体配置无关的，那么理应可以通过扩展的形式支持多种配置文件。 e.g. JSON, yaml ... &lt;s&gt;似乎一笔带过了什么难搞的东西&lt;/s&gt;&lt;/p&gt;
+&lt;p&gt;既然这么一个声明文件是具体配置无关的，那么理应可以通过扩展的形式支持多种配置文件。 e.g. JSON, yaml … &lt;s&gt;似乎一笔带过了什么难搞的东西&lt;/s&gt;&lt;/p&gt;
 &lt;p&gt;那么反过来从这一个声明文件生成一个样例配置文件应该也是可行的，于是就愉快的把坑挖大了。&lt;/p&gt;
 &lt;h2 id=&#34;最后&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#最后&#34;&gt;#&lt;/a&gt; 最后&lt;/h2&gt;
 &lt;p&gt;还没想好名字，不如叫 ConfHint 吧，后缀名确定是 hintc 了吗？&lt;/p&gt;
