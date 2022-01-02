@@ -1,18 +1,18 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://hxyuki.github.io</id>
+    <id>https://blog.yukx.io</id>
     <title>镜间</title>
     <subtitle>镜影行</subtitle>
-    <icon>https://hxyuki.github.io/images/favicon.ico</icon>
-    <link href="https://hxyuki.github.io" />
+    <icon>https://blog.yukx.io/images/favicon.ico</icon>
+    <link href="https://blog.yukx.io" />
     <author>
-      <name>Helix Yuki</name>
+      <name>Yukx</name>
     </author>
     <updated>2021-11-16T05:54:43.000Z</updated>
     <entry>
-        <id>https://hxyuki.github.io/2021/11/%E8%AE%A9%E9%9D%99%E6%80%81%E7%9A%84%E5%8D%9A%E5%AE%A2%E9%A3%9E%E8%B5%B7%E6%9D%A5/</id>
+        <id>https://blog.yukx.io/2021/11/%E8%AE%A9%E9%9D%99%E6%80%81%E7%9A%84%E5%8D%9A%E5%AE%A2%E9%A3%9E%E8%B5%B7%E6%9D%A5/</id>
         <title>让静态的博客飞起来</title>
-        <link rel="alternate" href="https://hxyuki.github.io/2021/11/%E8%AE%A9%E9%9D%99%E6%80%81%E7%9A%84%E5%8D%9A%E5%AE%A2%E9%A3%9E%E8%B5%B7%E6%9D%A5/"/>
+        <link rel="alternate" href="https://blog.yukx.io/2021/11/%E8%AE%A9%E9%9D%99%E6%80%81%E7%9A%84%E5%8D%9A%E5%AE%A2%E9%A3%9E%E8%B5%B7%E6%9D%A5/"/>
         <content type="html">&lt;p&gt;最近终于算是折腾完了博客、主题这些&lt;s&gt;要命&lt;/s&gt;的东西，中途还给咱选择的主题修了 BUG &lt;span class=&#34;spoiler&#34; title=&#34;你知道得太多了&#34;&gt;一度还因为 BUG 想自己写主题来着的说&lt;/span&gt;。&lt;/p&gt;
 &lt;p&gt;不过，终于，现在一切都已经妥当，让 CDN 什么的先在一边放着吧！我要开始输出了！我看着托管博客的仓库，突然邪念大起：&lt;/p&gt;
 &lt;p&gt;「用 Github Actions 自动部署博客已经是基操了，再加上 Github Codespaces 岂不是就再也不用被仓库的位置限制了？」&lt;/p&gt;
@@ -26,19 +26,19 @@
 &lt;/ol&gt;
 &lt;/section&gt;
 </content>
-        <category term="生命在于折腾" scheme="https://hxyuki.github.io/categories/%E7%94%9F%E5%91%BD%E5%9C%A8%E4%BA%8E%E6%8A%98%E8%85%BE/" />
-        <category term="MyBlog" scheme="https://hxyuki.github.io/categories/%E7%94%9F%E5%91%BD%E5%9C%A8%E4%BA%8E%E6%8A%98%E8%85%BE/MyBlog/" />
-        <category term="言尽于行" scheme="https://hxyuki.github.io/tags/%E8%A8%80%E5%B0%BD%E4%BA%8E%E8%A1%8C/" />
-        <category term="开发之外的事" scheme="https://hxyuki.github.io/tags/%E5%BC%80%E5%8F%91%E4%B9%8B%E5%A4%96%E7%9A%84%E4%BA%8B/" />
-        <category term="Github Codespaces" scheme="https://hxyuki.github.io/tags/Github-Codespaces/" />
-        <category term="Github Actions" scheme="https://hxyuki.github.io/tags/Github-Actions/" />
-        <category term="Algolia" scheme="https://hxyuki.github.io/tags/Algolia/" />
+        <category term="生命在于折腾" scheme="https://blog.yukx.io/categories/%E7%94%9F%E5%91%BD%E5%9C%A8%E4%BA%8E%E6%8A%98%E8%85%BE/" />
+        <category term="MyBlog" scheme="https://blog.yukx.io/categories/%E7%94%9F%E5%91%BD%E5%9C%A8%E4%BA%8E%E6%8A%98%E8%85%BE/MyBlog/" />
+        <category term="言尽于行" scheme="https://blog.yukx.io/tags/%E8%A8%80%E5%B0%BD%E4%BA%8E%E8%A1%8C/" />
+        <category term="开发之外的事" scheme="https://blog.yukx.io/tags/%E5%BC%80%E5%8F%91%E4%B9%8B%E5%A4%96%E7%9A%84%E4%BA%8B/" />
+        <category term="Github Codespaces" scheme="https://blog.yukx.io/tags/Github-Codespaces/" />
+        <category term="Github Actions" scheme="https://blog.yukx.io/tags/Github-Actions/" />
+        <category term="Algolia" scheme="https://blog.yukx.io/tags/Algolia/" />
         <updated>2021-11-16T05:54:43.000Z</updated>
     </entry>
     <entry>
-        <id>https://hxyuki.github.io/2021/10/CSharp%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E6%93%8D%E4%BD%9C/</id>
+        <id>https://blog.yukx.io/2021/10/CSharp%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E6%93%8D%E4%BD%9C/</id>
         <title>C# 的一些问题操作</title>
-        <link rel="alternate" href="https://hxyuki.github.io/2021/10/CSharp%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E6%93%8D%E4%BD%9C/"/>
+        <link rel="alternate" href="https://blog.yukx.io/2021/10/CSharp%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E6%93%8D%E4%BD%9C/"/>
         <content type="html">&lt;h2 id=&#34;前情提要&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#前情提要&#34;&gt;#&lt;/a&gt; 前情提要&lt;/h2&gt;
 &lt;p&gt;作为 &lt;code&gt;async&lt;/code&gt;   &lt;code&gt;await&lt;/code&gt;  关键字源头的 C#，搞些异步操作已经是很舒心的了，不过近来 &lt;code&gt;.Net 6&lt;/code&gt;  就要出了，新版本里默认启用了 &lt;code&gt;nullable&lt;/code&gt;  特性，当享受着全局的空安全的时候，可能莫名其妙的发现有些地方出现了碍眼的&lt;ins class=&#34;wavy success&#34;&gt;绿色下划波浪线&lt;/ins&gt;。 💢&lt;/p&gt;
 &lt;h2 id=&#34;问题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#问题&#34;&gt;#&lt;/a&gt; 问题&lt;/h2&gt;
@@ -60,17 +60,17 @@
 &lt;/ol&gt;
 &lt;/section&gt;
 </content>
-        <category term="开发随记" scheme="https://hxyuki.github.io/categories/%E5%BC%80%E5%8F%91%E9%9A%8F%E8%AE%B0/" />
-        <category term="言尽于行" scheme="https://hxyuki.github.io/tags/%E8%A8%80%E5%B0%BD%E4%BA%8E%E8%A1%8C/" />
-        <category term="C#" scheme="https://hxyuki.github.io/tags/C/" />
-        <category term="await" scheme="https://hxyuki.github.io/tags/await/" />
-        <category term="nullable" scheme="https://hxyuki.github.io/tags/nullable/" />
+        <category term="开发随记" scheme="https://blog.yukx.io/categories/%E5%BC%80%E5%8F%91%E9%9A%8F%E8%AE%B0/" />
+        <category term="言尽于行" scheme="https://blog.yukx.io/tags/%E8%A8%80%E5%B0%BD%E4%BA%8E%E8%A1%8C/" />
+        <category term="C#" scheme="https://blog.yukx.io/tags/C/" />
+        <category term="await" scheme="https://blog.yukx.io/tags/await/" />
+        <category term="nullable" scheme="https://blog.yukx.io/tags/nullable/" />
         <updated>2021-10-27T16:45:24.000Z</updated>
     </entry>
     <entry>
-        <id>https://hxyuki.github.io/2021/07/%E5%85%B3%E4%BA%8E%E4%B8%80%E4%B8%AA%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6hint%E5%B7%A5%E5%85%B7%E7%9A%84%E6%83%B3%E6%B3%95/</id>
+        <id>https://blog.yukx.io/2021/07/%E5%85%B3%E4%BA%8E%E4%B8%80%E4%B8%AA%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6hint%E5%B7%A5%E5%85%B7%E7%9A%84%E6%83%B3%E6%B3%95/</id>
         <title>关于一个配置文件hint工具的想法</title>
-        <link rel="alternate" href="https://hxyuki.github.io/2021/07/%E5%85%B3%E4%BA%8E%E4%B8%80%E4%B8%AA%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6hint%E5%B7%A5%E5%85%B7%E7%9A%84%E6%83%B3%E6%B3%95/"/>
+        <link rel="alternate" href="https://blog.yukx.io/2021/07/%E5%85%B3%E4%BA%8E%E4%B8%80%E4%B8%AA%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6hint%E5%B7%A5%E5%85%B7%E7%9A%84%E6%83%B3%E6%B3%95/"/>
         <content type="html">&lt;h2 id=&#34;始&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#始&#34;&gt;#&lt;/a&gt; 始&lt;/h2&gt;
 &lt;p&gt;最近试着弄了下一直想做的博客，选主题选的眼都花了（笑），然而年幼无知的我还不知道后面有什么东西在等着我 —— 指一大堆乱七八糟的配置文件，它们天真而又纯洁，等着我来带它们走向光明的未来。&lt;br /&gt;
 其实认真的讲，我个人始终有一种追求：人应该尽可能少的进行没有意义劳作，而很明显，如果我想以一种预先约定的格式进行输入，而需要我全面学习这个约定，否则便无从知晓某一项是否被包含在约定中，也算是部分无意义 —— 个人来讲倾向于在尝试中学习，如果能在输入的时候把可用的项目全部提供就很令人舒适，要是命名又十分直观真是再感激不过了。&lt;/p&gt;
@@ -100,16 +100,16 @@
 &lt;p&gt;还没想好名字，不如叫 ConfHint 吧，后缀名确定是 hintc 了吗？&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;spoiler blur&#34; title=&#34;你知道得太多了&#34;&gt;h 这个字母是真烦，前面可以接 80% 的字母都不意外&lt;/span&gt;&lt;/p&gt;
 </content>
-        <category term="挖坑" scheme="https://hxyuki.github.io/categories/%E6%8C%96%E5%9D%91/" />
-        <category term="开发" scheme="https://hxyuki.github.io/categories/%E6%8C%96%E5%9D%91/%E5%BC%80%E5%8F%91/" />
-        <category term="配置文件 Hint 工具" scheme="https://hxyuki.github.io/categories/%E6%8C%96%E5%9D%91/%E5%BC%80%E5%8F%91/%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-Hint-%E5%B7%A5%E5%85%B7/" />
-        <category term="思维火花" scheme="https://hxyuki.github.io/tags/%E6%80%9D%E7%BB%B4%E7%81%AB%E8%8A%B1/" />
+        <category term="挖坑" scheme="https://blog.yukx.io/categories/%E6%8C%96%E5%9D%91/" />
+        <category term="开发" scheme="https://blog.yukx.io/categories/%E6%8C%96%E5%9D%91/%E5%BC%80%E5%8F%91/" />
+        <category term="配置文件 Hint 工具" scheme="https://blog.yukx.io/categories/%E6%8C%96%E5%9D%91/%E5%BC%80%E5%8F%91/%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-Hint-%E5%B7%A5%E5%85%B7/" />
+        <category term="思维火花" scheme="https://blog.yukx.io/tags/%E6%80%9D%E7%BB%B4%E7%81%AB%E8%8A%B1/" />
         <updated>2021-07-20T16:00:00.000Z</updated>
     </entry>
     <entry>
-        <id>https://hxyuki.github.io/2021/06/hello-world/</id>
+        <id>https://blog.yukx.io/2021/06/hello-world/</id>
         <title>Hello World</title>
-        <link rel="alternate" href="https://hxyuki.github.io/2021/06/hello-world/"/>
+        <link rel="alternate" href="https://blog.yukx.io/2021/06/hello-world/"/>
         <content type="html">&lt;p&gt;Welcome to &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9oZXhvLmlvLw==&#34; title=&#34;1234&#34;&gt;Hexo&lt;/span&gt;! This is your very first post. Check &lt;a href=&#34;https://hexo.io/docs/&#34;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&#34;https://hexo.io/docs/troubleshooting.html&#34;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&#34;https://github.com/hexojs/hexo/issues&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;quick-start&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#quick-start&#34;&gt;#&lt;/a&gt; Quick Start&lt;/h2&gt;
 &lt;h3 id=&#34;create-a-new-post&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#create-a-new-post&#34;&gt;#&lt;/a&gt; Create a new post&lt;/h3&gt;
@@ -121,7 +121,7 @@
 &lt;h3 id=&#34;deploy-to-remote-sites&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#deploy-to-remote-sites&#34;&gt;#&lt;/a&gt; Deploy to remote sites&lt;/h3&gt;
 &lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;$ hexo deploy&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;More info: &lt;a href=&#34;https://hexo.io/docs/one-command-deployment.html&#34;&gt;Deployment&lt;/a&gt;&lt;/p&gt;
 </content>
-        <category term="initialization" scheme="https://hxyuki.github.io/tags/initialization/" />
+        <category term="initialization" scheme="https://blog.yukx.io/tags/initialization/" />
         <updated>2021-06-29T06:20:21.000Z</updated>
     </entry>
 </feed>
