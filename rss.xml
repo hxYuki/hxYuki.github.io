@@ -10,8 +10,21 @@
         </author>
         <description>你能接受自己的注视吗</description>
         <language>zh-CN</language>
-        <pubDate>Sat, 26 Mar 2022 06:10:56 +0000</pubDate>
-        <lastBuildDate>Sat, 26 Mar 2022 06:10:56 +0000</lastBuildDate>
+        <pubDate>Thu, 02 Jun 2022 06:14:28 +0000</pubDate>
+        <lastBuildDate>Thu, 02 Jun 2022 06:14:28 +0000</lastBuildDate>
+        <item>
+            <guid isPermalink="true">https://blog.yukx.io/2022/06/one-possible-reason-for-steam-not-rememebering-password/</guid>
+            <title>Steam记住密码失效的一种原因</title>
+            <link>https://blog.yukx.io/2022/06/one-possible-reason-for-steam-not-rememebering-password/</link>
+            <category term="闲话" scheme="https://blog.yukx.io/categories/%E9%97%B2%E8%AF%9D/" />
+            <category term="Steam无法记住密码" scheme="https://blog.yukx.io/tags/Steam%E6%97%A0%E6%B3%95%E8%AE%B0%E4%BD%8F%E5%AF%86%E7%A0%81/" />
+            <category term="Steam" scheme="https://blog.yukx.io/tags/Steam/" />
+            <pubDate>Thu, 02 Jun 2022 06:14:28 +0000</pubDate>
+            <description><![CDATA[ &lt;p&gt;你可能有第二个设备在登录时记住了密码，第一个设备就无法记住密码了。&lt;/p&gt;
+&lt;p&gt;取消所有其他设备授权也没有用，&lt;br /&gt;
+实在是让我恼火了好久，直到今天打开了很久没用的另一个电脑，退出了上面的 Steam。&lt;/p&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">https://blog.yukx.io/2022/03/rust-try/</guid>
             <title>Rust初体验</title>
@@ -128,7 +141,7 @@
             <guid isPermalink="true">https://blog.yukx.io/2021/06/hello-world/</guid>
             <title>Hello World</title>
             <link>https://blog.yukx.io/2021/06/hello-world/</link>
-            <category term="initialization" scheme="https://blog.yukx.io/tags/initialization/" />
+            <category term="hello world" scheme="https://blog.yukx.io/tags/hello-world/" />
             <pubDate>Tue, 29 Jun 2021 06:20:21 +0000</pubDate>
             <description><![CDATA[ &lt;p&gt;Welcome to &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9oZXhvLmlvLw==&#34; title=&#34;1234&#34;&gt;Hexo&lt;/span&gt;! This is your very first post. Check &lt;a href=&#34;https://hexo.io/docs/&#34;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&#34;https://hexo.io/docs/troubleshooting.html&#34;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&#34;https://github.com/hexojs/hexo/issues&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;quick-start&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#quick-start&#34;&gt;#&lt;/a&gt; Quick Start&lt;/h2&gt;
