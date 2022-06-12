@@ -13,9 +13,9 @@
         <id>https://blog.yukx.io/2022/06/game-dev-journal-1-hud-minimap/</id>
         <title>游戏开发日志(其一)：HUD、小地图</title>
         <link rel="alternate" href="https://blog.yukx.io/2022/06/game-dev-journal-1-hud-minimap/"/>
-        <content type="html">&lt;p&gt;:::&lt;br /&gt;
- 某人日常不务正业务现已开拓至游戏开发挥年复一年的沉积极放光吧！&lt;br /&gt;
-:::&lt;/p&gt;
+        <content type="html">&lt;div class=&#34;note default no-icon&#34;&gt;
+&lt;p&gt;某人日常不务正业务现已开拓至游戏开发挥年复一年的沉积极放光吧！&lt;/p&gt;
+&lt;/div&gt;
 &lt;div class=&#34;note default&#34;&gt;
 &lt;p&gt;游戏具体情况暂且不提，后续也将在 github 上开源。&lt;/p&gt;
 &lt;/div&gt;
