@@ -10,8 +10,51 @@
         </author>
         <description>你能接受自己的注视吗</description>
         <language>zh-CN</language>
-        <pubDate>Thu, 02 Jun 2022 06:14:28 +0000</pubDate>
-        <lastBuildDate>Thu, 02 Jun 2022 06:14:28 +0000</lastBuildDate>
+        <pubDate>Sat, 11 Jun 2022 18:38:51 +0000</pubDate>
+        <lastBuildDate>Sat, 11 Jun 2022 18:38:51 +0000</lastBuildDate>
+        <item>
+            <guid isPermalink="true">https://blog.yukx.io/2022/06/game-dev-journal-1-hud-minimap/</guid>
+            <title>游戏开发日志(其一)：HUD、小地图</title>
+            <link>https://blog.yukx.io/2022/06/game-dev-journal-1-hud-minimap/</link>
+            <category term="开发随记" scheme="https://blog.yukx.io/categories/%E5%BC%80%E5%8F%91%E9%9A%8F%E8%AE%B0/" />
+            <category term="游戏开发" scheme="https://blog.yukx.io/categories/%E5%BC%80%E5%8F%91%E9%9A%8F%E8%AE%B0/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" />
+            <category term="conquest of star" scheme="https://blog.yukx.io/categories/%E5%BC%80%E5%8F%91%E9%9A%8F%E8%AE%B0/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/conquest-of-star/" />
+            <category term="Unity" scheme="https://blog.yukx.io/tags/Unity/" />
+            <category term="HUD" scheme="https://blog.yukx.io/tags/HUD/" />
+            <category term="小地图" scheme="https://blog.yukx.io/tags/%E5%B0%8F%E5%9C%B0%E5%9B%BE/" />
+            <pubDate>Sat, 11 Jun 2022 18:38:51 +0000</pubDate>
+            <description><![CDATA[ &lt;p&gt;:::&lt;br /&gt;
+ 某人日常不务正业务现已开拓至游戏开发挥年复一年的沉积极放光吧！&lt;br /&gt;
+:::&lt;/p&gt;
+&lt;div class=&#34;note default&#34;&gt;
+&lt;p&gt;游戏具体情况暂且不提，后续也将在 github 上开源。&lt;/p&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;hud&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#hud&#34;&gt;#&lt;/a&gt; HUD&lt;/h2&gt;
+&lt;p&gt;首先我们秉持优良传统，创建一个根 GameObject，&lt;br /&gt;
+在其内部添加 Canvas，在 Canvas 内添加我们需要的 UI 物体即可。&lt;br /&gt;
+&lt;img data-src=&#34;https://fastly.jsdelivr.net/gh/hxYuki/img-base@latest/img/object-hierachy.png&#34; alt=&#34;对象层级示例&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;小地图&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#小地图&#34;&gt;#&lt;/a&gt; 小地图&lt;/h2&gt;
+&lt;p&gt;小地图有很多种实现方法，这里暂且采用最简单的，添加第二个 Camera 的方法。&lt;/p&gt;
+&lt;h3 id=&#34;custom-render-texture&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#custom-render-texture&#34;&gt;#&lt;/a&gt; Custom Render Texture&lt;/h3&gt;
+&lt;p&gt;首先新建一个 Custom Render Texture, 用于接收摄像机的内容并显示在指定位置。&lt;/p&gt;
+&lt;h3 id=&#34;map-camera&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#map-camera&#34;&gt;#&lt;/a&gt; Map Camera&lt;/h3&gt;
+&lt;p&gt;新建一个 Camera，并创建一个 layer: minimap，用于显示单位的缩略图。&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://fastly.jsdelivr.net/gh/hxYuki/img-base@main/img/20220612140021.png&#34; alt=&#34;Camera 属性&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;设置 Clear Flag 为 Solid Color ，&lt;ruby&gt;投影&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;Projection&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; 为&lt;ruby&gt;正交&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;Orthographic&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;，以排除透视的影响。&lt;br /&gt;
+设置 &lt;strong&gt;Culling Mask&lt;/strong&gt; 取消选中其他 layer 仅保留刚刚新建的 minimap，这样小地图中不会显示多余的内容。(在其他 Camera 中也需要保持不要选中 minimap)&lt;/p&gt;
+&lt;p&gt;设置 Target Texture 为刚刚创建的 Custom Render Texture。&lt;/p&gt;
+&lt;h3 id=&#34;minimap&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#minimap&#34;&gt;#&lt;/a&gt; Minimap&lt;/h3&gt;
+&lt;p&gt;在你喜欢的地方添加一个  &lt;code&gt;UI &amp;gt; Raw Image&lt;/code&gt; ，将其 Texture 设置为刚刚创建的 Custom Render Texture。&lt;br /&gt;
+至此小地图的基本显示功能完成，后续需要在想要显示在地图中的物体内完成。&lt;/p&gt;
+&lt;h3 id=&#34;其他单位&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#其他单位&#34;&gt;#&lt;/a&gt; 其他单位&lt;/h3&gt;
+&lt;p&gt;在想要显示的物体内添加一个 Sprite，指定其 Layer 为 minimap。&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://fastly.jsdelivr.net/gh/hxYuki/img-base@main/img/20220612143055.png&#34; alt=&#34;示例效果&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;大功告成！&lt;/p&gt;
+&lt;div class=&#34;note info&#34;&gt;
+&lt;p&gt;Camera size 与 Worldspace 内的坐标尺度一致，可按需要调整地图大小。&lt;/p&gt;
+&lt;/div&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">https://blog.yukx.io/2022/06/one-possible-reason-for-steam-not-rememebering-password/</guid>
             <title>Steam记住密码失效的一种原因</title>
@@ -146,13 +189,13 @@
             <description><![CDATA[ &lt;p&gt;Welcome to &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9oZXhvLmlvLw==&#34; title=&#34;1234&#34;&gt;Hexo&lt;/span&gt;! This is your very first post. Check &lt;a href=&#34;https://hexo.io/docs/&#34;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&#34;https://hexo.io/docs/troubleshooting.html&#34;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&#34;https://github.com/hexojs/hexo/issues&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;quick-start&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#quick-start&#34;&gt;#&lt;/a&gt; Quick Start&lt;/h2&gt;
 &lt;h3 id=&#34;create-a-new-post&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#create-a-new-post&#34;&gt;#&lt;/a&gt; Create a new post&lt;/h3&gt;
-&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;$ hexo new &lt;span class=&#34;token string&#34;&gt;&#34;My New Post&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;More info: &lt;a href=&#34;https://hexo.io/docs/writing.html&#34;&gt;Writing&lt;/a&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td data-command=&#34;&amp;nbsp;$&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;hexo new &lt;span class=&#34;token string&#34;&gt;&#34;My New Post&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td data-command=&#34;&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;pwd&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;More info: &lt;a href=&#34;https://hexo.io/docs/writing.html&#34;&gt;Writing&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&#34;run-server&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#run-server&#34;&gt;#&lt;/a&gt; Run server&lt;/h3&gt;
-&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;$ hexo server&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;More info: &lt;a href=&#34;https://hexo.io/docs/server.html&#34;&gt;Server&lt;/a&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td data-command=&#34;&amp;nbsp;$&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;hexo server&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;More info: &lt;a href=&#34;https://hexo.io/docs/server.html&#34;&gt;Server&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&#34;generate-static-files&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#generate-static-files&#34;&gt;#&lt;/a&gt; Generate static files&lt;/h3&gt;
-&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;$ hexo generate&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;More info: &lt;a href=&#34;https://hexo.io/docs/generating.html&#34;&gt;Generating&lt;/a&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td data-command=&#34;&amp;nbsp;$&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;hexo generate&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;More info: &lt;a href=&#34;https://hexo.io/docs/generating.html&#34;&gt;Generating&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&#34;deploy-to-remote-sites&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#deploy-to-remote-sites&#34;&gt;#&lt;/a&gt; Deploy to remote sites&lt;/h3&gt;
-&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;$ hexo deploy&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;More info: &lt;a href=&#34;https://hexo.io/docs/one-command-deployment.html&#34;&gt;Deployment&lt;/a&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td data-command=&#34;&amp;nbsp;$&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;hexo deploy&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;More info: &lt;a href=&#34;https://hexo.io/docs/one-command-deployment.html&#34;&gt;Deployment&lt;/a&gt;&lt;/p&gt;
  ]]></description>
         </item>
     </channel>
