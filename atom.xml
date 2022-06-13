@@ -22,14 +22,14 @@
 &lt;h2 id=&#34;hud&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#hud&#34;&gt;#&lt;/a&gt; HUD&lt;/h2&gt;
 &lt;p&gt;首先我们秉持优良传统，创建一个根 GameObject，&lt;br /&gt;
 在其内部添加 Canvas，在 Canvas 内添加我们需要的 UI 物体即可。&lt;br /&gt;
-&lt;img data-src=&#34;https://github.com/hxYuki/im-base/blob/main/object-hierachy.png?raw=true&#34; alt=&#34;对象层级示例&#34; /&gt;&lt;/p&gt;
+&lt;img data-src=&#34;https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/object-hierachy.png&#34; alt=&#34;对象层级示例&#34; /&gt;&lt;/p&gt;
 &lt;h2 id=&#34;小地图&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#小地图&#34;&gt;#&lt;/a&gt; 小地图&lt;/h2&gt;
 &lt;p&gt;小地图有很多种实现方法，这里暂且采用最简单的，添加第二个 Camera 的方法。&lt;/p&gt;
 &lt;h3 id=&#34;custom-render-texture&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#custom-render-texture&#34;&gt;#&lt;/a&gt; Custom Render Texture&lt;/h3&gt;
 &lt;p&gt;首先新建一个 Custom Render Texture, 用于接收摄像机的内容并显示在指定位置。&lt;/p&gt;
 &lt;h3 id=&#34;map-camera&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#map-camera&#34;&gt;#&lt;/a&gt; Map Camera&lt;/h3&gt;
 &lt;p&gt;新建一个 Camera，并创建一个 layer: minimap，用于显示单位的缩略图。&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://github.com/hxYuki/im-base/blob/main/20220612140021.png?raw=true&#34; alt=&#34;Camera 属性&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/20220612140021.png&#34; alt=&#34;Camera 属性&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;设置 Clear Flag 为 Solid Color ，&lt;ruby&gt; &lt;rt&gt;&lt;/rt&gt;投影&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;Projection&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt; &lt;rt&gt;&lt;/rt&gt;&lt;/ruby&gt;为&lt;ruby&gt; &lt;rt&gt;&lt;/rt&gt;正交&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;Orthographic&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt; &lt;rt&gt;&lt;/rt&gt;&lt;/ruby&gt;，以排除透视的影响。&lt;br /&gt;
 设置 &lt;strong&gt;Culling Mask&lt;/strong&gt; 取消选中其他 layer 仅保留刚刚新建的 minimap，这样小地图中不会显示多余的内容。(在其他 Camera 中也需要保持不要选中 minimap)&lt;/p&gt;
 &lt;p&gt;设置 Target Texture 为刚刚创建的 Custom Render Texture。&lt;/p&gt;
@@ -38,7 +38,7 @@
 至此小地图的基本显示功能完成，后续需要在想要显示在地图中的物体内完成。&lt;/p&gt;
 &lt;h3 id=&#34;其他单位&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#其他单位&#34;&gt;#&lt;/a&gt; 其他单位&lt;/h3&gt;
 &lt;p&gt;在想要显示的物体内添加一个 Sprite，指定其 Layer 为 minimap。&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://github.com/hxYuki/im-base/blob/main/20220612143055.png?raw=true&#34; alt=&#34;示例效果&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/20220612143055.png&#34; alt=&#34;示例效果&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;大功告成！&lt;/p&gt;
 &lt;div class=&#34;note info&#34;&gt;
 &lt;p&gt;Camera size 与 Worldspace 内的坐标尺度一致，可按需要调整地图大小。&lt;/p&gt;
