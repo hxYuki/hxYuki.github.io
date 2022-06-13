@@ -20,7 +20,7 @@ Boundary 作为地图边界限制物体移动。&lt;br /&gt;
 &lt;ruby&gt;战舰&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;Warship&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; 作为 Prefab 自然就是单位啦。&lt;/p&gt;
 &lt;p&gt;&lt;img data-src=&#34;https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/20220613110559.png&#34; alt=&#34;objects&#34; /&gt;&lt;/p&gt;
 &lt;div class=&#34;note default no-icon&#34;&gt;
-&lt;p&gt;此处也能看到在上一片中未展示的&lt;ruby&gt;小地图指示器&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;Map   Indicator&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;&lt;/p&gt;
+&lt;p&gt;此处也能看到在上一篇中未展示的&lt;ruby&gt;小地图指示器&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;Map   Indicator&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;h2 id=&#34;框选单位&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#框选单位&#34;&gt;#&lt;/a&gt; 框选单位&lt;/h2&gt;
 &lt;h3 id=&#34;单位选择的思路&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#单位选择的思路&#34;&gt;#&lt;/a&gt; 单位选择的思路&lt;/h3&gt;
