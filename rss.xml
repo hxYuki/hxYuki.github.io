@@ -3,13 +3,13 @@
   xmlns:atom="http://www.w3.org/2005/Atom"
   xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>镜碑</title>
+    <title>行于雪佑</title>
     <link>https://blog.yukx.io/</link>
     
     <atom:link href="https://blog.yukx.io/rss.xml" rel="self" type="application/rss+xml"/>
     
-    <description>你能接受自己的注视吗</description>
-    <pubDate>Mon, 25 Jul 2022 06:19:17 GMT</pubDate>
+    <description>思想的残存</description>
+    <pubDate>Mon, 25 Jul 2022 06:58:21 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>

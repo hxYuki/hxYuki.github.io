@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>镜碑</title>
+  <title>行于雪佑</title>
   
-  <subtitle>镜影行</subtitle>
+  <subtitle>离群电波</subtitle>
   <link href="https://blog.yukx.io/atom.xml" rel="self"/>
   
   <link href="https://blog.yukx.io/"/>
-  <updated>2022-07-25T06:19:17.005Z</updated>
+  <updated>2022-07-25T06:58:21.776Z</updated>
   <id>https://blog.yukx.io/</id>
   
   <author>
-    <name>Yukx</name>
+    <name>Yuki .X</name>
     
   </author>
   
@@ -21,7 +21,7 @@
     <link href="https://blog.yukx.io/2022/07/game-dev-journal-i-ideas-of-a-buff-system-in-ECS/"/>
     <id>https://blog.yukx.io/2022/07/game-dev-journal-i-ideas-of-a-buff-system-in-ECS/</id>
     <published>2022-07-24T18:58:52.000Z</published>
-    <updated>2022-07-25T06:19:17.005Z</updated>
+    <updated>2022-07-25T06:58:21.776Z</updated>
     
     
       
@@ -53,7 +53,7 @@
     <link href="https://blog.yukx.io/2022/07/game-dev-journal-pi-Rust-Bevy-and-ECS/"/>
     <id>https://blog.yukx.io/2022/07/game-dev-journal-pi-Rust-Bevy-and-ECS/</id>
     <published>2022-07-22T06:18:09.000Z</published>
-    <updated>2022-07-25T06:19:17.005Z</updated>
+    <updated>2022-07-25T06:58:21.776Z</updated>
     
     
       
@@ -84,7 +84,7 @@
     <link href="https://blog.yukx.io/2022/07/game-dev-journal-4-1-mismatching-fog-size-with-obstacle-size/"/>
     <id>https://blog.yukx.io/2022/07/game-dev-journal-4-1-mismatching-fog-size-with-obstacle-size/</id>
     <published>2022-07-18T05:28:50.000Z</published>
-    <updated>2022-07-25T06:19:17.005Z</updated>
+    <updated>2022-07-25T06:58:21.776Z</updated>
     
     
       
@@ -115,7 +115,7 @@
     <link href="https://blog.yukx.io/2022/07/game-dev-journal-4-fog-of-war/"/>
     <id>https://blog.yukx.io/2022/07/game-dev-journal-4-fog-of-war/</id>
     <published>2022-07-17T17:15:11.000Z</published>
-    <updated>2022-07-25T06:19:17.005Z</updated>
+    <updated>2022-07-25T06:58:21.776Z</updated>
     
     
       
@@ -146,7 +146,7 @@
     <link href="https://blog.yukx.io/2022/06/game-dev-journal-3-unit-move/"/>
     <id>https://blog.yukx.io/2022/06/game-dev-journal-3-unit-move/</id>
     <published>2022-06-15T18:20:49.000Z</published>
-    <updated>2022-07-25T06:19:17.005Z</updated>
+    <updated>2022-07-25T06:58:21.776Z</updated>
     
     
       
@@ -175,7 +175,7 @@
     <link href="https://blog.yukx.io/2022/06/game-dev-journal-2-unit-selection-and-minimap-more/"/>
     <id>https://blog.yukx.io/2022/06/game-dev-journal-2-unit-selection-and-minimap-more/</id>
     <published>2022-06-12T06:32:14.000Z</published>
-    <updated>2022-07-25T06:19:17.005Z</updated>
+    <updated>2022-07-25T06:58:21.776Z</updated>
     
     
       
@@ -207,7 +207,7 @@
     <link href="https://blog.yukx.io/2022/06/game-dev-journal-1-hud-minimap/"/>
     <id>https://blog.yukx.io/2022/06/game-dev-journal-1-hud-minimap/</id>
     <published>2022-06-11T18:38:51.000Z</published>
-    <updated>2022-07-25T06:19:17.005Z</updated>
+    <updated>2022-07-25T06:58:21.776Z</updated>
     
     
       
@@ -241,7 +241,7 @@
     <link href="https://blog.yukx.io/2022/06/one-possible-reason-for-steam-not-rememebering-password/"/>
     <id>https://blog.yukx.io/2022/06/one-possible-reason-for-steam-not-rememebering-password/</id>
     <published>2022-06-02T06:14:28.000Z</published>
-    <updated>2022-07-25T06:19:17.005Z</updated>
+    <updated>2022-07-25T06:58:21.776Z</updated>
     
     
       
@@ -268,7 +268,7 @@
     <link href="https://blog.yukx.io/2022/03/rust-try/"/>
     <id>https://blog.yukx.io/2022/03/rust-try/</id>
     <published>2022-03-26T06:10:56.000Z</published>
-    <updated>2022-07-25T06:19:17.005Z</updated>
+    <updated>2022-07-25T06:58:21.776Z</updated>
     
     
       
@@ -293,7 +293,7 @@
     <link href="https://blog.yukx.io/2021/11/%E8%AE%A9%E9%9D%99%E6%80%81%E7%9A%84%E5%8D%9A%E5%AE%A2%E9%A3%9E%E8%B5%B7%E6%9D%A5/"/>
     <id>https://blog.yukx.io/2021/11/%E8%AE%A9%E9%9D%99%E6%80%81%E7%9A%84%E5%8D%9A%E5%AE%A2%E9%A3%9E%E8%B5%B7%E6%9D%A5/</id>
     <published>2021-11-16T05:54:43.000Z</published>
-    <updated>2022-07-25T06:19:17.005Z</updated>
+    <updated>2022-07-25T06:58:21.776Z</updated>
     
     
       
@@ -326,7 +326,7 @@
     <link href="https://blog.yukx.io/2021/10/CSharp%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E6%93%8D%E4%BD%9C/"/>
     <id>https://blog.yukx.io/2021/10/CSharp%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E6%93%8D%E4%BD%9C/</id>
     <published>2021-10-27T16:45:24.000Z</published>
-    <updated>2022-07-25T06:19:17.005Z</updated>
+    <updated>2022-07-25T06:58:21.776Z</updated>
     
     
       
@@ -355,7 +355,7 @@
     <link href="https://blog.yukx.io/2021/07/%E5%85%B3%E4%BA%8E%E4%B8%80%E4%B8%AA%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6hint%E5%B7%A5%E5%85%B7%E7%9A%84%E6%83%B3%E6%B3%95/"/>
     <id>https://blog.yukx.io/2021/07/%E5%85%B3%E4%BA%8E%E4%B8%80%E4%B8%AA%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6hint%E5%B7%A5%E5%85%B7%E7%9A%84%E6%83%B3%E6%B3%95/</id>
     <published>2021-07-20T16:00:00.000Z</published>
-    <updated>2022-07-25T06:19:17.005Z</updated>
+    <updated>2022-07-25T06:58:21.776Z</updated>
     
     
       
@@ -382,7 +382,7 @@
     <link href="https://blog.yukx.io/2021/06/hello-world/"/>
     <id>https://blog.yukx.io/2021/06/hello-world/</id>
     <published>2021-06-29T06:20:21.000Z</published>
-    <updated>2022-07-25T06:19:17.005Z</updated>
+    <updated>2022-07-25T06:58:21.776Z</updated>
     
     
       
