@@ -9,8 +9,40 @@
     <atom:link href="https://blog.yukx.io/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description>思想的残存</description>
-    <pubDate>Mon, 10 Oct 2022 13:48:43 GMT</pubDate>
+    <pubDate>Fri, 18 Nov 2022 05:24:32 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>魔法上网碎碎念</title>
+      <link>https://blog.yukx.io/2022/11/noise-about-magic-surfing/</link>
+      <guid>https://blog.yukx.io/2022/11/noise-about-magic-surfing/</guid>
+      <pubDate>Thu, 17 Nov 2022 20:17:16 GMT</pubDate>
+      
+        
+        
+      <description>&lt;div class=&quot;note warning&quot;&gt;
+&lt;p&gt;LONG may the empire.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;VMessTCPTLS 跑了好久了，最近终于在 IPv4 上挂了，虽然也不确定。&lt;br /&gt;
+毕竟本地的运营商思路非常广，骚操作也非常多，DNS 发脾</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<div class="note warning"><p>LONG may the empire.</p></div><p>VMessTCPTLS 跑了好久了，最近终于在 IPv4 上挂了，虽然也不确定。<br />毕竟本地的运营商思路非常广，骚操作也非常多，DNS 发脾气不解析外部域名是常有的事，固定宽带尚且如此，基站的玩法更是花样频出，给你分配一些申必地址<br /><img data-src="https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/20221118123415.png" alt="?" title="***" /><br /> 真是让人受宠若惊。<br />由于最近的网络环境已经不再垂青于我，终于被迫趁着星光尚能亮起的时候迁移到了新家。</p><p>IPv4 的地址已经暴露，网页尚能浏览，而传统魔法结构已经不能维持了。</p><ul><li>CDN 大法好！</li><li>仅有 WebSocket 可以通过 CDN</li></ul><p>经过一些试错，如果构筑法术时保留了 TLS 的话，CDN 也要至少将等级提升到’Full’。<span class="spoiler blur" title="你知道得太多了">不会有人不用 Cloudflare 吧</span></p><p>网页可以访问的话，不如做戏做个全套，为流量设置一个 Fallback。</p><ul><li>Fallback 仅支持 TCP 方式</li></ul><p>Fallback 后面都是本机了，所以 TLS 的保障也可以到此为止了，不过需要注意的是另一点’alpn’。<br />HTTP/2 的流量 Fallback 下去也会是 HTTP/2，确保底层可以接住 h2 流量以免网页无法访问。或者干脆不要在前面添加 h2 的 alpn。</p><h2 id="注意"><a class="anchor" href="#注意">#</a> 注意</h2><p>本文主要还是发发牢骚，一通暴学终于感觉掌握了魔法的配置原理，记录一些不才落下的点，可能不适合作为参考。</p><h2 id="参考"><a class="anchor" href="#参考">#</a> 参考</h2><ol><li><p><a href="https://itlanyan.com/vless-fallback-object/#bnp_i_3">VLESS 协议的 fallback 参数介绍</a></p></li><li><p><a href="https://v2xtls.org/v2ray%E4%BD%BF%E7%94%A8cloudflare%E4%B8%AD%E8%BD%AC%E6%B5%81%E9%87%8F%EF%BC%8C%E6%8B%AF%E6%95%91%E8%A2%AB%E5%A2%99ip/">使用 cloudflare 中转流量，拯救被墙 ip</a></p></li></ol>]]></content:encoded>
+      
+      
+      <category domain="https://blog.yukx.io/categories/%E7%94%9F%E5%91%BD%E5%9C%A8%E4%BA%8E%E6%8A%98%E8%85%BE/">生命在于折腾</category>
+      
+      
+      <category domain="https://blog.yukx.io/tags/%E9%AD%94%E6%B3%95%E4%B8%8A%E7%BD%91/">魔法上网</category>
+      
+      <category domain="https://blog.yukx.io/tags/WS%E3%80%81TLS%E3%80%81CDN/">WS、TLS、CDN</category>
+      
+      
+      <comments>https://blog.yukx.io/2022/11/noise-about-magic-surfing/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>类型系统漫巡</title>
