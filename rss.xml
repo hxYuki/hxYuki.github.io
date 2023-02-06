@@ -9,8 +9,37 @@
     <atom:link href="https://blog.yukx.io/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description>寒茫独躅处，忽如有人行</description>
-    <pubDate>Wed, 04 Jan 2023 13:12:44 GMT</pubDate>
+    <pubDate>Mon, 06 Feb 2023 10:52:46 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Bevy、贪吃蛇，与一些记录</title>
+      <link>https://blog.yukx.io/2023/02/bevy-the-snake-and-notes/</link>
+      <guid>https://blog.yukx.io/2023/02/bevy-the-snake-and-notes/</guid>
+      <pubDate>Mon, 06 Feb 2023 09:02:25 GMT</pubDate>
+      
+        
+        
+      <description>&lt;p&gt;本文基于 &lt;a href=&quot;https://mbuffett.com/posts/bevy-snake-tutorial/&quot;&gt;Creating a Snake Clone in Rust, with Bevy&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;仓库地址 &lt;a href=&quot;https:/</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<p>本文基于 <a href="https://mbuffett.com/posts/bevy-snake-tutorial/">Creating a Snake Clone in Rust, with Bevy</a></p><p>仓库地址 <a href="https://github.com/hxYuki/a_snake">a_snake</a></p><iframe src="/nested/bevy-snake" title="sample" height="500" width="500"></iframe><h2 id="与源文中的一些区别"><a class="anchor" href="#与源文中的一些区别">#</a> 与源文中的一些区别</h2><p>除了使用更高版本的 Bevy 以外<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>，主要改动在于没有使用 Resource 保存 <code>SnakeSegments</code> 、 <code>LastTailPosition</code> ，而是保存在了 <code>SnakeHead</code>  中。<br />个人认为这两个数据不是很适合作为 Resource，蛇身的实体 ID 与之前的尾部位置都是与蛇关联着的数据， <s>如果有多条蛇存在的话</s> 故存储到蛇头的组件中。</p><h2 id="对于源文的作业"><a class="anchor" href="#对于源文的作业">#</a> 对于源文的 “作业”</h2><ol><li>蛇的 180° 转向<br />思路有二，其一是使用 Events， <code>snake_movement_input</code>  中不再直接修改 <code>head.direction</code>  而改为发送事件，发送前清空未处理的事件，在 <code>snake_movement</code>  中接收事件修改 <code>direction</code> ；其二也雷同，不使用 Events，另外存储 <code>next_direction</code>  即可。</li><li>食物可以生成在蛇身上<br />遍历所有 <code>SnakeSegment</code> （其实也应该包含 <code>Food</code> ）的位置，重复则重新生成随机位置（或者直接 return）。<br />不过食物最好应当在上一个被吃掉后再生成，屏幕填满不知道是否会卡住呢？</li></ol><h2 id="尚存在的一些小问题"><a class="anchor" href="#尚存在的一些小问题">#</a> 尚存在的一些小问题</h2><p>关闭窗口时会由于使用了 <code>Res&lt;Windows&gt;</code> -&gt; <code>get_primary().unwrap()</code>  unwrap 先抛出导致整个窗口卡住。（偶尔可以正常退出）</p><hr class="footnotes-sep" /><section class="footnotes"><ol class="footnotes-list"><li id="fn1" class="footnote-item"><p>WindowDescripter 不再直接可用于 Resource <a href="#fnref1" class="footnote-backref">↩︎</a></p></li></ol></section>]]></content:encoded>
+      
+      
+      <category domain="https://blog.yukx.io/categories/%E5%BC%80%E5%8F%91%E9%9A%8F%E8%AE%B0/">开发随记</category>
+      
+      
+      <category domain="https://blog.yukx.io/tags/Bevy/">Bevy</category>
+      
+      <category domain="https://blog.yukx.io/tags/Rust/">Rust</category>
+      
+      
+      <comments>https://blog.yukx.io/2023/02/bevy-the-snake-and-notes/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>ObservableCollection 之批次更新</title>
@@ -198,11 +227,11 @@
       <category domain="https://blog.yukx.io/categories/%E5%BC%80%E5%8F%91%E9%9A%8F%E8%AE%B0/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/conquest-of-star/">conquest of star</category>
       
       
-      <category domain="https://blog.yukx.io/tags/ECS/">ECS</category>
+      <category domain="https://blog.yukx.io/tags/Bevy/">Bevy</category>
       
       <category domain="https://blog.yukx.io/tags/Rust/">Rust</category>
       
-      <category domain="https://blog.yukx.io/tags/Bevy/">Bevy</category>
+      <category domain="https://blog.yukx.io/tags/ECS/">ECS</category>
       
       
       <comments>https://blog.yukx.io/2022/07/game-dev-journal-pi-Rust-Bevy-and-ECS/#disqus_thread</comments>
