@@ -9,8 +9,40 @@
     <atom:link href="https://blog.yukx.io/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description>寒茫独躅处，忽如有人行</description>
-    <pubDate>Wed, 29 Nov 2023 14:36:03 GMT</pubDate>
+    <pubDate>Sun, 17 Dec 2023 08:19:33 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>在Windows中读取你的Btrfs分区的硬盘</title>
+      <link>https://blog.yukx.io/2023/12/read-your-btrfs-disk-in-windows/</link>
+      <guid>https://blog.yukx.io/2023/12/read-your-btrfs-disk-in-windows/</guid>
+      <pubDate>Sun, 17 Dec 2023 03:29:47 GMT</pubDate>
+      
+        
+        
+      <description>&lt;div class=&quot;note info&quot;&gt;
+&lt;p&gt;小心劣质电源！&lt;/p&gt;
+&lt;/div&gt;
+&lt;h2 id=&quot;挂载硬盘&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#挂载硬盘&quot;&gt;#&lt;/a&gt; 挂载硬盘&lt;/h2&gt;
+&lt;p&gt;软件也好、驱动也罢，Linux 就藏在你的 Windows </description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<div class="note info"><p>小心劣质电源！</p></div><h2 id="挂载硬盘"><a class="anchor" href="#挂载硬盘">#</a> 挂载硬盘</h2><p>软件也好、驱动也罢，Linux 就藏在你的 Windows 设备里。</p><figure class="highlight powershell"><figcaption data-lang="PowerShell"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token function">GET-CimInstance</span> <span class="token operator">-</span>query <span class="token string">"SELECT * from Win32_DiskDrive"</span></pre></td></tr></table></figure><p>使用该命令获取连接硬盘的 DeviceID，并使用下面的命令挂载到 wsl 中。</p><figure class="highlight powershell"><figcaption data-lang="PowerShell"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># 命令需要管理员权限</span></pre></td></tr><tr><td data-num="2"></td><td><pre>wsl <span class="token operator">--</span><span class="token function">mount</span> \\<span class="token punctuation">.</span>\PHYSICALDRIVE1 <span class="token operator">--</span>bare</pre></td></tr></table></figure><p>接下来进入子系统。</p><figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td data-command=""></td><td><pre><span class="token comment"># 让系统识别到设备</span></pre></td></tr><tr><td data-num="2"></td><td data-command="$"></td><td><pre><span class="token function">sudo</span> btrfs device scan</pre></td></tr><tr><td data-num="3"></td><td data-command=""></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td data-command="$"></td><td><pre><span class="token function">sudo</span> blkid</pre></td></tr><tr><td data-num="5"></td><td data-command=""></td><td><pre><span class="token comment"># /dev/loop0: UUID="2023-01-19-13-06-17-00" LABEL="wsl-cli-bundle" TYPE="iso9660"</span></pre></td></tr><tr><td data-num="6"></td><td data-command=""></td><td><pre><span class="token comment"># /dev/loop1: UUID="2023-01-19-13-05-01-00" LABEL="LinuxKit" TYPE="iso9660"</span></pre></td></tr><tr><td data-num="7"></td><td data-command=""></td><td><pre><span class="token comment"># /dev/sda: TYPE="ext4"</span></pre></td></tr><tr><td data-num="8"></td><td data-command=""></td><td><pre><span class="token comment"># /dev/sdb: UUID="cbe7b857-ce76-4e39-90fb-aeefe1056177" TYPE="swap"</span></pre></td></tr><tr><td data-num="9"></td><td data-command=""></td><td><pre><span class="token comment"># /dev/sdc: UUID="3255683f-53a2-4fdf-91cf-b4c1041e2a62" TYPE="ext4"</span></pre></td></tr><tr><td data-num="10"></td><td data-command=""></td><td><pre><span class="token comment"># /dev/sdd: UUID="bd3640c6-a231-4698-a283-9d23929b7edc" TYPE="ext4"</span></pre></td></tr><tr><td data-num="11"></td><td data-command=""></td><td><pre><span class="token comment"># /dev/sde: UUID="b533f29f-e0f6-470d-b7b6-897a88b22f6f" TYPE="ext4"</span></pre></td></tr><tr><td data-num="12"></td><td data-command=""></td><td><pre><span class="token comment"># /dev/sdf1: LABEL="sto1" UUID="8ec8825c-80d8-4064-85ef-53a77fbd16e2" UUID_SUB="7f9f572d-9603-4d72-9647-0a239dec1b9f" TYPE="btrfs" PARTUUID="950e6328-89f2-4c63-9cc8-3b2ba2687b49"</span></pre></td></tr></table></figure><p>可以看到  <code>blkid</code>  的最后一行输出就是我们的 btrfs 分区的硬盘。</p><figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token function">sudo</span> <span class="token function">mkdir</span> /mnt/sto1 <span class="token operator">&amp;&amp;</span> <span class="token function">sudo</span> <span class="token function">mount</span> /dev/sdf1 /mnt/sto1</pre></td></tr></table></figure><p>创建挂载目录，将硬盘挂载上去，之后就可以去看看我们的硬盘上的数据是否还安好了。</p><h2 id="收尾"><a class="anchor" href="#收尾">#</a> 收尾</h2><p>注意在解除挂载时不要打开挂载的目录。</p><figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token function">sudo</span> <span class="token function">umount</span> /dev/sdf1</pre></td></tr></table></figure><figure class="highlight powershell"><figcaption data-lang="PowerShell"></figcaption><table><tr><td data-num="1"></td><td><pre>wsl <span class="token operator">--</span>unmount \\<span class="token punctuation">.</span>\PHYSICALDRIVE1</pre></td></tr></table></figure>]]></content:encoded>
+      
+      
+      
+      <category domain="https://blog.yukx.io/tags/Windows/">Windows</category>
+      
+      <category domain="https://blog.yukx.io/tags/Btrfs/">Btrfs</category>
+      
+      <category domain="https://blog.yukx.io/tags/wsl-Windows-subsystem-for-linux/">wsl (Windows subsystem for linux)</category>
+      
+      
+      <comments>https://blog.yukx.io/2023/12/read-your-btrfs-disk-in-windows/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>Deep Dark ECS</title>
@@ -646,35 +678,6 @@
       
       
       <comments>https://blog.yukx.io/2022/06/one-possible-reason-for-steam-not-rememebering-password/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Rust初体验</title>
-      <link>https://blog.yukx.io/2022/03/rust-try/</link>
-      <guid>https://blog.yukx.io/2022/03/rust-try/</guid>
-      <pubDate>Sat, 26 Mar 2022 06:10:56 GMT</pubDate>
-      
-        
-        
-      <description>&lt;p&gt;近日来心有戚戚终日惶惶，游戏亦觉无趣，便想着尝试下一直以来想学下的 Rust&lt;/p&gt;
-&lt;p&gt;直接进行一个&lt;a href=&quot;https://kaisery.github.io/trpl-zh-cn/title-page.html&quot;&gt; The Book&lt;/a&gt; 的搜索！ &lt;sp</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<p>近日来心有戚戚终日惶惶，游戏亦觉无趣，便想着尝试下一直以来想学下的 Rust</p><p>直接进行一个<a href="https://kaisery.github.io/trpl-zh-cn/title-page.html"> The Book</a> 的搜索！ <span class="rainbow">汉化赛高！</span> <span class="spoiler" title="你知道得太多了">话说这个中文版的 Rust 竟然比官网还高</span></p><p>直接进行一个小练！</p><p>看完了前三章，算是对语法方面做了个基本的了解，体验下来有种奇妙的舒适感，比如变量隐藏、 <code>.expect()</code>  或 <code>match</code>  进行的错误处理、或是 <code>break</code>  返回值这种东西在有需要的时候真的是能极大的提升幸福感，让人对后面的内容产生了更浓厚的期待。</p><p>浅尝至此，暂且搁笔。另请允许我附上自己渣的斐波那契数列。</p><figure class="highlight rust"><figcaption data-lang="rust"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">use</span> <span class="token namespace">std<span class="token punctuation">::</span></span>io<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">fn</span> <span class="token function-definition function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token keyword">let</span> <span class="token keyword">mut</span> n <span class="token operator">=</span> <span class="token class-name">String</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token namespace">io<span class="token punctuation">::</span></span><span class="token function">stdin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">read_line</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token keyword">mut</span> n<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">expect</span><span class="token punctuation">(</span><span class="token string">"failed to open input"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token keyword">let</span> n<span class="token punctuation">:</span> <span class="token keyword">u32</span> <span class="token operator">=</span> n<span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">expect</span><span class="token punctuation">(</span><span class="token string">"failed to parse"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre></pre></td></tr><tr><td data-num="8"></td><td><pre>    <span class="token keyword">let</span> <span class="token keyword">mut</span> a<span class="token punctuation">:</span> <span class="token keyword">u32</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token keyword">let</span> <span class="token keyword">mut</span> b<span class="token punctuation">:</span> <span class="token keyword">u32</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>    <span class="token macro property">println!</span><span class="token punctuation">(</span></pre></td></tr><tr><td data-num="11"></td><td><pre>        <span class="token string">"&#123;&#125;"</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="12"></td><td><pre>        <span class="token keyword">match</span> n <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>            <span class="token number">1</span> <span class="token operator">=></span> a<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="14"></td><td><pre>            <span class="token number">2</span> <span class="token operator">=></span> b<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="15"></td><td><pre>            _ <span class="token operator">=></span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="16"></td><td><pre>                <span class="token keyword">let</span> <span class="token keyword">mut</span> r<span class="token punctuation">:</span> <span class="token keyword">u32</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>                <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token number">3</span><span class="token punctuation">..=</span>n <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="18"></td><td><pre>                    <span class="token keyword">if</span> i <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">1</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="19"></td><td><pre>                        a <span class="token operator">=</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="20"></td><td><pre>                        r <span class="token operator">=</span> a<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="21"></td><td><pre>                    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="22"></td><td><pre>                        b <span class="token operator">=</span> b <span class="token operator">+</span> a<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="23"></td><td><pre>                        r <span class="token operator">=</span> b<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="24"></td><td><pre>                    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="25"></td><td><pre>                <span class="token punctuation">&#125;</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="26"></td><td><pre>                r</pre></td></tr><tr><td data-num="27"></td><td><pre>            <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="28"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="29"></td><td><pre>    <span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="30"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure>]]></content:encoded>
-      
-      
-      <category domain="https://blog.yukx.io/categories/%E4%BF%97%E4%B8%96%E4%BB%A5%E5%A4%96%E7%9A%84%E6%B6%88%E9%81%A3/">俗世以外的消遣</category>
-      
-      
-      <category domain="https://blog.yukx.io/tags/Rust/">Rust</category>
-      
-      <category domain="https://blog.yukx.io/tags/%E5%AD%A6%E4%B9%A0%E9%9A%8F%E8%AE%B0/">学习随记</category>
-      
-      
-      <comments>https://blog.yukx.io/2022/03/rust-try/#disqus_thread</comments>
       
     </item>
     
