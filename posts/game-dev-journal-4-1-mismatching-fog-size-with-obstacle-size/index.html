@@ -1,0 +1,196 @@
+<!DOCTYPE html><html lang="zh" data-theme> <head><meta charset="utf-8"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="viewport" content="width=device-width"><meta name="generator" content="Astro v4.4.13"><title>游戏开发日志 (其四·一)：迷雾大小与物体实际大小不一致的原因</title><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><link rel="stylesheet" href="/_astro/about.C5B0C2h6.css" />
+<style>a[data-astro-cid-gjtny2mx]{color:#00539f}.tags[data-astro-cid-gjtny2mx]{display:flex;flex-wrap:wrap}.tag[data-astro-cid-gjtny2mx]{margin:.25em;border:dotted 1px #a1a1a1;border-radius:.5em;padding:.5em 1em;font-size:1.15em;background-color:#f8fcfd}
+</style>
+<link rel="stylesheet" href="/_astro/_slug_.CYO6en0k.css" /><script type="module" src="/_astro/hoisted.BJ2QysRc.js"></script><style>[data-astro-transition-scope="astro-f64ip3ln-1"] { view-transition-name: astro-f64ip3ln-1; }@layer astro { ::view-transition-old(astro-f64ip3ln-1) { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(astro-f64ip3ln-1) { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(astro-f64ip3ln-1) { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(astro-f64ip3ln-1) { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-f64ip3ln-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-f64ip3ln-1"] { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-f64ip3ln-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-f64ip3ln-1"] { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-f64ip3ln-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-f64ip3ln-1"] { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-f64ip3ln-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-f64ip3ln-1"] { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-n5gwkkpg-2"] { view-transition-name: astro-n5gwkkpg-2; }@layer astro { ::view-transition-old(astro-n5gwkkpg-2) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(astro-n5gwkkpg-2) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(astro-n5gwkkpg-2) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(astro-n5gwkkpg-2) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-n5gwkkpg-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-n5gwkkpg-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-n5gwkkpg-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-n5gwkkpg-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-n5gwkkpg-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-n5gwkkpg-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-n5gwkkpg-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-n5gwkkpg-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body class="bg-basement text-neutral font-default leading-loose mx-auto w-full"> <header class="w-full h-[45vh] shadow-lg overflow-hidden bg-center" data-astro-cid-3ef6ksr2 style="--bgImg: url('https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/4ac9e89ebedbc831ce278f4ad5bbfc58.jpg');"> <nav class=" w-full h-14 flex items-center fixed"> <div class="inner flex flex-row items-center w-full sm:w-[--blank-width] mx-auto"> <div class="hamburger hidden flex flex-col justify-between text-default" data-astro-cid-3weo6hls> <span class="line" data-astro-cid-3weo6hls></span> <span class="line" data-astro-cid-3weo6hls></span> <span class="line" data-astro-cid-3weo6hls></span> </div>   <ul class="nav-links grow flex flex-row"> <li class="group/item relative p-2 font-medium text-base text-white"> <a href="/" class="text-center p-2 uppercase"> 首页  </a>  </li> <!-- <style>
+    ul {
+        width: max-content;
+    }
+</style> --><li class="group/item relative p-2 font-medium text-base text-white"> <a href="/blog/" class="text-center p-2 uppercase"> 博客 &gt; </a> <ul data-theme="dark" class="group/menu absolute hidden group-hover/item:block w-max bg-basement bg-opacity-85 text-white shadow-lg rounded-es-xl rounded-se-xl overflow-hidden z-10 left-0 top-full"> <li class="group/item relative p-2 font-medium text-base text-white hover:bg-primary px-4 first:pt-3 last:pb-3 font-normal text-base tracking-widest"> <a href="/archive/" class="text-center p-2 uppercase"> 归档  </a>  </li> <!-- <style>
+    ul {
+        width: max-content;
+    }
+</style> --><li class="group/item relative p-2 font-medium text-base text-white hover:bg-primary px-4 first:pt-3 last:pb-3 font-normal text-base tracking-widest"> <a href="/tags/" class="text-center p-2 uppercase"> 标签  </a>  </li> <!-- <style>
+    ul {
+        width: max-content;
+    }
+</style> --><li class="group/item relative p-2 font-medium text-base text-white hover:bg-primary px-4 first:pt-3 last:pb-3 font-normal text-base tracking-widest"> <a href="/categories/" class="text-center p-2 uppercase"> 分类  </a>  </li> <!-- <style>
+    ul {
+        width: max-content;
+    }
+</style> --> </ul> </li> <!-- <style>
+    ul {
+        width: max-content;
+    }
+</style> --><li class="group/item relative p-2 font-medium text-base text-white"> <a href="/about/" class="text-center p-2 uppercase"> 关于  </a>  </li> <!-- <style>
+    ul {
+        width: max-content;
+    }
+</style> --> </ul> <button id="themeToggle"> <svg width="24px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"> <path class="sun" fill-rule="evenodd" fill="currentColor" d="M12 17.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm0 1.5a7 7 0 1 0 0-14 7 7 0 0 0 0 14zm12-7a.8.8 0 0 1-.8.8h-2.4a.8.8 0 0 1 0-1.6h2.4a.8.8 0 0 1 .8.8zM4 12a.8.8 0 0 1-.8.8H.8a.8.8 0 0 1 0-1.6h2.5a.8.8 0 0 1 .8.8zm16.5-8.5a.8.8 0 0 1 0 1l-1.8 1.8a.8.8 0 0 1-1-1l1.7-1.8a.8.8 0 0 1 1 0zM6.3 17.7a.8.8 0 0 1 0 1l-1.7 1.8a.8.8 0 1 1-1-1l1.7-1.8a.8.8 0 0 1 1 0zM12 0a.8.8 0 0 1 .8.8v2.5a.8.8 0 0 1-1.6 0V.8A.8.8 0 0 1 12 0zm0 20a.8.8 0 0 1 .8.8v2.4a.8.8 0 0 1-1.6 0v-2.4a.8.8 0 0 1 .8-.8zM3.5 3.5a.8.8 0 0 1 1 0l1.8 1.8a.8.8 0 1 1-1 1L3.5 4.6a.8.8 0 0 1 0-1zm14.2 14.2a.8.8 0 0 1 1 0l1.8 1.7a.8.8 0 0 1-1 1l-1.8-1.7a.8.8 0 0 1 0-1z"></path> <path class="moon" fill-rule="evenodd" d="M16.5 6A10.5 10.5 0 0 1 4.7 16.4 8.5 8.5 0 1 0 16.4 4.7l.1 1.3zm-1.7-2a9 9 0 0 1 .2 2 9 9 0 0 1-11 8.8 9.4 9.4 0 0 1-.8-.3c-.4 0-.8.3-.7.7a10 10 0 0 0 .3.8 10 10 0 0 0 9.2 6 10 10 0 0 0 4-19.2 9.7 9.7 0 0 0-.9-.3c-.3-.1-.7.3-.6.7a9 9 0 0 1 .3.8z"></path> </svg> </button> <!-- <style>
+    #themeToggle {
+        border: 0;
+        background: none;
+    }
+    .sun {
+        fill: black;
+    }
+    .moon {
+        fill: transparent;
+    }
+
+    :global(.dark) .sun {
+        fill: transparent;
+    }
+    :global(.dark) .moon {
+        fill: white;
+    }
+</style> --> <script>
+  document.addEventListener('astro:page-load', () => {
+    const theme = (() => {
+      if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+        return localStorage.getItem("theme");
+      }
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        return "dark";
+      }
+      return "light";
+    })();
+
+    // if (theme === "light") {
+    //   delete document.documentElement.dataset.theme;
+    // } else {
+    //   document.documentElement.dataset.theme = "dark";
+    // }
+    document.documentElement.dataset.theme = theme;
+
+    window.localStorage.setItem("theme", theme);
+
+    const handleToggleClick = () => {
+      const element = document.documentElement;
+      // element.classList.toggle("dark");
+      const isDark = element.dataset.theme === "dark";
+      element.dataset.theme = isDark ? "light" : "dark";
+      localStorage.setItem("theme", !isDark ? "dark" : "light");
+
+    };
+
+    document
+      .getElementById("themeToggle")
+      .addEventListener("click", handleToggleClick);
+  });
+</script>  </div> </nav>  <div class="fixed z-[-1] w-full h-[45vh] pt-[15vh] flex flex-col text-center items-center justify-center" data-astro-cid-3ef6ksr2 style="--bgImg: url('https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/4ac9e89ebedbc831ce278f4ad5bbfc58.jpg');"> <h1 class="text-4xl text-white font-bold font-serif-sc h-max w-max" data-astro-cid-3ef6ksr2 style="--bgImg: url('https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/4ac9e89ebedbc831ce278f4ad5bbfc58.jpg');" data-astro-transition-scope="astro-n5gwkkpg-2"> 游戏开发日志 (其四·一)：迷雾大小与物体实际大小不一致的原因 </h1> </div> <ul class="fixed -z-10 w-full h-full before:block before:absolute before:-z-0 before:bg-black before:bg-opacity-50 before:w-full before:h-full" data-astro-cid-3ef6ksr2 style="--bgImg: url('https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/4ac9e89ebedbc831ce278f4ad5bbfc58.jpg');"> <!-- <img src={headerImage} alt="Header Image" class="object-fill object-center h-[45vh] w-full -z-10" /> --> <li class="absolute h-[45vh] w-full -z-10 bg-center" style="background-image: url('https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/4ac9e89ebedbc831ce278f4ad5bbfc58.jpg');; --bgImg: url('https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/4ac9e89ebedbc831ce278f4ad5bbfc58.jpg');" data-astro-cid-3ef6ksr2></li> </ul> </header>  <!-- <h1 transition:animate="slide" class="text-4xl text-white font-bold font-serif-sc">{pageTitle}</h1> --> <aside class="bg-basement z-0 sm:px-[20rem] py-10 float-right"> <ul data-astro-cid-gjtny2mx> <li data-astro-cid-gjtny2mx><a href="#Gizmos" data-astro-cid-gjtny2mx>Gizmos</a></li><li data-astro-cid-gjtny2mx><a href="#答案呼之欲出" data-astro-cid-gjtny2mx>答案呼之欲出</a></li><li data-astro-cid-gjtny2mx><a href="#另外的小收获" data-astro-cid-gjtny2mx>另外的小收获</a></li> </ul> </aside> <main class="bg-basement z-0 sm:px-[20rem] py-10">   <p data-astro-cid-gjtny2mx>发表于： 7/18/2022</p> <p data-astro-cid-gjtny2mx data-astro-transition-scope="astro-f64ip3ln-1"><em data-astro-cid-gjtny2mx></em></p>   <div class="tags" data-astro-cid-gjtny2mx> <p class="tag" data-astro-cid-gjtny2mx><a href="/tags/Unity" data-astro-cid-gjtny2mx>Unity</a></p><p class="tag" data-astro-cid-gjtny2mx><a href="/tags/战争迷雾" data-astro-cid-gjtny2mx>战争迷雾</a></p><p class="tag" data-astro-cid-gjtny2mx><a href="/tags/localScale" data-astro-cid-gjtny2mx>localScale</a></p> </div>  <p>在上一篇的最后，可以看到小尺寸的障碍物有着与之不匹配的巨大遮挡面积。</p>
+<p>——这里不得不补充下：尚未书面记录的，本项目使用了 “地图” 这一概念，目前的运行场景中包含编辑器中添加的物体和读取地图文件后运行时添加的物体。在地图生成完成后调用初始化网格。</p>
+<p>所以合理怀疑到了地图生成阶段。</p>
+<p><a href="#%E7%AD%94%E6%A1%88%E5%91%BC%E4%B9%8B%E6%AC%B2%E5%87%BA">太长不看</a></p>
+<h3 id="gizmos">Gizmos</h3>
+<p>为了Debug，学习了下原项目中绘制地图网格的操作，在Hierarchy中选中对象，可以将生成的网格显示到屏幕上。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#F97583">private</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> OnDrawGizmosSelected</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8">(mapGrid </span><span style="color:#F97583">!=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#E1E4E8">        Gizmos.color </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Color.blue;</span></span>
+<span class="line"><span style="color:#E1E4E8">        Gizmos.</span><span style="color:#B392F0">DrawWireCube</span><span style="color:#E1E4E8">(transform.position, </span><span style="color:#F97583">new</span><span style="color:#B392F0"> Vector3</span><span style="color:#E1E4E8">(mapGrid.Width, mapGrid.Height, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> mapGrid.GridSize);</span></span>
+<span class="line"><span style="color:#F97583">        for</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">int</span><span style="color:#B392F0"> i</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">; i </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8"> mapGrid.Width; i</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">            for</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#B392F0"> j</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">; j </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8"> mapGrid.Height; j</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">            {</span></span>
+<span class="line"><span style="color:#E1E4E8">                Gizmos.color </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> mapGrid[i, j].</span><span style="color:#B392F0">HasFlag</span><span style="color:#E1E4E8">(MapGrid.MapStatus.Obstacle) </span><span style="color:#F97583">?</span><span style="color:#E1E4E8"> Color.red </span><span style="color:#F97583">:</span><span style="color:#E1E4E8"> Color.white;</span></span>
+<span class="line"><span style="color:#E1E4E8">                Gizmos.</span><span style="color:#B392F0">DrawWireCube</span><span style="color:#E1E4E8">(mapGrid.</span><span style="color:#B392F0">GetRealPosition</span><span style="color:#E1E4E8">(i,j), </span><span style="color:#F97583">new</span><span style="color:#B392F0"> Vector3</span><span style="color:#E1E4E8">(mapGrid.GridSize, mapGrid.GridSize, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span></code></pre>
+<p>地图可视化后，发现右侧小障碍物在网格中的大小似乎与左下侧大障碍物（编辑器中的Prefab原型）相近，而该小障碍物是在运行后创建的对象，其大小是从地图文件中读取缩放值后设定的。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#6A737D">    // ...</span></span>
+<span class="line"><span style="color:#79B8FF">    "scale"</span><span style="color:#E1E4E8">: [</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">],</span></span>
+<span class="line"><span style="color:#6A737D">    // ...</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#B392F0">Vector3</span><span style="color:#B392F0"> scale</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> st.scale; scale.z </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">st_in.transform.localScale </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> scale;</span></span></code></pre>
+<p>而尝试将其变得更大后，发现遮挡面积并未改变，</p>
+<h3 id="答案呼之欲出">答案呼之欲出</h3>
+<p>—— localScale并非立即生效，所以生成阶段设置scale，生效延后到了生成阶段完成网格初始化之后，可能是在下一帧中生效？</p>
+<p>使用<code>Invoke</code>延迟网格初始化后问题也成功解决。</p>
+<p>:::default
+这个异常的迷雾没有碰撞体积，走在里面会丢失周围一切的视野，只能看到周围一圈，外面自然也无法看到里面
+其实还挺酷的，“黑域”，后续可以专门搞一个。
+:::</p>
+<h3 id="另外的小收获">另外的小收获</h3>
+<p>在上一篇的缓动函数<code>Lerp</code>中
+将</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#E1E4E8">Graphics.</span><span style="color:#B392F0">Blit</span><span style="color:#E1E4E8">(nextTexture, currnetTexture, blurMaterial, </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">);</span></span></code></pre>
+<p>中的<code>pass</code>传入参数 <code>1</code> 改为 <code>0</code>，可以避免迷雾的透明度的提升导致可以透过未探索迷雾看到地形。</p>
+<p><img src="https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/20220718220522.png" alt="新效果"></p>   </main> <footer class="flex flex-col my-8 mx-auto w-max gap-4"> <div class="text-sm flex flex-col gap-1 items-center"> <span class=" ">
+© 2021 – 2023 ⚪ Author @ Site </span> <span></span> <span>Powered by <a href="https://astro.build/">Astro</a></span> </div> </footer> </body></html> 

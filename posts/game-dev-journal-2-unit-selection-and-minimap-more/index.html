@@ -1,0 +1,356 @@
+<!DOCTYPE html><html lang="zh" data-theme> <head><meta charset="utf-8"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="viewport" content="width=device-width"><meta name="generator" content="Astro v4.4.13"><title>游戏开发日志 (其二)：单位选择、小地图:续</title><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><link rel="stylesheet" href="/_astro/about.C5B0C2h6.css" />
+<style>a[data-astro-cid-gjtny2mx]{color:#00539f}.tags[data-astro-cid-gjtny2mx]{display:flex;flex-wrap:wrap}.tag[data-astro-cid-gjtny2mx]{margin:.25em;border:dotted 1px #a1a1a1;border-radius:.5em;padding:.5em 1em;font-size:1.15em;background-color:#f8fcfd}
+</style>
+<link rel="stylesheet" href="/_astro/_slug_.CYO6en0k.css" /><script type="module" src="/_astro/hoisted.BJ2QysRc.js"></script><style>[data-astro-transition-scope="astro-f64ip3ln-1"] { view-transition-name: astro-f64ip3ln-1; }@layer astro { ::view-transition-old(astro-f64ip3ln-1) { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(astro-f64ip3ln-1) { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(astro-f64ip3ln-1) { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(astro-f64ip3ln-1) { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-f64ip3ln-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-f64ip3ln-1"] { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-f64ip3ln-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-f64ip3ln-1"] { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-f64ip3ln-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-f64ip3ln-1"] { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-f64ip3ln-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-f64ip3ln-1"] { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-n5gwkkpg-2"] { view-transition-name: astro-n5gwkkpg-2; }@layer astro { ::view-transition-old(astro-n5gwkkpg-2) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(astro-n5gwkkpg-2) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(astro-n5gwkkpg-2) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(astro-n5gwkkpg-2) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-n5gwkkpg-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-n5gwkkpg-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-n5gwkkpg-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-n5gwkkpg-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-n5gwkkpg-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-n5gwkkpg-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-n5gwkkpg-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-n5gwkkpg-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body class="bg-basement text-neutral font-default leading-loose mx-auto w-full"> <header class="w-full h-[45vh] shadow-lg overflow-hidden bg-center" data-astro-cid-3ef6ksr2 style="--bgImg: url('https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/4ac9e89ebedbc831ce278f4ad5bbfc58.jpg');"> <nav class=" w-full h-14 flex items-center fixed"> <div class="inner flex flex-row items-center w-full sm:w-[--blank-width] mx-auto"> <div class="hamburger hidden flex flex-col justify-between text-default" data-astro-cid-3weo6hls> <span class="line" data-astro-cid-3weo6hls></span> <span class="line" data-astro-cid-3weo6hls></span> <span class="line" data-astro-cid-3weo6hls></span> </div>   <ul class="nav-links grow flex flex-row"> <li class="group/item relative p-2 font-medium text-base text-white"> <a href="/" class="text-center p-2 uppercase"> 首页  </a>  </li> <!-- <style>
+    ul {
+        width: max-content;
+    }
+</style> --><li class="group/item relative p-2 font-medium text-base text-white"> <a href="/blog/" class="text-center p-2 uppercase"> 博客 &gt; </a> <ul data-theme="dark" class="group/menu absolute hidden group-hover/item:block w-max bg-basement bg-opacity-85 text-white shadow-lg rounded-es-xl rounded-se-xl overflow-hidden z-10 left-0 top-full"> <li class="group/item relative p-2 font-medium text-base text-white hover:bg-primary px-4 first:pt-3 last:pb-3 font-normal text-base tracking-widest"> <a href="/archive/" class="text-center p-2 uppercase"> 归档  </a>  </li> <!-- <style>
+    ul {
+        width: max-content;
+    }
+</style> --><li class="group/item relative p-2 font-medium text-base text-white hover:bg-primary px-4 first:pt-3 last:pb-3 font-normal text-base tracking-widest"> <a href="/tags/" class="text-center p-2 uppercase"> 标签  </a>  </li> <!-- <style>
+    ul {
+        width: max-content;
+    }
+</style> --><li class="group/item relative p-2 font-medium text-base text-white hover:bg-primary px-4 first:pt-3 last:pb-3 font-normal text-base tracking-widest"> <a href="/categories/" class="text-center p-2 uppercase"> 分类  </a>  </li> <!-- <style>
+    ul {
+        width: max-content;
+    }
+</style> --> </ul> </li> <!-- <style>
+    ul {
+        width: max-content;
+    }
+</style> --><li class="group/item relative p-2 font-medium text-base text-white"> <a href="/about/" class="text-center p-2 uppercase"> 关于  </a>  </li> <!-- <style>
+    ul {
+        width: max-content;
+    }
+</style> --> </ul> <button id="themeToggle"> <svg width="24px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"> <path class="sun" fill-rule="evenodd" fill="currentColor" d="M12 17.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm0 1.5a7 7 0 1 0 0-14 7 7 0 0 0 0 14zm12-7a.8.8 0 0 1-.8.8h-2.4a.8.8 0 0 1 0-1.6h2.4a.8.8 0 0 1 .8.8zM4 12a.8.8 0 0 1-.8.8H.8a.8.8 0 0 1 0-1.6h2.5a.8.8 0 0 1 .8.8zm16.5-8.5a.8.8 0 0 1 0 1l-1.8 1.8a.8.8 0 0 1-1-1l1.7-1.8a.8.8 0 0 1 1 0zM6.3 17.7a.8.8 0 0 1 0 1l-1.7 1.8a.8.8 0 1 1-1-1l1.7-1.8a.8.8 0 0 1 1 0zM12 0a.8.8 0 0 1 .8.8v2.5a.8.8 0 0 1-1.6 0V.8A.8.8 0 0 1 12 0zm0 20a.8.8 0 0 1 .8.8v2.4a.8.8 0 0 1-1.6 0v-2.4a.8.8 0 0 1 .8-.8zM3.5 3.5a.8.8 0 0 1 1 0l1.8 1.8a.8.8 0 1 1-1 1L3.5 4.6a.8.8 0 0 1 0-1zm14.2 14.2a.8.8 0 0 1 1 0l1.8 1.7a.8.8 0 0 1-1 1l-1.8-1.7a.8.8 0 0 1 0-1z"></path> <path class="moon" fill-rule="evenodd" d="M16.5 6A10.5 10.5 0 0 1 4.7 16.4 8.5 8.5 0 1 0 16.4 4.7l.1 1.3zm-1.7-2a9 9 0 0 1 .2 2 9 9 0 0 1-11 8.8 9.4 9.4 0 0 1-.8-.3c-.4 0-.8.3-.7.7a10 10 0 0 0 .3.8 10 10 0 0 0 9.2 6 10 10 0 0 0 4-19.2 9.7 9.7 0 0 0-.9-.3c-.3-.1-.7.3-.6.7a9 9 0 0 1 .3.8z"></path> </svg> </button> <!-- <style>
+    #themeToggle {
+        border: 0;
+        background: none;
+    }
+    .sun {
+        fill: black;
+    }
+    .moon {
+        fill: transparent;
+    }
+
+    :global(.dark) .sun {
+        fill: transparent;
+    }
+    :global(.dark) .moon {
+        fill: white;
+    }
+</style> --> <script>
+  document.addEventListener('astro:page-load', () => {
+    const theme = (() => {
+      if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+        return localStorage.getItem("theme");
+      }
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        return "dark";
+      }
+      return "light";
+    })();
+
+    // if (theme === "light") {
+    //   delete document.documentElement.dataset.theme;
+    // } else {
+    //   document.documentElement.dataset.theme = "dark";
+    // }
+    document.documentElement.dataset.theme = theme;
+
+    window.localStorage.setItem("theme", theme);
+
+    const handleToggleClick = () => {
+      const element = document.documentElement;
+      // element.classList.toggle("dark");
+      const isDark = element.dataset.theme === "dark";
+      element.dataset.theme = isDark ? "light" : "dark";
+      localStorage.setItem("theme", !isDark ? "dark" : "light");
+
+    };
+
+    document
+      .getElementById("themeToggle")
+      .addEventListener("click", handleToggleClick);
+  });
+</script>  </div> </nav>  <div class="fixed z-[-1] w-full h-[45vh] pt-[15vh] flex flex-col text-center items-center justify-center" data-astro-cid-3ef6ksr2 style="--bgImg: url('https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/4ac9e89ebedbc831ce278f4ad5bbfc58.jpg');"> <h1 class="text-4xl text-white font-bold font-serif-sc h-max w-max" data-astro-cid-3ef6ksr2 style="--bgImg: url('https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/4ac9e89ebedbc831ce278f4ad5bbfc58.jpg');" data-astro-transition-scope="astro-n5gwkkpg-2"> 游戏开发日志 (其二)：单位选择、小地图:续 </h1> </div> <ul class="fixed -z-10 w-full h-full before:block before:absolute before:-z-0 before:bg-black before:bg-opacity-50 before:w-full before:h-full" data-astro-cid-3ef6ksr2 style="--bgImg: url('https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/4ac9e89ebedbc831ce278f4ad5bbfc58.jpg');"> <!-- <img src={headerImage} alt="Header Image" class="object-fill object-center h-[45vh] w-full -z-10" /> --> <li class="absolute h-[45vh] w-full -z-10 bg-center" style="background-image: url('https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/4ac9e89ebedbc831ce278f4ad5bbfc58.jpg');; --bgImg: url('https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/4ac9e89ebedbc831ce278f4ad5bbfc58.jpg');" data-astro-cid-3ef6ksr2></li> </ul> </header>  <!-- <h1 transition:animate="slide" class="text-4xl text-white font-bold font-serif-sc">{pageTitle}</h1> --> <aside class="bg-basement z-0 sm:px-[20rem] py-10 float-right"> <ul data-astro-cid-gjtny2mx> <li data-astro-cid-gjtny2mx><a href="#参演物体" data-astro-cid-gjtny2mx>参演物体</a></li><li data-astro-cid-gjtny2mx><a href="#框选单位" data-astro-cid-gjtny2mx>框选单位</a></li><li data-astro-cid-gjtny2mx><a href="#单位选择的思路" data-astro-cid-gjtny2mx>单位选择的思路</a></li><li data-astro-cid-gjtny2mx><a href="#单位 - Warship" data-astro-cid-gjtny2mx>单位 - Warship</a></li><li data-astro-cid-gjtny2mx><a href="#选择框" data-astro-cid-gjtny2mx>选择框</a></li><li data-astro-cid-gjtny2mx><a href="#外观" data-astro-cid-gjtny2mx>外观</a></li><li data-astro-cid-gjtny2mx><a href="#功能" data-astro-cid-gjtny2mx>功能</a></li><li data-astro-cid-gjtny2mx><a href="#小地图：续，更多的交互" data-astro-cid-gjtny2mx>小地图：续，更多的交互</a></li><li data-astro-cid-gjtny2mx><a href="#显示当前镜头范围" data-astro-cid-gjtny2mx>显示当前镜头范围</a></li><li data-astro-cid-gjtny2mx><a href="#点击小地图移动镜头" data-astro-cid-gjtny2mx>点击小地图移动镜头</a></li> </ul> </aside> <main class="bg-basement z-0 sm:px-[20rem] py-10">   <p data-astro-cid-gjtny2mx>发表于： 6/12/2022</p> <p data-astro-cid-gjtny2mx data-astro-transition-scope="astro-f64ip3ln-1"><em data-astro-cid-gjtny2mx></em></p>   <div class="tags" data-astro-cid-gjtny2mx> <p class="tag" data-astro-cid-gjtny2mx><a href="/tags/Unity" data-astro-cid-gjtny2mx>Unity</a></p><p class="tag" data-astro-cid-gjtny2mx><a href="/tags/鼠标框选单位" data-astro-cid-gjtny2mx>鼠标框选单位</a></p><p class="tag" data-astro-cid-gjtny2mx><a href="/tags/小地图交互" data-astro-cid-gjtny2mx>小地图交互</a></p> </div>  <p>如果有人看了上一篇，可能已经稍微有点感觉，我们要做的是不是RTS游戏呢？——很难说不是。</p>
+<h2 id="参演物体">参演物体</h2>
+<p>依照惯例，首先创建一个{竞技场^Arena}作为整场游戏的地图。
+Boundary作为地图边界限制物体移动。
+{战舰^Warship}作为Prefab自然就是单位啦。</p>
+<p><img src="https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/20220613110559.png" alt="objects"></p>
+<p>:::default no-icon
+此处也能看到在上一篇中未展示的{小地图指示器^Map   Indicator}
+:::</p>
+<h2 id="框选单位">框选单位</h2>
+<h3 id="单位选择的思路">单位选择的思路</h3>
+<p>选中单位的视觉标识</p>
+<blockquote>
+<p>单位具有被选中属性</p>
+</blockquote>
+<p>鼠标框选</p>
+<blockquote>
+<p>框体素材、跟随鼠标</p>
+</blockquote>
+<p>鼠标左键点击与拖动框选的统一</p>
+<blockquote>
+<p>被框选、点击物体的判断</p>
+</blockquote>
+<h3 id="单位---warship">单位 - Warship</h3>
+<p>给绑定到单位的脚本中添加如下内容</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> bool</span><span style="color:#E1E4E8"> IsSelected { get; set; } </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">void</span><span style="color:#B392F0"> Update</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#E1E4E8">    selectionIndicator.</span><span style="color:#B392F0">SetActive</span><span style="color:#E1E4E8">(IsSelected);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="选择框">选择框</h3>
+<h4 id="外观">外观</h4>
+<p>选择框的外观经过权衡选择使用 LineRenderer 实现，将它的 Size 设置为5以容纳一个四边闭合的矩形线框，具体的点我们在脚本里计算。
+给它一个白色的材质，随意设置一个你喜欢的颜色，并调整宽度到合适。
+要注意的是将 ++Use World Space 取消选中++{.dot}，这样绘制出来的框体就会跟随物体的位置。</p>
+<p><img src="https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/20220613125446.png" alt="selection box"></p>
+<p>现在我们来处理鼠标。</p>
+<p>首先是左键按下，确定了一个点，随后在拖动中更新另一个点绘制线框，在鼠标抬起后确定了另一个点。</p>
+<p>记录鼠标起点，通过判断 nullable 来确定鼠标是否已经按下。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#B392F0">Vector3</span><span style="color:#E1E4E8">? </span><span style="color:#B392F0">selection_start_mouse_position</span><span style="color:#E1E4E8">;</span></span></code></pre>
+<p>总是会用到的鼠标当前位置</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#B392F0">Vector3</span><span style="color:#B392F0"> position</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> Camera.main.</span><span style="color:#B392F0">ScreenToWorldPoint</span><span style="color:#E1E4E8">(Input.mousePosition);</span></span></code></pre>
+<p>鼠标按下，激活选择框对象，记录位置，这里面的判断是为了避开上层的UI元素，你也不想点小地图就取消了当前单位的选择对吧。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#F97583">if</span><span style="color:#E1E4E8"> (Input.</span><span style="color:#B392F0">GetKeyDown</span><span style="color:#E1E4E8">(KeyCode.Mouse0))</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (EventSystem.current.</span><span style="color:#B392F0">IsPointerOverGameObject</span><span style="color:#E1E4E8">())</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    selection_start_mouse_position </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> position;</span></span>
+<span class="line"><span style="color:#E1E4E8">    selectionBox.</span><span style="color:#B392F0">SetActive</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>鼠标拖动时，调整 LineRenderer 不必说，随后需要调整整个物体的中心位置，确保起始点不变。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#F97583">if</span><span style="color:#E1E4E8"> (Input.</span><span style="color:#B392F0">GetKey</span><span style="color:#E1E4E8">(KeyCode.Mouse0))</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#E1E4E8">    position.z </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 100</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (selection_start_mouse_position </span><span style="color:#F97583">is</span><span style="color:#B392F0"> Vector3</span><span style="color:#B392F0"> sp</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">        Vector3</span><span style="color:#B392F0"> size</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> position </span><span style="color:#F97583">-</span><span style="color:#E1E4E8"> sp;</span></span>
+<span class="line"><span style="color:#E1E4E8">        size.z </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">        var</span><span style="color:#B392F0"> half_size</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> size </span><span style="color:#F97583">/</span><span style="color:#79B8FF"> 2</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        selectionBox.</span><span style="color:#B392F0">GetComponent</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">LineRenderer</span><span style="color:#E1E4E8">>().</span><span style="color:#B392F0">SetPositions</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> Vector3</span><span style="color:#E1E4E8">[]</span></span>
+<span class="line"><span style="color:#E1E4E8">        {</span></span>
+<span class="line"><span style="color:#F97583">            new</span><span style="color:#E1E4E8">(half_size.x, half_size.y),</span></span>
+<span class="line"><span style="color:#F97583">            new</span><span style="color:#E1E4E8">(half_size.x,</span><span style="color:#F97583">-</span><span style="color:#E1E4E8">half_size.y),</span></span>
+<span class="line"><span style="color:#F97583">            new</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">-</span><span style="color:#E1E4E8">half_size.x,</span><span style="color:#F97583">-</span><span style="color:#E1E4E8">half_size.y),</span></span>
+<span class="line"><span style="color:#F97583">            new</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">-</span><span style="color:#E1E4E8">half_size.x,half_size.y),</span></span>
+<span class="line"><span style="color:#F97583">            new</span><span style="color:#E1E4E8">(half_size.x, half_size.y)</span></span>
+<span class="line"><span style="color:#E1E4E8">        });</span></span>
+<span class="line"><span style="color:#E1E4E8">        selectionBox.transform.position </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> position </span><span style="color:#F97583">-</span><span style="color:#E1E4E8"> half_size;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>在抬起鼠标时，重置大小并隐藏。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#F97583">if</span><span style="color:#E1E4E8"> (Input.</span><span style="color:#B392F0">GetKeyUp</span><span style="color:#E1E4E8">(KeyCode.Mouse0))</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (selection_start_mouse_position </span><span style="color:#F97583">is</span><span style="color:#B392F0"> Vector3</span><span style="color:#B392F0"> sp</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#E1E4E8">        selectionBox.</span><span style="color:#B392F0">SetActive</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">false</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        selectionBox.</span><span style="color:#B392F0">GetComponent</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">LineRenderer</span><span style="color:#E1E4E8">>().</span><span style="color:#B392F0">SetPositions</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> Vector3</span><span style="color:#E1E4E8">[] { });</span></span>
+<span class="line"><span style="color:#E1E4E8">        selection_start_mouse_position </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h4 id="功能">功能</h4>
+<p>一个很自然的想法是使用起始两点确定的矩形，判断单位是否在矩形内部，不过这样有个小问题，使用中心点判断时需要确保中心点在矩形的内部，不能轻易的实现符合视觉预期的效果，所以我选择了碰撞体。</p>
+<p><img src="https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/20220613140415.png" alt="碰撞体"></p>
+<p>在鼠标拖动时添加如下代码调整碰撞体大小，需要注意的是碰撞体的 size 参数需要保证顶点距离不能过小或为负。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#F97583">if</span><span style="color:#E1E4E8"> (Input.</span><span style="color:#B392F0">GetKey</span><span style="color:#E1E4E8">(KeyCode.Mouse0))</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#E1E4E8">    position.z </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 100</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (selection_start_mouse_position </span><span style="color:#F97583">is</span><span style="color:#B392F0"> Vector3</span><span style="color:#B392F0"> sp</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">        Vector3</span><span style="color:#B392F0"> size</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> position </span><span style="color:#F97583">-</span><span style="color:#E1E4E8"> sp;</span></span>
+<span class="line"><span style="color:#E1E4E8">        size.z </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">        var</span><span style="color:#B392F0"> half_size</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> size </span><span style="color:#F97583">/</span><span style="color:#79B8FF"> 2</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        selectionBox.</span><span style="color:#B392F0">GetComponent</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">LineRenderer</span><span style="color:#E1E4E8">>().</span><span style="color:#B392F0">SetPositions</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> Vector3</span><span style="color:#E1E4E8">[]</span></span>
+<span class="line"><span style="color:#E1E4E8">        {</span></span>
+<span class="line"><span style="color:#F97583">            new</span><span style="color:#E1E4E8">(half_size.x, half_size.y),</span></span>
+<span class="line"><span style="color:#F97583">            new</span><span style="color:#E1E4E8">(half_size.x,</span><span style="color:#F97583">-</span><span style="color:#E1E4E8">half_size.y),</span></span>
+<span class="line"><span style="color:#F97583">            new</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">-</span><span style="color:#E1E4E8">half_size.x,</span><span style="color:#F97583">-</span><span style="color:#E1E4E8">half_size.y),</span></span>
+<span class="line"><span style="color:#F97583">            new</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">-</span><span style="color:#E1E4E8">half_size.x,half_size.y),</span></span>
+<span class="line"><span style="color:#F97583">            new</span><span style="color:#E1E4E8">(half_size.x, half_size.y)</span></span>
+<span class="line"><span style="color:#E1E4E8">        });</span></span>
+<span class="line"><span style="color:#E1E4E8">        selectionBox.</span><span style="color:#B392F0">GetComponent</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">BoxCollider2D</span><span style="color:#E1E4E8">>().size </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">Max</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">Abs</span><span style="color:#E1E4E8">(size.x), </span><span style="color:#79B8FF">0.01f</span><span style="color:#E1E4E8">), </span><span style="color:#B392F0">Max</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">Abs</span><span style="color:#E1E4E8">(size.y), </span><span style="color:#79B8FF">0.01f</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#E1E4E8">        selectionBox.transform.position </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> position </span><span style="color:#F97583">-</span><span style="color:#E1E4E8"> half_size;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>在鼠标抬起时，首先取消之前的选中，然后通过<code>OverlapCollider</code>取得重叠的碰撞体，并选中这些碰撞体对应的单位。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#F97583">if</span><span style="color:#E1E4E8"> (Input.</span><span style="color:#B392F0">GetKeyUp</span><span style="color:#E1E4E8">(KeyCode.Mouse0))</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (selection_start_mouse_position </span><span style="color:#F97583">is</span><span style="color:#B392F0"> Vector3</span><span style="color:#B392F0"> sp</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#F97583">        foreach</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">var</span><span style="color:#B392F0"> ship</span><span style="color:#F97583"> in</span><span style="color:#E1E4E8"> mainPlay.selectedShips)</span></span>
+<span class="line"><span style="color:#E1E4E8">        {</span></span>
+<span class="line"><span style="color:#E1E4E8">            ship.</span><span style="color:#B392F0">GetComponent</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">Warship</span><span style="color:#E1E4E8">>().IsSelected </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        mainPlay.selectedShips.</span><span style="color:#B392F0">Clear</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">        List</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">Collider2D</span><span style="color:#E1E4E8">> </span><span style="color:#B392F0">shipColliders</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        selectionBox.</span><span style="color:#B392F0">GetComponent</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">BoxCollider2D</span><span style="color:#E1E4E8">>().</span><span style="color:#B392F0">OverlapCollider</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#F97583">            new</span><span style="color:#B392F0"> ContactFilter2D</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">                useLayerMask </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">                layerMask </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> LayerMask.</span><span style="color:#B392F0">GetMask</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Unit"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">            }, shipColliders);</span></span>
+<span class="line"><span style="color:#E1E4E8">        mainPlay.selectedShips </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> shipColliders.</span><span style="color:#B392F0">Select</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">c</span><span style="color:#F97583"> =></span><span style="color:#E1E4E8"> c.gameObject).</span><span style="color:#B392F0">ToList</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        foreach</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">var</span><span style="color:#B392F0"> ship</span><span style="color:#F97583"> in</span><span style="color:#E1E4E8"> mainPlay.selectedShips)</span></span>
+<span class="line"><span style="color:#E1E4E8">        {</span></span>
+<span class="line"><span style="color:#E1E4E8">            ship.</span><span style="color:#B392F0">GetComponent</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">Warship</span><span style="color:#E1E4E8">>().IsSelected </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        selectionBox.</span><span style="color:#B392F0">SetActive</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">false</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        selectionBox.</span><span style="color:#B392F0">GetComponent</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">LineRenderer</span><span style="color:#E1E4E8">>().</span><span style="color:#B392F0">SetPositions</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> Vector3</span><span style="color:#E1E4E8">[] { });</span></span>
+<span class="line"><span style="color:#E1E4E8">        selection_start_mouse_position </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>:::info
+此处使用了 ContactFilter 来排除其他层中的物体。
+目前并未进行单位阵营归属的判断。
+:::</p>
+<p><img src="https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/20220613180430.png" alt="示例"></p>
+<p>至此，框选功能完成。</p>
+<h2 id="小地图续更多的交互">小地图：续，更多的交互</h2>
+<p>在上一篇中只是实现了小地图的显示功能，下面开始完善。</p>
+<h3 id="显示当前镜头范围">显示当前镜头范围</h3>
+<p>也就是小地图上的白框，我们可以延续之前显示单位缩略图的思路，给 Main Camera 添加一个 minimap 层的子物体。</p>
+<p><img src="https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/20220613142422.png" alt="子物体"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/20220613142502.png" alt="子物体"></p>
+<p>同样使用 LineRenderer 来绘制。
+只需要在游戏初始化的时候设置一下。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#F97583">void</span><span style="color:#B392F0"> Start</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#6A737D">    // 获取主摄像头范围</span></span>
+<span class="line"><span style="color:#E1E4E8">    half_cam_size </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> (Camera.main.</span><span style="color:#B392F0">ScreenToWorldPoint</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> Vector3</span><span style="color:#E1E4E8">(Screen.width, Screen.height)) </span><span style="color:#F97583">-</span><span style="color:#E1E4E8"> Camera.main.</span><span style="color:#B392F0">ScreenToWorldPoint</span><span style="color:#E1E4E8">(Vector3.zero))</span><span style="color:#F97583">/</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    GameObject.</span><span style="color:#B392F0">Find</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Camera Range"</span><span style="color:#E1E4E8">).</span><span style="color:#B392F0">GetComponent</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">LineRenderer</span><span style="color:#E1E4E8">>().</span><span style="color:#B392F0">SetPositions</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#F97583">        new</span><span style="color:#B392F0"> Vector3</span><span style="color:#E1E4E8">[] { </span></span>
+<span class="line"><span style="color:#F97583">            new</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">-</span><span style="color:#E1E4E8">half_cam_size.x, half_cam_size.y), </span></span>
+<span class="line"><span style="color:#F97583">            new</span><span style="color:#E1E4E8">(half_cam_size.x, half_cam_size.y), </span></span>
+<span class="line"><span style="color:#F97583">            new</span><span style="color:#E1E4E8">(half_cam_size.x, </span><span style="color:#F97583">-</span><span style="color:#E1E4E8">half_cam_size.y), </span></span>
+<span class="line"><span style="color:#F97583">            new</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">-</span><span style="color:#E1E4E8">half_cam_size.x, </span><span style="color:#F97583">-</span><span style="color:#E1E4E8">half_cam_size.y), </span></span>
+<span class="line"><span style="color:#F97583">            new</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">-</span><span style="color:#E1E4E8">half_cam_size.x, half_cam_size.y) </span></span>
+<span class="line"><span style="color:#E1E4E8">        });</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p><img src="https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/20220613180548.png" alt="示例"></p>
+<h3 id="点击小地图移动镜头">点击小地图移动镜头</h3>
+<p>由于 <code>Input.GetXX</code> 会作用于全局，为了避免不必要的判断，作为 UI 组件可以使用 <code>IPointerDownHandler</code> 系列接口获取点击事件。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> OnPointerDown</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">PointerEventData</span><span style="color:#B392F0"> eventData</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">    Vector2</span><span style="color:#B392F0"> ratio</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> (eventData.position </span><span style="color:#F97583">-</span><span style="color:#E1E4E8"> Vector2.one </span><span style="color:#F97583">*</span><span style="color:#79B8FF"> 100</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">/</span><span style="color:#79B8FF"> 200</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    Camera.main.transform.position </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8">(ratio.x </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> mainPlay.MapSize.x, ratio.y </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> mainPlay.MapSize.y, </span><span style="color:#F97583">-</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>小地图的大小目前设置为 200，故鼠标事件的位置需要减去一半大小后再除以 200 得到点击位置相对于全图的比例。
+注意不要改动摄像机高度。</p>
+<p>更进一步。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#F97583">bool</span><span style="color:#B392F0"> map_operation</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#6A737D">// Update is called once per frame</span></span>
+<span class="line"><span style="color:#F97583">void</span><span style="color:#B392F0"> Update</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (map_operation </span><span style="color:#F97583">&#x26;&#x26;</span><span style="color:#E1E4E8"> Input.</span><span style="color:#B392F0">GetKey</span><span style="color:#E1E4E8">(KeyCode.Mouse0))</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#B392F0">        Vector3</span><span style="color:#B392F0"> p</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> Input.mousePosition;</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#E1E4E8">        p.x </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Mathf.</span><span style="color:#B392F0">Clamp</span><span style="color:#E1E4E8">(p.x, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        p.y </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Mathf.</span><span style="color:#B392F0">Clamp</span><span style="color:#E1E4E8">(p.y, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">        Vector2</span><span style="color:#B392F0"> ratio</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> (p </span><span style="color:#F97583">-</span><span style="color:#E1E4E8"> Vector3.one </span><span style="color:#F97583">*</span><span style="color:#79B8FF"> 100</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">/</span><span style="color:#79B8FF"> 200</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        Camera.main.transform.position </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8">(ratio.x </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> mainPlay.MapSize.x, ratio.y </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> mainPlay.MapSize.y, </span><span style="color:#F97583">-</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> OnPointerDown</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">PointerEventData</span><span style="color:#B392F0"> eventData</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#E1E4E8">    map_operation </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> OnPointerUp</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">PointerEventData</span><span style="color:#B392F0"> eventData</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#E1E4E8">    map_operation</span><span style="color:#F97583">=</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>   </main> <footer class="flex flex-col my-8 mx-auto w-max gap-4"> <div class="text-sm flex flex-col gap-1 items-center"> <span class=" ">
+© 2021 – 2023 ⚪ Author @ Site </span> <span></span> <span>Powered by <a href="https://astro.build/">Astro</a></span> </div> </footer> </body></html> 

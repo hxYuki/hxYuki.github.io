@@ -1,0 +1,331 @@
+<!DOCTYPE html><html lang="zh" data-theme> <head><meta charset="utf-8"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="viewport" content="width=device-width"><meta name="generator" content="Astro v4.4.13"><title>游戏开发日志 (其三)：单位移动</title><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><link rel="stylesheet" href="/_astro/about.C5B0C2h6.css" />
+<style>a[data-astro-cid-gjtny2mx]{color:#00539f}.tags[data-astro-cid-gjtny2mx]{display:flex;flex-wrap:wrap}.tag[data-astro-cid-gjtny2mx]{margin:.25em;border:dotted 1px #a1a1a1;border-radius:.5em;padding:.5em 1em;font-size:1.15em;background-color:#f8fcfd}
+</style>
+<link rel="stylesheet" href="/_astro/_slug_.CYO6en0k.css" /><script type="module" src="/_astro/hoisted.BJ2QysRc.js"></script><style>[data-astro-transition-scope="astro-f64ip3ln-1"] { view-transition-name: astro-f64ip3ln-1; }@layer astro { ::view-transition-old(astro-f64ip3ln-1) { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(astro-f64ip3ln-1) { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(astro-f64ip3ln-1) { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(astro-f64ip3ln-1) { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-f64ip3ln-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-f64ip3ln-1"] { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-f64ip3ln-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-f64ip3ln-1"] { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-f64ip3ln-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-f64ip3ln-1"] { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-f64ip3ln-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-f64ip3ln-1"] { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-n5gwkkpg-2"] { view-transition-name: astro-n5gwkkpg-2; }@layer astro { ::view-transition-old(astro-n5gwkkpg-2) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(astro-n5gwkkpg-2) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(astro-n5gwkkpg-2) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(astro-n5gwkkpg-2) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-n5gwkkpg-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-n5gwkkpg-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-n5gwkkpg-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-n5gwkkpg-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-n5gwkkpg-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-n5gwkkpg-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-n5gwkkpg-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-n5gwkkpg-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body class="bg-basement text-neutral font-default leading-loose mx-auto w-full"> <header class="w-full h-[45vh] shadow-lg overflow-hidden bg-center" data-astro-cid-3ef6ksr2 style="--bgImg: url('https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/4ac9e89ebedbc831ce278f4ad5bbfc58.jpg');"> <nav class=" w-full h-14 flex items-center fixed"> <div class="inner flex flex-row items-center w-full sm:w-[--blank-width] mx-auto"> <div class="hamburger hidden flex flex-col justify-between text-default" data-astro-cid-3weo6hls> <span class="line" data-astro-cid-3weo6hls></span> <span class="line" data-astro-cid-3weo6hls></span> <span class="line" data-astro-cid-3weo6hls></span> </div>   <ul class="nav-links grow flex flex-row"> <li class="group/item relative p-2 font-medium text-base text-white"> <a href="/" class="text-center p-2 uppercase"> 首页  </a>  </li> <!-- <style>
+    ul {
+        width: max-content;
+    }
+</style> --><li class="group/item relative p-2 font-medium text-base text-white"> <a href="/blog/" class="text-center p-2 uppercase"> 博客 &gt; </a> <ul data-theme="dark" class="group/menu absolute hidden group-hover/item:block w-max bg-basement bg-opacity-85 text-white shadow-lg rounded-es-xl rounded-se-xl overflow-hidden z-10 left-0 top-full"> <li class="group/item relative p-2 font-medium text-base text-white hover:bg-primary px-4 first:pt-3 last:pb-3 font-normal text-base tracking-widest"> <a href="/archive/" class="text-center p-2 uppercase"> 归档  </a>  </li> <!-- <style>
+    ul {
+        width: max-content;
+    }
+</style> --><li class="group/item relative p-2 font-medium text-base text-white hover:bg-primary px-4 first:pt-3 last:pb-3 font-normal text-base tracking-widest"> <a href="/tags/" class="text-center p-2 uppercase"> 标签  </a>  </li> <!-- <style>
+    ul {
+        width: max-content;
+    }
+</style> --><li class="group/item relative p-2 font-medium text-base text-white hover:bg-primary px-4 first:pt-3 last:pb-3 font-normal text-base tracking-widest"> <a href="/categories/" class="text-center p-2 uppercase"> 分类  </a>  </li> <!-- <style>
+    ul {
+        width: max-content;
+    }
+</style> --> </ul> </li> <!-- <style>
+    ul {
+        width: max-content;
+    }
+</style> --><li class="group/item relative p-2 font-medium text-base text-white"> <a href="/about/" class="text-center p-2 uppercase"> 关于  </a>  </li> <!-- <style>
+    ul {
+        width: max-content;
+    }
+</style> --> </ul> <button id="themeToggle"> <svg width="24px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"> <path class="sun" fill-rule="evenodd" fill="currentColor" d="M12 17.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm0 1.5a7 7 0 1 0 0-14 7 7 0 0 0 0 14zm12-7a.8.8 0 0 1-.8.8h-2.4a.8.8 0 0 1 0-1.6h2.4a.8.8 0 0 1 .8.8zM4 12a.8.8 0 0 1-.8.8H.8a.8.8 0 0 1 0-1.6h2.5a.8.8 0 0 1 .8.8zm16.5-8.5a.8.8 0 0 1 0 1l-1.8 1.8a.8.8 0 0 1-1-1l1.7-1.8a.8.8 0 0 1 1 0zM6.3 17.7a.8.8 0 0 1 0 1l-1.7 1.8a.8.8 0 1 1-1-1l1.7-1.8a.8.8 0 0 1 1 0zM12 0a.8.8 0 0 1 .8.8v2.5a.8.8 0 0 1-1.6 0V.8A.8.8 0 0 1 12 0zm0 20a.8.8 0 0 1 .8.8v2.4a.8.8 0 0 1-1.6 0v-2.4a.8.8 0 0 1 .8-.8zM3.5 3.5a.8.8 0 0 1 1 0l1.8 1.8a.8.8 0 1 1-1 1L3.5 4.6a.8.8 0 0 1 0-1zm14.2 14.2a.8.8 0 0 1 1 0l1.8 1.7a.8.8 0 0 1-1 1l-1.8-1.7a.8.8 0 0 1 0-1z"></path> <path class="moon" fill-rule="evenodd" d="M16.5 6A10.5 10.5 0 0 1 4.7 16.4 8.5 8.5 0 1 0 16.4 4.7l.1 1.3zm-1.7-2a9 9 0 0 1 .2 2 9 9 0 0 1-11 8.8 9.4 9.4 0 0 1-.8-.3c-.4 0-.8.3-.7.7a10 10 0 0 0 .3.8 10 10 0 0 0 9.2 6 10 10 0 0 0 4-19.2 9.7 9.7 0 0 0-.9-.3c-.3-.1-.7.3-.6.7a9 9 0 0 1 .3.8z"></path> </svg> </button> <!-- <style>
+    #themeToggle {
+        border: 0;
+        background: none;
+    }
+    .sun {
+        fill: black;
+    }
+    .moon {
+        fill: transparent;
+    }
+
+    :global(.dark) .sun {
+        fill: transparent;
+    }
+    :global(.dark) .moon {
+        fill: white;
+    }
+</style> --> <script>
+  document.addEventListener('astro:page-load', () => {
+    const theme = (() => {
+      if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+        return localStorage.getItem("theme");
+      }
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        return "dark";
+      }
+      return "light";
+    })();
+
+    // if (theme === "light") {
+    //   delete document.documentElement.dataset.theme;
+    // } else {
+    //   document.documentElement.dataset.theme = "dark";
+    // }
+    document.documentElement.dataset.theme = theme;
+
+    window.localStorage.setItem("theme", theme);
+
+    const handleToggleClick = () => {
+      const element = document.documentElement;
+      // element.classList.toggle("dark");
+      const isDark = element.dataset.theme === "dark";
+      element.dataset.theme = isDark ? "light" : "dark";
+      localStorage.setItem("theme", !isDark ? "dark" : "light");
+
+    };
+
+    document
+      .getElementById("themeToggle")
+      .addEventListener("click", handleToggleClick);
+  });
+</script>  </div> </nav>  <div class="fixed z-[-1] w-full h-[45vh] pt-[15vh] flex flex-col text-center items-center justify-center" data-astro-cid-3ef6ksr2 style="--bgImg: url('https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/4ac9e89ebedbc831ce278f4ad5bbfc58.jpg');"> <h1 class="text-4xl text-white font-bold font-serif-sc h-max w-max" data-astro-cid-3ef6ksr2 style="--bgImg: url('https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/4ac9e89ebedbc831ce278f4ad5bbfc58.jpg');" data-astro-transition-scope="astro-n5gwkkpg-2"> 游戏开发日志 (其三)：单位移动 </h1> </div> <ul class="fixed -z-10 w-full h-full before:block before:absolute before:-z-0 before:bg-black before:bg-opacity-50 before:w-full before:h-full" data-astro-cid-3ef6ksr2 style="--bgImg: url('https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/4ac9e89ebedbc831ce278f4ad5bbfc58.jpg');"> <!-- <img src={headerImage} alt="Header Image" class="object-fill object-center h-[45vh] w-full -z-10" /> --> <li class="absolute h-[45vh] w-full -z-10 bg-center" style="background-image: url('https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/4ac9e89ebedbc831ce278f4ad5bbfc58.jpg');; --bgImg: url('https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/4ac9e89ebedbc831ce278f4ad5bbfc58.jpg');" data-astro-cid-3ef6ksr2></li> </ul> </header>  <!-- <h1 transition:animate="slide" class="text-4xl text-white font-bold font-serif-sc">{pageTitle}</h1> --> <aside class="bg-basement z-0 sm:px-[20rem] py-10 float-right"> <ul data-astro-cid-gjtny2mx> <li data-astro-cid-gjtny2mx><a href="#移动" data-astro-cid-gjtny2mx>移动</a></li><li data-astro-cid-gjtny2mx><a href="#指令队列" data-astro-cid-gjtny2mx>指令队列</a></li><li data-astro-cid-gjtny2mx><a href="#指令" data-astro-cid-gjtny2mx>指令</a></li><li data-astro-cid-gjtny2mx><a href="#队列" data-astro-cid-gjtny2mx>队列</a></li> </ul> </aside> <main class="bg-basement z-0 sm:px-[20rem] py-10">   <p data-astro-cid-gjtny2mx>发表于： 6/16/2022</p> <p data-astro-cid-gjtny2mx data-astro-transition-scope="astro-f64ip3ln-1"><em data-astro-cid-gjtny2mx></em></p>   <div class="tags" data-astro-cid-gjtny2mx> <p class="tag" data-astro-cid-gjtny2mx><a href="/tags/Unity" data-astro-cid-gjtny2mx>Unity</a></p><p class="tag" data-astro-cid-gjtny2mx><a href="/tags/单位移动" data-astro-cid-gjtny2mx>单位移动</a></p> </div>  <p>!!我还真时跟对象没有缘分，这几天的闷头搞事竟然还算摸到了一点ECS的边。选语言也是放着一众OOP不管一头扎进了函数式的坑，偏偏玩的还很菜。!!{.blur}</p>
+<h2 id="移动">移动</h2>
+<p>:::default no-icon
+本来以为近期可能不太有什么可以说道的事了，还是低估了游戏开发的奥妙，从头搭建一个世界真的是塔诺西呐。
+:::</p>
+<p>移动这个过程首先是转向，面向要前往的方向，开始前进是一个很自然，很符合直觉的过程，所以这里我也加上了需要转过身来才能移动的限制。</p>
+<p>:::info
+这里直接使用了我觉得很妙的组织方法，如果说可能有潜在的性能问题，应该也能方便的转写成ECS的模式（大概）
+:::</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#6A737D">// Unity 会自动为我们添加依赖的 Rigidbody 组件</span></span>
+<span class="line"><span style="color:#E1E4E8">[</span><span style="color:#B392F0">RequireComponent</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">typeof</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">Rigidbody2D</span><span style="color:#E1E4E8">))]</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> Movable</span><span style="color:#E1E4E8"> : </span><span style="color:#B392F0">MonoBehaviour</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#B392F0">    Rigidbody2D</span><span style="color:#B392F0"> rigid</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#6A737D">    // 可移动单位的属性</span></span>
+<span class="line"><span style="color:#F97583">    float</span><span style="color:#B392F0"> moveSpeed</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> 300</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">    float</span><span style="color:#B392F0"> rotateSpeed</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> 800</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#6A737D">    // 移动过程的参数</span></span>
+<span class="line"><span style="color:#B392F0">    Vector2</span><span style="color:#B392F0"> destination</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#B392F0">    Vector2</span><span style="color:#B392F0"> direction</span><span style="color:#F97583"> =></span><span style="color:#E1E4E8"> destination </span><span style="color:#F97583">-</span><span style="color:#E1E4E8"> rigid.position;</span></span>
+<span class="line"><span style="color:#F97583">    bool</span><span style="color:#B392F0"> isMoving</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#6A737D">    // 一些温暖人心的状态判断</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> bool</span><span style="color:#B392F0"> IsIdling</span><span style="color:#F97583"> =></span><span style="color:#F97583"> !</span><span style="color:#E1E4E8">isMoving;</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> bool</span><span style="color:#B392F0"> IsMoveFinished</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">Vector2</span><span style="color:#B392F0"> destination</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#F97583"> !</span><span style="color:#E1E4E8">isMoving </span><span style="color:#F97583">&#x26;&#x26;</span><span style="color:#E1E4E8"> rigid.position </span><span style="color:#F97583">==</span><span style="color:#E1E4E8"> destination;</span></span>
+<span class="line"><span style="color:#6A737D">    // 对外放出的功能</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> MoveTo</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">Vector2</span><span style="color:#B392F0"> destination</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.destination </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> destination;</span></span>
+<span class="line"><span style="color:#E1E4E8">        isMoving </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> Interupt</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#E1E4E8">        isMoving </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> Resume</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#E1E4E8">        isMoving </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    // Use this for initialization</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> Start</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#E1E4E8">        rigid </span><span style="color:#F97583">=</span><span style="color:#B392F0"> GetComponent</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">Rigidbody2D</span><span style="color:#E1E4E8">>();</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    // Update is called once per frame</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> Update</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (isMoving)</span></span>
+<span class="line"><span style="color:#E1E4E8">        {</span></span>
+<span class="line"><span style="color:#6A737D">            // 首先旋转</span></span>
+<span class="line"><span style="color:#F97583">            var</span><span style="color:#B392F0"> lookRotation</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> Quaternion.</span><span style="color:#B392F0">LookRotation</span><span style="color:#E1E4E8">(Vector3.forward, direction);</span></span>
+<span class="line"><span style="color:#6A737D">            // 计算当前帧应该进行的转动</span></span>
+<span class="line"><span style="color:#F97583">            var</span><span style="color:#B392F0"> rotation</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> Quaternion.</span><span style="color:#B392F0">RotateTowards</span><span style="color:#E1E4E8">(transform.rotation, lookRotation, Time.deltaTime </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> rotateSpeed);</span></span>
+<span class="line"><span style="color:#6A737D">            // 当前方向与目标的夹角</span></span>
+<span class="line"><span style="color:#F97583">            float</span><span style="color:#B392F0"> angle</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> Quaternion.</span><span style="color:#B392F0">Angle</span><span style="color:#E1E4E8">(lookRotation, transform.rotation);</span></span>
+<span class="line"><span style="color:#6A737D">            // 转身，同时碰撞带来的避免不必要的乱转</span></span>
+<span class="line"><span style="color:#F97583">            if</span><span style="color:#E1E4E8">(angle </span><span style="color:#F97583">!=</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">            {</span></span>
+<span class="line"><span style="color:#E1E4E8">                rigid.freezeRotation </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">                transform.rotation </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> rotation;</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span><span style="color:#F97583">else</span><span style="color:#E1E4E8"> rigid.freezeRotation </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#6A737D">            // 当角度小于15度时可以移动</span></span>
+<span class="line"><span style="color:#F97583">            if</span><span style="color:#E1E4E8">(angle </span><span style="color:#F97583">&#x3C;=</span><span style="color:#79B8FF"> 15</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">            {</span></span>
+<span class="line"><span style="color:#B392F0">                Vector2</span><span style="color:#B392F0"> move</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> Vector2.</span><span style="color:#B392F0">MoveTowards</span><span style="color:#E1E4E8">(rigid.position, destination, Time.deltaTime </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> moveSpeed</span><span style="color:#F97583">*</span><span style="color:#79B8FF">0.02f</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">                rigid.position </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> move;</span></span>
+<span class="line"><span style="color:#6A737D">                // 到达目的地</span></span>
+<span class="line"><span style="color:#F97583">                if</span><span style="color:#E1E4E8">(destination </span><span style="color:#F97583">==</span><span style="color:#E1E4E8"> rigid.position)</span></span>
+<span class="line"><span style="color:#E1E4E8">                {</span></span>
+<span class="line"><span style="color:#E1E4E8">                    isMoving </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">                }</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>这样一个独立的移动组件就完成了，当后面需要进行寻路等一大堆让人头大的操作时就可以方便的重写了！
+同样得益于独立性，可以自由的想让谁移动就让谁移动了。</p>
+<hr>
+<p>然而事情似乎也并没有如此简单，指令——移动、攻击、巡逻，是要有一个队列的。而后两种指令，也都是在移动的基础上添加的变化。</p>
+<h2 id="指令队列">指令队列</h2>
+<h3 id="指令">指令</h3>
+<p>首先考虑一个抽象的指令，仅需要它的目的地，和判断是否生成一个后继指令就够了。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> interface</span><span style="color:#B392F0"> InstructionIntent</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#B392F0">    Vector2</span><span style="color:#B392F0"> Destination</span><span style="color:#E1E4E8"> { </span><span style="color:#F97583">get</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#F97583">    bool</span><span style="color:#B392F0"> Derive</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">out</span><span style="color:#B392F0"> InstructionIntent</span><span style="color:#B392F0"> derived</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>这样移动和巡逻指令很简单：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> struct</span><span style="color:#B392F0"> MoveIntent</span><span style="color:#E1E4E8"> : </span><span style="color:#B392F0">InstructionIntent</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#B392F0">    Vector2</span><span style="color:#B392F0"> position</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#B392F0"> Vector2</span><span style="color:#B392F0"> Destination</span><span style="color:#F97583"> =></span><span style="color:#E1E4E8"> position;</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#B392F0"> MoveIntent</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">Vector2</span><span style="color:#B392F0"> position</span><span style="color:#E1E4E8">) { </span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.position </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> position; }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> bool</span><span style="color:#B392F0"> Derive</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">out</span><span style="color:#B392F0"> InstructionIntent</span><span style="color:#B392F0"> derived</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#E1E4E8">        derived </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> struct</span><span style="color:#B392F0"> PatrolIntent</span><span style="color:#E1E4E8"> : </span><span style="color:#B392F0">InstructionIntent</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#B392F0">    Vector2</span><span style="color:#B392F0"> from</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#B392F0">    Vector2</span><span style="color:#B392F0"> to</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#B392F0"> Vector2</span><span style="color:#B392F0"> Destination</span><span style="color:#F97583"> =></span><span style="color:#E1E4E8"> to;</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#B392F0"> PatrolIntent</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">Vector2</span><span style="color:#B392F0"> from</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">Vector2</span><span style="color:#B392F0"> to</span><span style="color:#E1E4E8">) { </span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.from </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> from;</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.to </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> to;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> bool</span><span style="color:#B392F0"> Derive</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">out</span><span style="color:#B392F0"> InstructionIntent</span><span style="color:#B392F0"> derived</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#E1E4E8">        derived </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> PatrolIntent</span><span style="color:#E1E4E8">(to, from);</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>由于巡逻到目标点后，显然根据现实经验我们需要返回原点，所以指令完成后需要产生出新的指示返回的指令。</p>
+<p>:::info
+攻击指令涉及到另外的攻击组件，恐怕不能如此简化，不过暂且先放在这里。
+:::</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> struct</span><span style="color:#B392F0"> AttackIntent</span><span style="color:#E1E4E8"> : </span><span style="color:#B392F0">InstructionIntent</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#B392F0">    GameObject</span><span style="color:#B392F0"> target</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#B392F0"> Vector2</span><span style="color:#B392F0"> Destination</span><span style="color:#F97583">=></span><span style="color:#E1E4E8">target.</span><span style="color:#B392F0">GetComponent</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">Transform</span><span style="color:#E1E4E8">>().position;</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#B392F0"> AttackIntent</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">GameObject</span><span style="color:#B392F0"> target</span><span style="color:#E1E4E8">) { </span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.target </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> target; }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> bool</span><span style="color:#B392F0"> Derive</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">out</span><span style="color:#B392F0"> InstructionIntent</span><span style="color:#B392F0"> derived</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#E1E4E8">        derived </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="队列">队列</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#B392F0"> Queue</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">InstructionIntent</span><span style="color:#E1E4E8">> </span><span style="color:#B392F0">instructions</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#B392F0"> Stack</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">InstructionIntent</span><span style="color:#E1E4E8">> </span><span style="color:#B392F0">patrolSencondaryInstructions</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8">();</span></span></code></pre>
+<p>为了应对一连串的巡逻指令，实现逐点往返，很明显能想到这是一个栈，在当前指令队列全部完成后，将栈倒进队列，就实现了往复循环。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#6A737D">// 如果指令队列里存在指令，处理指令</span></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#E1E4E8">(instructions.</span><span style="color:#B392F0">TryPeek</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">out</span><span style="color:#F97583"> var</span><span style="color:#B392F0"> current</span><span style="color:#E1E4E8">))</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8">(movableUnit.</span><span style="color:#B392F0">IsMoveFinished</span><span style="color:#E1E4E8">(current.Destination))</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span><span style="color:#6A737D">// 如果已到达目的地</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#6A737D">        // 是否有派生移动</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (current.</span><span style="color:#B392F0">Derive</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">out</span><span style="color:#F97583"> var</span><span style="color:#B392F0"> next</span><span style="color:#E1E4E8">))</span></span>
+<span class="line"><span style="color:#E1E4E8">        {</span></span>
+<span class="line"><span style="color:#E1E4E8">            patrolSencondaryInstructions.</span><span style="color:#B392F0">Push</span><span style="color:#E1E4E8">(next);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        instructions.</span><span style="color:#B392F0">Dequeue</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#6A737D">        // 如果完成移动后队列为空，查看派生移动栈</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (instructions.Count </span><span style="color:#F97583">==</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">        {</span></span>
+<span class="line"><span style="color:#F97583">            while</span><span style="color:#E1E4E8"> (patrolSencondaryInstructions.</span><span style="color:#B392F0">TryPop</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">out</span><span style="color:#F97583"> var</span><span style="color:#B392F0"> i</span><span style="color:#E1E4E8">))</span></span>
+<span class="line"><span style="color:#E1E4E8">            {</span></span>
+<span class="line"><span style="color:#E1E4E8">                instructions.</span><span style="color:#B392F0">Enqueue</span><span style="color:#E1E4E8">(i);</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#F97583">    else</span><span style="color:#F97583"> if</span><span style="color:#E1E4E8">(movableUnit.IsIdling)</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span><span style="color:#6A737D">// 移动</span></span>
+<span class="line"><span style="color:#E1E4E8">        movableUnit.</span><span style="color:#B392F0">MoveTo</span><span style="color:#E1E4E8">(current.Destination);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>随后检测地图上的鼠标右键事件，队列清空，停止移动，随后放入新指令。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#6A737D">// move or attack</span></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#E1E4E8"> (Input.</span><span style="color:#B392F0">GetKeyDown</span><span style="color:#E1E4E8">(KeyCode.Mouse1))</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (EventSystem.current.</span><span style="color:#B392F0">IsPointerOverGameObject</span><span style="color:#E1E4E8">())</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    mainPlay.selectedShips.</span><span style="color:#B392F0">ForEach</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">o</span><span style="color:#F97583"> =></span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#E1E4E8">        o.</span><span style="color:#B392F0">GetComponent</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">Warship</span><span style="color:#E1E4E8">>().instructions.</span><span style="color:#B392F0">Clear</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        o.</span><span style="color:#B392F0">GetComponent</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">Warship</span><span style="color:#E1E4E8">>().</span><span style="color:#B392F0">Stop</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        o.</span><span style="color:#B392F0">GetComponent</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">Warship</span><span style="color:#E1E4E8">>().instructions.</span><span style="color:#B392F0">Enqueue</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> MoveIntent</span><span style="color:#E1E4E8">(position));</span></span>
+<span class="line"><span style="color:#E1E4E8">    });</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>:::default
+此处并未判断队列输入，不过并不复杂。
+:::</p>
+<p><img src="https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/20220616121214.png" alt="分散队形"></p>   </main> <footer class="flex flex-col my-8 mx-auto w-max gap-4"> <div class="text-sm flex flex-col gap-1 items-center"> <span class=" ">
+© 2021 – 2023 ⚪ Author @ Site </span> <span></span> <span>Powered by <a href="https://astro.build/">Astro</a></span> </div> </footer> </body></html> 

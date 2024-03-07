@@ -1,0 +1,464 @@
+<!DOCTYPE html><html lang="zh" data-theme> <head><meta charset="utf-8"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="viewport" content="width=device-width"><meta name="generator" content="Astro v4.4.13"><title>游戏开发日志 (其四)：战争迷雾</title><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><link rel="stylesheet" href="/_astro/about.C5B0C2h6.css" />
+<style>a[data-astro-cid-gjtny2mx]{color:#00539f}.tags[data-astro-cid-gjtny2mx]{display:flex;flex-wrap:wrap}.tag[data-astro-cid-gjtny2mx]{margin:.25em;border:dotted 1px #a1a1a1;border-radius:.5em;padding:.5em 1em;font-size:1.15em;background-color:#f8fcfd}
+</style>
+<link rel="stylesheet" href="/_astro/_slug_.CYO6en0k.css" /><script type="module" src="/_astro/hoisted.BJ2QysRc.js"></script><style>[data-astro-transition-scope="astro-f64ip3ln-1"] { view-transition-name: astro-f64ip3ln-1; }@layer astro { ::view-transition-old(astro-f64ip3ln-1) { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(astro-f64ip3ln-1) { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(astro-f64ip3ln-1) { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(astro-f64ip3ln-1) { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-f64ip3ln-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-f64ip3ln-1"] { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-f64ip3ln-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-f64ip3ln-1"] { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-f64ip3ln-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-f64ip3ln-1"] { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-f64ip3ln-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-f64ip3ln-1"] { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-n5gwkkpg-2"] { view-transition-name: astro-n5gwkkpg-2; }@layer astro { ::view-transition-old(astro-n5gwkkpg-2) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(astro-n5gwkkpg-2) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(astro-n5gwkkpg-2) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(astro-n5gwkkpg-2) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-n5gwkkpg-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-n5gwkkpg-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-n5gwkkpg-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-n5gwkkpg-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-n5gwkkpg-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-n5gwkkpg-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-n5gwkkpg-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-n5gwkkpg-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body class="bg-basement text-neutral font-default leading-loose mx-auto w-full"> <header class="w-full h-[45vh] shadow-lg overflow-hidden bg-center" data-astro-cid-3ef6ksr2 style="--bgImg: url('https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/4ac9e89ebedbc831ce278f4ad5bbfc58.jpg');"> <nav class=" w-full h-14 flex items-center fixed"> <div class="inner flex flex-row items-center w-full sm:w-[--blank-width] mx-auto"> <div class="hamburger hidden flex flex-col justify-between text-default" data-astro-cid-3weo6hls> <span class="line" data-astro-cid-3weo6hls></span> <span class="line" data-astro-cid-3weo6hls></span> <span class="line" data-astro-cid-3weo6hls></span> </div>   <ul class="nav-links grow flex flex-row"> <li class="group/item relative p-2 font-medium text-base text-white"> <a href="/" class="text-center p-2 uppercase"> 首页  </a>  </li> <!-- <style>
+    ul {
+        width: max-content;
+    }
+</style> --><li class="group/item relative p-2 font-medium text-base text-white"> <a href="/blog/" class="text-center p-2 uppercase"> 博客 &gt; </a> <ul data-theme="dark" class="group/menu absolute hidden group-hover/item:block w-max bg-basement bg-opacity-85 text-white shadow-lg rounded-es-xl rounded-se-xl overflow-hidden z-10 left-0 top-full"> <li class="group/item relative p-2 font-medium text-base text-white hover:bg-primary px-4 first:pt-3 last:pb-3 font-normal text-base tracking-widest"> <a href="/archive/" class="text-center p-2 uppercase"> 归档  </a>  </li> <!-- <style>
+    ul {
+        width: max-content;
+    }
+</style> --><li class="group/item relative p-2 font-medium text-base text-white hover:bg-primary px-4 first:pt-3 last:pb-3 font-normal text-base tracking-widest"> <a href="/tags/" class="text-center p-2 uppercase"> 标签  </a>  </li> <!-- <style>
+    ul {
+        width: max-content;
+    }
+</style> --><li class="group/item relative p-2 font-medium text-base text-white hover:bg-primary px-4 first:pt-3 last:pb-3 font-normal text-base tracking-widest"> <a href="/categories/" class="text-center p-2 uppercase"> 分类  </a>  </li> <!-- <style>
+    ul {
+        width: max-content;
+    }
+</style> --> </ul> </li> <!-- <style>
+    ul {
+        width: max-content;
+    }
+</style> --><li class="group/item relative p-2 font-medium text-base text-white"> <a href="/about/" class="text-center p-2 uppercase"> 关于  </a>  </li> <!-- <style>
+    ul {
+        width: max-content;
+    }
+</style> --> </ul> <button id="themeToggle"> <svg width="24px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"> <path class="sun" fill-rule="evenodd" fill="currentColor" d="M12 17.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm0 1.5a7 7 0 1 0 0-14 7 7 0 0 0 0 14zm12-7a.8.8 0 0 1-.8.8h-2.4a.8.8 0 0 1 0-1.6h2.4a.8.8 0 0 1 .8.8zM4 12a.8.8 0 0 1-.8.8H.8a.8.8 0 0 1 0-1.6h2.5a.8.8 0 0 1 .8.8zm16.5-8.5a.8.8 0 0 1 0 1l-1.8 1.8a.8.8 0 0 1-1-1l1.7-1.8a.8.8 0 0 1 1 0zM6.3 17.7a.8.8 0 0 1 0 1l-1.7 1.8a.8.8 0 1 1-1-1l1.7-1.8a.8.8 0 0 1 1 0zM12 0a.8.8 0 0 1 .8.8v2.5a.8.8 0 0 1-1.6 0V.8A.8.8 0 0 1 12 0zm0 20a.8.8 0 0 1 .8.8v2.4a.8.8 0 0 1-1.6 0v-2.4a.8.8 0 0 1 .8-.8zM3.5 3.5a.8.8 0 0 1 1 0l1.8 1.8a.8.8 0 1 1-1 1L3.5 4.6a.8.8 0 0 1 0-1zm14.2 14.2a.8.8 0 0 1 1 0l1.8 1.7a.8.8 0 0 1-1 1l-1.8-1.7a.8.8 0 0 1 0-1z"></path> <path class="moon" fill-rule="evenodd" d="M16.5 6A10.5 10.5 0 0 1 4.7 16.4 8.5 8.5 0 1 0 16.4 4.7l.1 1.3zm-1.7-2a9 9 0 0 1 .2 2 9 9 0 0 1-11 8.8 9.4 9.4 0 0 1-.8-.3c-.4 0-.8.3-.7.7a10 10 0 0 0 .3.8 10 10 0 0 0 9.2 6 10 10 0 0 0 4-19.2 9.7 9.7 0 0 0-.9-.3c-.3-.1-.7.3-.6.7a9 9 0 0 1 .3.8z"></path> </svg> </button> <!-- <style>
+    #themeToggle {
+        border: 0;
+        background: none;
+    }
+    .sun {
+        fill: black;
+    }
+    .moon {
+        fill: transparent;
+    }
+
+    :global(.dark) .sun {
+        fill: transparent;
+    }
+    :global(.dark) .moon {
+        fill: white;
+    }
+</style> --> <script>
+  document.addEventListener('astro:page-load', () => {
+    const theme = (() => {
+      if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+        return localStorage.getItem("theme");
+      }
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        return "dark";
+      }
+      return "light";
+    })();
+
+    // if (theme === "light") {
+    //   delete document.documentElement.dataset.theme;
+    // } else {
+    //   document.documentElement.dataset.theme = "dark";
+    // }
+    document.documentElement.dataset.theme = theme;
+
+    window.localStorage.setItem("theme", theme);
+
+    const handleToggleClick = () => {
+      const element = document.documentElement;
+      // element.classList.toggle("dark");
+      const isDark = element.dataset.theme === "dark";
+      element.dataset.theme = isDark ? "light" : "dark";
+      localStorage.setItem("theme", !isDark ? "dark" : "light");
+
+    };
+
+    document
+      .getElementById("themeToggle")
+      .addEventListener("click", handleToggleClick);
+  });
+</script>  </div> </nav>  <div class="fixed z-[-1] w-full h-[45vh] pt-[15vh] flex flex-col text-center items-center justify-center" data-astro-cid-3ef6ksr2 style="--bgImg: url('https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/4ac9e89ebedbc831ce278f4ad5bbfc58.jpg');"> <h1 class="text-4xl text-white font-bold font-serif-sc h-max w-max" data-astro-cid-3ef6ksr2 style="--bgImg: url('https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/4ac9e89ebedbc831ce278f4ad5bbfc58.jpg');" data-astro-transition-scope="astro-n5gwkkpg-2"> 游戏开发日志 (其四)：战争迷雾 </h1> </div> <ul class="fixed -z-10 w-full h-full before:block before:absolute before:-z-0 before:bg-black before:bg-opacity-50 before:w-full before:h-full" data-astro-cid-3ef6ksr2 style="--bgImg: url('https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/4ac9e89ebedbc831ce278f4ad5bbfc58.jpg');"> <!-- <img src={headerImage} alt="Header Image" class="object-fill object-center h-[45vh] w-full -z-10" /> --> <li class="absolute h-[45vh] w-full -z-10 bg-center" style="background-image: url('https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/4ac9e89ebedbc831ce278f4ad5bbfc58.jpg');; --bgImg: url('https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/4ac9e89ebedbc831ce278f4ad5bbfc58.jpg');" data-astro-cid-3ef6ksr2></li> </ul> </header>  <!-- <h1 transition:animate="slide" class="text-4xl text-white font-bold font-serif-sc">{pageTitle}</h1> --> <aside class="bg-basement z-0 sm:px-[20rem] py-10 float-right"> <ul data-astro-cid-gjtny2mx> <li data-astro-cid-gjtny2mx><a href="#概述" data-astro-cid-gjtny2mx>概述</a></li><li data-astro-cid-gjtny2mx><a href="#地图块" data-astro-cid-gjtny2mx>地图块</a></li><li data-astro-cid-gjtny2mx><a href="#地图块定义" data-astro-cid-gjtny2mx>地图块定义</a></li><li data-astro-cid-gjtny2mx><a href="#地图块索引" data-astro-cid-gjtny2mx>地图块索引</a></li><li data-astro-cid-gjtny2mx><a href="#地图块生成" data-astro-cid-gjtny2mx>地图块生成</a></li><li data-astro-cid-gjtny2mx><a href="#单位视野" data-astro-cid-gjtny2mx>单位视野</a></li><li data-astro-cid-gjtny2mx><a href="#迷雾生成" data-astro-cid-gjtny2mx>迷雾生成</a></li><li data-astro-cid-gjtny2mx><a href="#基本设施" data-astro-cid-gjtny2mx>基本设施</a></li><li data-astro-cid-gjtny2mx><a href="#迷雾的计算" data-astro-cid-gjtny2mx>迷雾的计算</a></li><li data-astro-cid-gjtny2mx><a href="#射线检测函数" data-astro-cid-gjtny2mx>射线检测函数</a></li><li data-astro-cid-gjtny2mx><a href="#迷雾刷新" data-astro-cid-gjtny2mx>迷雾刷新</a></li><li data-astro-cid-gjtny2mx><a href="#迷雾贴图" data-astro-cid-gjtny2mx>迷雾贴图</a></li><li data-astro-cid-gjtny2mx><a href="#迷雾渲染" data-astro-cid-gjtny2mx>迷雾渲染</a></li><li data-astro-cid-gjtny2mx><a href="#Footnotes" data-astro-cid-gjtny2mx>Footnotes</a></li> </ul> </aside> <main class="bg-basement z-0 sm:px-[20rem] py-10">   <p data-astro-cid-gjtny2mx>发表于： 7/18/2022</p> <p data-astro-cid-gjtny2mx data-astro-transition-scope="astro-f64ip3ln-1"><em data-astro-cid-gjtny2mx></em></p>   <div class="tags" data-astro-cid-gjtny2mx> <p class="tag" data-astro-cid-gjtny2mx><a href="/tags/Unity" data-astro-cid-gjtny2mx>Unity</a></p><p class="tag" data-astro-cid-gjtny2mx><a href="/tags/地图网格" data-astro-cid-gjtny2mx>地图网格</a></p><p class="tag" data-astro-cid-gjtny2mx><a href="/tags/战争迷雾" data-astro-cid-gjtny2mx>战争迷雾</a></p> </div>  <p>:::info
+本文基于<a href="https://www.bilibili.com/video/BV1tt411j7Zr?share_source=copy_web">【基于视野的战争迷雾实现】Unity战争迷雾实现</a> <a href="https://space.bilibili.com/3981300">@琴桌</a> 实现。
+<a href="https://github.com/QinZhuo/FogOfWar_ForUnity">Github</a>
+:::</p>
+<p>:::default
+一个月的磕磕绊绊终于是完成了效果，总感觉既然当初察觉了掌握ECS的契机不如直接上手，现在纠结这些对象、类功能的划分实属难受。
+旁人的打断，自己的摆烂，想到这里，不禁潸然。
+:::</p>
+<h2 id="概述">概述</h2>
+<p>总体上的思路为将地图按方块划分，将地图上的障碍物标记出来，对每个有视野的单位进行射线检测判断视野是否被遮挡，将方块化的视野转换为RenderTexture作为迷雾对象的材质渲染到地图的上方。</p>
+<h2 id="地图块">地图块</h2>
+<h3 id="地图块定义">地图块定义</h3>
+<p>使用一个枚举代表一个地图块的状态</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> enum</span><span style="color:#B392F0"> MapStatus</span><span style="color:#E1E4E8">:</span><span style="color:#F97583">byte</span><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#B392F0">    Empty</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">    Obstacle</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#B392F0">    AllyUnit</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#B392F0">    EnemeyUnit</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#B392F0">    SelfUnit</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#6A737D">// 整个地图的地图块</span></span>
+<span class="line"><span style="color:#B392F0">MapStatus</span><span style="color:#E1E4E8">[,] </span><span style="color:#B392F0">innerMap</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#6A737D">// 地图宽高</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> int</span><span style="color:#E1E4E8"> Width { </span><span style="color:#B392F0">get</span><span style="color:#F97583"> =></span><span style="color:#E1E4E8"> innerMap.</span><span style="color:#B392F0">GetLength</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">); }</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> int</span><span style="color:#E1E4E8"> Height { </span><span style="color:#B392F0">get</span><span style="color:#F97583"> =></span><span style="color:#E1E4E8"> innerMap.</span><span style="color:#B392F0">GetLength</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">); }</span></span>
+<span class="line"><span style="color:#6A737D">// 地图块的边长</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> float</span><span style="color:#E1E4E8"> GridSize { get; }</span></span></code></pre>
+<h3 id="地图块索引">地图块索引</h3>
+<p>对地图的索引到真实位置的转换则有</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#B392F0"> Vector2</span><span style="color:#B392F0"> GetRealPosition</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#B392F0"> x</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">int</span><span style="color:#B392F0"> y</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Vector2</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">            (x </span><span style="color:#F97583">-</span><span style="color:#E1E4E8"> Width </span><span style="color:#F97583">/</span><span style="color:#79B8FF"> 2</span><span style="color:#F97583"> +</span><span style="color:#79B8FF"> 0.5f</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> GridSize,</span></span>
+<span class="line"><span style="color:#E1E4E8">            (y </span><span style="color:#F97583">-</span><span style="color:#E1E4E8"> Height </span><span style="color:#F97583">/</span><span style="color:#79B8FF"> 2</span><span style="color:#F97583"> +</span><span style="color:#79B8FF"> 0.5f</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> GridSize</span></span>
+<span class="line"><span style="color:#E1E4E8">        );</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#B392F0"> Vector2Int</span><span style="color:#B392F0"> GetGridPosition</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">Vector2</span><span style="color:#B392F0"> position</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Vector2Int</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">            (</span><span style="color:#F97583">int</span><span style="color:#E1E4E8">)((position.x </span><span style="color:#F97583">/</span><span style="color:#E1E4E8"> GridSize </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> Width </span><span style="color:#F97583">/</span><span style="color:#79B8FF"> 2</span><span style="color:#F97583"> -</span><span style="color:#79B8FF"> 0.5f</span><span style="color:#E1E4E8">)),</span></span>
+<span class="line"><span style="color:#E1E4E8">            (</span><span style="color:#F97583">int</span><span style="color:#E1E4E8">)((position.y </span><span style="color:#F97583">/</span><span style="color:#E1E4E8"> GridSize </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> Height </span><span style="color:#F97583">/</span><span style="color:#79B8FF"> 2</span><span style="color:#F97583"> -</span><span style="color:#79B8FF"> 0.5f</span><span style="color:#E1E4E8">))</span></span>
+<span class="line"><span style="color:#E1E4E8">        );</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> bool</span><span style="color:#B392F0"> IsInMap</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">Vector2Int</span><span style="color:#B392F0"> pos</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> (pos.x </span><span style="color:#F97583">>=</span><span style="color:#79B8FF"> 0</span><span style="color:#F97583"> &#x26;&#x26;</span><span style="color:#E1E4E8"> pos.x </span><span style="color:#F97583">&#x3C;=</span><span style="color:#E1E4E8"> Width) </span><span style="color:#F97583">&#x26;&#x26;</span><span style="color:#E1E4E8"> (pos.y </span><span style="color:#F97583">>=</span><span style="color:#79B8FF"> 0</span><span style="color:#F97583"> &#x26;&#x26;</span><span style="color:#E1E4E8"> pos.y </span><span style="color:#F97583">&#x3C;=</span><span style="color:#E1E4E8"> Height); </span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="地图块生成">地图块生成</h3>
+<p>对于地图，可以使用 <code>Physics2D.OverlapBox()</code><sup><a href="#user-content-fn-1" id="user-content-fnref-1" data-footnote-ref="" aria-describedby="footnote-label">1</a></sup> 来判断地图块状态，使用了<code>Solid Unit</code>作为障碍物的Layer，排除其他单位碰撞体。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#F97583">for</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">int</span><span style="color:#B392F0"> i</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">; i </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8"> Width; i</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">int</span><span style="color:#B392F0"> j</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">; j </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8"> Height; j</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#F97583">        var</span><span style="color:#B392F0"> box</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> Physics2D.</span><span style="color:#B392F0">OverlapBox</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">GetRealPosition</span><span style="color:#E1E4E8">(i, j), </span><span style="color:#F97583">new</span><span style="color:#B392F0"> Vector2</span><span style="color:#E1E4E8">(GridSize, GridSize)</span><span style="color:#F97583">/</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, LayerMask.</span><span style="color:#B392F0">GetMask</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Solid Unit"</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (box </span><span style="color:#F97583">!=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">        {</span></span>
+<span class="line"><span style="color:#E1E4E8">            innerMap[i, j] </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> MapStatus.Obstacle;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#F97583">        else</span><span style="color:#E1E4E8"> innerMap[i, j] </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> MapStatus.Empty;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span></code></pre>
+<h2 id="单位视野">单位视野</h2>
+<p>使用一个Behavior存储单位视野相关的数据</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> UnitVision</span><span style="color:#E1E4E8"> : </span><span style="color:#B392F0">MonoBehaviour</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#E1E4E8">    [</span><span style="color:#B392F0">SerializeField</span><span style="color:#E1E4E8">] </span><span style="color:#6A737D">// 这个 Attribute 可以让变量显示在 Inspector 窗口中</span></span>
+<span class="line"><span style="color:#F97583">    float</span><span style="color:#B392F0"> sightRange</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> 5</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> float</span><span style="color:#B392F0"> GetSight</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> sightRange;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h2 id="迷雾生成">迷雾生成</h2>
+<p>首先归纳下现有代码，将<a href="#%E5%9C%B0%E5%9B%BE%E5%9D%97">地图块</a>内代码均包装为<code>MapGrid</code>类</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> MapGrid</span><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#6A737D">    // ...</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="基本设施">基本设施</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> FogMaker</span><span style="color:#E1E4E8"> : </span><span style="color:#B392F0">MonoBehaviour</span><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#6A737D">    // 地图网格</span></span>
+<span class="line"><span style="color:#B392F0">    MapGrid</span><span style="color:#B392F0"> mapGrid</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#6A737D">    // 观察者</span></span>
+<span class="line"><span style="color:#B392F0">    List</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">UnitVision</span><span style="color:#E1E4E8">> </span><span style="color:#B392F0">viewers</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#6A737D">    // 迷雾颜色信息</span></span>
+<span class="line"><span style="color:#B392F0">    Color32</span><span style="color:#E1E4E8">[] </span><span style="color:#B392F0">colorBuffer</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#6A737D">    // 网格索引转换为颜色索引</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> ColorIndex</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#B392F0"> x</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">int</span><span style="color:#B392F0"> y</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#E1E4E8">        x </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Math.</span><span style="color:#B392F0">Clamp</span><span style="color:#E1E4E8">(x, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, mapGrid.Width);</span></span>
+<span class="line"><span style="color:#E1E4E8">        y </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Math.</span><span style="color:#B392F0">Clamp</span><span style="color:#E1E4E8">(y, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, mapGrid.Height);</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> x </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> y </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> mapGrid.Width;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> Init</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">MapGrid</span><span style="color:#B392F0"> map</span><span style="color:#E1E4E8">){</span></span>
+<span class="line"><span style="color:#6A737D">        // 初始化迷雾为不透明黑色</span></span>
+<span class="line"><span style="color:#E1E4E8">        colorBuffer </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Color32</span><span style="color:#E1E4E8">[mapGrid.Length];</span></span>
+<span class="line"><span style="color:#E1E4E8">        Array.</span><span style="color:#B392F0">Fill</span><span style="color:#E1E4E8">(colorBuffer, </span><span style="color:#F97583">new</span><span style="color:#B392F0"> Color32</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">255</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#6A737D">        // ... </span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#6A737D">    // ...</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="迷雾的计算">迷雾的计算</h3>
+<p>对每个观察者，获取视野范围内的方块</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#F97583">foreach</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">var</span><span style="color:#B392F0"> v</span><span style="color:#F97583"> in</span><span style="color:#E1E4E8"> viewers)</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#F97583">    var</span><span style="color:#B392F0"> pos</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> mapGrid.</span><span style="color:#B392F0">GetGridPosition</span><span style="color:#E1E4E8">(v.transform.position);</span></span>
+<span class="line"><span style="color:#F97583">    var</span><span style="color:#B392F0"> sight_radius</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> v.</span><span style="color:#B392F0">GetSight</span><span style="color:#E1E4E8">() </span><span style="color:#F97583">/</span><span style="color:#E1E4E8"> mapGrid.GridSize;</span></span>
+<span class="line"><span style="color:#F97583">    var</span><span style="color:#B392F0"> sight_square</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">int</span><span style="color:#E1E4E8">) (sight_radius </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> sight_radius);</span></span>
+<span class="line"><span style="color:#B392F0">    List</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">Vector2Int</span><span style="color:#E1E4E8">> </span><span style="color:#B392F0">curVisionPos</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#B392F0"> i</span><span style="color:#F97583"> =</span><span style="color:#F97583"> -</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">int</span><span style="color:#E1E4E8">)sight_radius; i </span><span style="color:#F97583">&#x3C;=</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">int</span><span style="color:#E1E4E8">)sight_radius; i</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">        for</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#B392F0"> j</span><span style="color:#F97583"> =</span><span style="color:#F97583"> -</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">int</span><span style="color:#E1E4E8">)sight_radius; j </span><span style="color:#F97583">&#x3C;=</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">int</span><span style="color:#E1E4E8">)sight_radius; j</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">        {</span></span>
+<span class="line"><span style="color:#F97583">            if</span><span style="color:#E1E4E8"> (i </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> i </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> j </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> j </span><span style="color:#F97583">&#x3C;=</span><span style="color:#E1E4E8"> sight_square)</span></span>
+<span class="line"><span style="color:#E1E4E8">            {</span></span>
+<span class="line"><span style="color:#6A737D">                // 该坐标处于可视范围内 且处于地图内</span></span>
+<span class="line"><span style="color:#F97583">                var</span><span style="color:#B392F0"> p</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> pos </span><span style="color:#F97583">+</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Vector2Int</span><span style="color:#E1E4E8">(i, j);</span></span>
+<span class="line"><span style="color:#F97583">                if</span><span style="color:#E1E4E8">(mapGrid.</span><span style="color:#B392F0">IsInMap</span><span style="color:#E1E4E8">(p))</span></span>
+<span class="line"><span style="color:#E1E4E8">                    curVisionPos.</span><span style="color:#B392F0">Add</span><span style="color:#E1E4E8">(p);</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // ...</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>对获取到的方块，将其与观察者连线，判断中间是否有障碍物遮挡，若有则从视野中移除。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#6A737D">// 由远到近排序</span></span>
+<span class="line"><span style="color:#E1E4E8">curVisionPos.</span><span style="color:#B392F0">Sort</span><span style="color:#E1E4E8">((</span><span style="color:#B392F0">a</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">b</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#B392F0"> DistanceSquared</span><span style="color:#E1E4E8">(pos, b) </span><span style="color:#F97583">-</span><span style="color:#B392F0"> DistanceSquared</span><span style="color:#E1E4E8">(pos, a));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">HashSet</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">Vector2Int</span><span style="color:#E1E4E8">> </span><span style="color:#B392F0">visited</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8">(), </span><span style="color:#B392F0">novision</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">foreach</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">var</span><span style="color:#B392F0"> p</span><span style="color:#F97583"> in</span><span style="color:#E1E4E8"> curVisionPos)</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">!</span><span style="color:#E1E4E8">visited.</span><span style="color:#B392F0">Contains</span><span style="color:#E1E4E8">(p))</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#F97583">        var</span><span style="color:#E1E4E8"> (</span><span style="color:#B392F0">blocked</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">unblocked</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=</span><span style="color:#B392F0"> GetBlockedAndUnblocked</span><span style="color:#E1E4E8">(pos,p);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        novision.</span><span style="color:#B392F0">UnionWith</span><span style="color:#E1E4E8">(blocked);</span></span>
+<span class="line"><span style="color:#E1E4E8">        visited.</span><span style="color:#B392F0">UnionWith</span><span style="color:#E1E4E8">(blocked);</span></span>
+<span class="line"><span style="color:#E1E4E8">        visited.</span><span style="color:#B392F0">UnionWith</span><span style="color:#E1E4E8">(unblocked);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#6A737D">// 移除无视野</span></span>
+<span class="line"><span style="color:#E1E4E8">curVisionPos.</span><span style="color:#B392F0">RemoveAll</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">p</span><span style="color:#F97583"> =></span><span style="color:#E1E4E8"> novision.</span><span style="color:#B392F0">Contains</span><span style="color:#E1E4E8">(p));</span></span>
+<span class="line"><span style="color:#6A737D">// 将视野区域设置为透明</span></span>
+<span class="line"><span style="color:#F97583">foreach</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">var</span><span style="color:#B392F0"> p</span><span style="color:#F97583"> in</span><span style="color:#E1E4E8"> curVisionPos)</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#E1E4E8">    colorBuffer[</span><span style="color:#B392F0">ColorIndex</span><span style="color:#E1E4E8">(p)].a </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>这里首先按照由远到近的距离将方块排序，提高后续计算效率，因为在计算遮挡时会将所有被遮挡和不被遮挡的方块返回，可以尽可能多的排除visited方块。</p>
+<h4 id="射线检测函数">射线检测函数</h4>
+<p>由起点向终点逐方块检测是否有障碍物，若遇到障碍物则后续方块均为无视野的遮挡区域。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#E1E4E8"> (</span><span style="color:#B392F0">List</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">Vector2Int</span><span style="color:#E1E4E8">>, </span><span style="color:#B392F0">List</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">Vector2Int</span><span style="color:#E1E4E8">>) </span><span style="color:#B392F0">GetBlockedAndUnblocked</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">Vector2Int</span><span style="color:#B392F0"> source</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">Vector2Int</span><span style="color:#B392F0"> target</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#F97583">    var</span><span style="color:#B392F0"> blocked</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> List</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">Vector2Int</span><span style="color:#E1E4E8">>();</span></span>
+<span class="line"><span style="color:#F97583">    var</span><span style="color:#B392F0"> unblocked</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> List</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">Vector2Int</span><span style="color:#E1E4E8">>();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    var</span><span style="color:#B392F0"> delta</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> target </span><span style="color:#F97583">-</span><span style="color:#E1E4E8"> source;</span></span>
+<span class="line"><span style="color:#6A737D">    // 起始位置相同</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8">(delta.sqrMagnitude </span><span style="color:#F97583">==</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (mapGrid[source[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">], source[</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">]].</span><span style="color:#B392F0">HasFlag</span><span style="color:#E1E4E8">(MapGrid.MapStatus.Obstacle))</span></span>
+<span class="line"><span style="color:#E1E4E8">            blocked.</span><span style="color:#B392F0">Add</span><span style="color:#E1E4E8">(source);</span></span>
+<span class="line"><span style="color:#F97583">        else</span><span style="color:#E1E4E8"> unblocked.</span><span style="color:#B392F0">Add</span><span style="color:#E1E4E8">(source);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> (blocked, unblocked);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    unblocked.</span><span style="color:#B392F0">Add</span><span style="color:#E1E4E8">(source);</span></span>
+<span class="line"><span style="color:#F97583">    bool</span><span style="color:#B392F0"> blockMet</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#6A737D">    // 判断 X 或 Y 作为基础步长方向</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (Math.</span><span style="color:#B392F0">Abs</span><span style="color:#E1E4E8">(delta.x) </span><span style="color:#F97583">></span><span style="color:#E1E4E8"> Math.</span><span style="color:#B392F0">Abs</span><span style="color:#E1E4E8">(delta.y))</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span><span style="color:#6A737D">// X 轴为方向</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">        // 符号</span></span>
+<span class="line"><span style="color:#F97583">        int</span><span style="color:#B392F0"> x_sign</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> Math.</span><span style="color:#B392F0">Sign</span><span style="color:#E1E4E8">(delta.x);</span></span>
+<span class="line"><span style="color:#6A737D">        // 增量</span></span>
+<span class="line"><span style="color:#F97583">        var</span><span style="color:#B392F0"> y_inc</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> (delta.y </span><span style="color:#F97583">/</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">float</span><span style="color:#E1E4E8">) Math.</span><span style="color:#B392F0">Abs</span><span style="color:#E1E4E8">(delta.x));</span></span>
+<span class="line"><span style="color:#F97583">        float</span><span style="color:#B392F0"> step_y</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> y_inc;</span></span>
+<span class="line"><span style="color:#F97583">        for</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">int</span><span style="color:#B392F0"> step_x</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> x_sign;</span></span>
+<span class="line"><span style="color:#E1E4E8">            x_sign </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> step_x </span><span style="color:#F97583">&#x3C;=</span><span style="color:#E1E4E8"> x_sign </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> delta.x;</span></span>
+<span class="line"><span style="color:#E1E4E8">            step_x</span><span style="color:#F97583">+=</span><span style="color:#E1E4E8">x_sign, step_y</span><span style="color:#F97583">+=</span><span style="color:#E1E4E8">y_inc)</span></span>
+<span class="line"><span style="color:#E1E4E8">        {</span></span>
+<span class="line"><span style="color:#F97583">            var</span><span style="color:#B392F0"> s</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> source </span><span style="color:#F97583">+</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Vector2Int</span><span style="color:#E1E4E8">(step_x, Mathf.</span><span style="color:#B392F0">RoundToInt</span><span style="color:#E1E4E8">(step_y));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">            if</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">!</span><span style="color:#E1E4E8">blockMet)</span></span>
+<span class="line"><span style="color:#E1E4E8">            {</span></span>
+<span class="line"><span style="color:#E1E4E8">                unblocked.</span><span style="color:#B392F0">Add</span><span style="color:#E1E4E8">(s);</span></span>
+<span class="line"><span style="color:#E1E4E8">                blockMet </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> mapGrid[s].</span><span style="color:#B392F0">HasFlag</span><span style="color:#E1E4E8">(MapGrid.MapStatus.Obstacle);</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#F97583">            else</span></span>
+<span class="line"><span style="color:#E1E4E8">                blocked.</span><span style="color:#B392F0">Add</span><span style="color:#E1E4E8">(s);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#F97583">    else</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#6A737D">        // 方向为 Y 轴的情况与 X 轴基本相同，只需调换 x、y 的角色即可</span></span>
+<span class="line"><span style="color:#6A737D">        // ...</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> (blocked, unblocked);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="迷雾刷新">迷雾刷新</h3>
+<p>在区域丢失视野时重新覆盖一层半透明的已探索迷雾</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> RefreshFog</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#B392F0"> i</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">; i </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8"> colorBuffer.Length; i</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (colorBuffer[i].a </span><span style="color:#F97583">==</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">            colorBuffer[i].a </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 180</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>配合使用可以实现战争迷雾-(未)探索区域的效果。</p>
+<h3 id="迷雾贴图">迷雾贴图</h3>
+<p>:::info
+Shader、材质、纹理，属实头大住了，并没有完全理解此部分的流程，不过姑且实现了效果
+:::</p>
+<p>初始化资源</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#B392F0">Material</span><span style="color:#B392F0"> blurMaterial</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#B392F0">Texture2D</span><span style="color:#B392F0"> textureBuffer</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#B392F0">RenderTexture</span><span style="color:#B392F0"> renderTexture</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#B392F0">RenderTexture</span><span style="color:#B392F0"> renderTexture2</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#B392F0">RenderTexture</span><span style="color:#B392F0"> nextTexture</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#B392F0">RenderTexture</span><span style="color:#B392F0"> currnetTexture</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> Init</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">MapGrid</span><span style="color:#B392F0"> map</span><span style="color:#E1E4E8">){</span></span>
+<span class="line"><span style="color:#6A737D">    // ... </span></span>
+<span class="line"><span style="color:#E1E4E8">    blurMaterial </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Material</span><span style="color:#E1E4E8">(Shader.</span><span style="color:#B392F0">Find</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"ImageEffect/AverageBlur"</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#E1E4E8">    textureBuffer </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Texture2D</span><span style="color:#E1E4E8">(mapGrid.Width, mapGrid.Height, TextureFormat.ARGB32, </span><span style="color:#79B8FF">false</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    renderTexture </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> RenderTexture.</span><span style="color:#B392F0">GetTemporary</span><span style="color:#E1E4E8">(mapGrid.Width, mapGrid.Height, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    renderTexture2 </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> RenderTexture.</span><span style="color:#B392F0">GetTemporary</span><span style="color:#E1E4E8">(mapGrid.Width, mapGrid.Height, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    nextTexture </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> RenderTexture.</span><span style="color:#B392F0">GetTemporary</span><span style="color:#E1E4E8">(mapGrid.Width, mapGrid.Height, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    currnetTexture </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> RenderTexture.</span><span style="color:#B392F0">GetTemporary</span><span style="color:#E1E4E8">(mapGrid.Width, mapGrid.Height, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#6A737D">// 在销毁时释放资源</span></span>
+<span class="line"><span style="color:#F97583">private</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> OnDestroy</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#B392F0">    Release</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> Release</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#E1E4E8">    RenderTexture.</span><span style="color:#B392F0">ReleaseTemporary</span><span style="color:#E1E4E8">(renderTexture);</span></span>
+<span class="line"><span style="color:#E1E4E8">    RenderTexture.</span><span style="color:#B392F0">ReleaseTemporary</span><span style="color:#E1E4E8">(renderTexture2);</span></span>
+<span class="line"><span style="color:#E1E4E8">    RenderTexture.</span><span style="color:#B392F0">ReleaseTemporary</span><span style="color:#E1E4E8">(currnetTexture);</span></span>
+<span class="line"><span style="color:#E1E4E8">    RenderTexture.</span><span style="color:#B392F0">ReleaseTemporary</span><span style="color:#E1E4E8">(nextTexture);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>使用颜色信息生成 Texture，并进行几次模糊</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> MakeTextureAndBlur</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#E1E4E8">    textureBuffer.</span><span style="color:#B392F0">SetPixels32</span><span style="color:#E1E4E8">(colorBuffer);</span></span>
+<span class="line"><span style="color:#E1E4E8">    textureBuffer.</span><span style="color:#B392F0">Apply</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    Graphics.</span><span style="color:#B392F0">Blit</span><span style="color:#E1E4E8">(textureBuffer, renderTexture, blurMaterial, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#E1E4E8">    Graphics.</span><span style="color:#B392F0">Blit</span><span style="color:#E1E4E8">(renderTexture, renderTexture2, blurMaterial, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    Graphics.</span><span style="color:#B392F0">Blit</span><span style="color:#E1E4E8">(renderTexture2, renderTexture, blurMaterial, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    Graphics.</span><span style="color:#B392F0">Blit</span><span style="color:#E1E4E8">(renderTexture, nextTexture);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>缓动，在两帧迷雾间过渡</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> Lerp</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#E1E4E8">    Graphics.</span><span style="color:#B392F0">Blit</span><span style="color:#E1E4E8">(currnetTexture, renderTexture);</span></span>
+<span class="line"><span style="color:#E1E4E8">    blurMaterial.</span><span style="color:#B392F0">SetTexture</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"_LastTex"</span><span style="color:#E1E4E8">, renderTexture);</span></span>
+<span class="line"><span style="color:#E1E4E8">    Graphics.</span><span style="color:#B392F0">Blit</span><span style="color:#E1E4E8">(nextTexture, currnetTexture, blurMaterial, </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>在每次更新时更新迷雾</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#F97583">private</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> Update</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#B392F0">    RefreshFog</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#B392F0">    ComputeFog</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#B392F0">    MakeTextureAndBlur</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#B392F0">    Lerp</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>对外提供 Texture 获取</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#E1E4E8"> RenderTexture FogTexture { </span><span style="color:#B392F0">get</span><span style="color:#F97583"> =></span><span style="color:#E1E4E8"> currnetTexture; }</span></span></code></pre>
+<h2 id="迷雾渲染">迷雾渲染</h2>
+<p>获取渲染迷雾的对象的材质，每次更新时将生成的 FogTexture 赋予到材质即可。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> FogRenderer</span><span style="color:#E1E4E8"> : </span><span style="color:#B392F0">MonoBehaviour</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#B392F0"> GameObject</span><span style="color:#B392F0"> fogRenderer</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#B392F0"> FogMaker</span><span style="color:#B392F0"> fogMaker</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#B392F0">    Material</span><span style="color:#B392F0"> fogMaterial</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> Start</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#E1E4E8">        fogMaterial </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> fogRenderer.</span><span style="color:#B392F0">GetComponent</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">Renderer</span><span style="color:#E1E4E8">>().material;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#6A737D">    // Update is called once per frame</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> Update</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (fogMaker.FogTexture </span><span style="color:#F97583">!=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">            fogMaterial.</span><span style="color:#B392F0">SetTexture</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"_MainTex"</span><span style="color:#E1E4E8">, fogMaker.FogTexture);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>为 fogRenderer 添加如下组件</p>
+<p><img src="https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/20220718140108.png" alt="示例"></p>
+<p>:::info
+在2D项目中使用Plane需要进行旋转，确保方向符合你的要求。</p>
+<p>MeshRenderer的材质是使用Shader创建的，见<a href="https://github.com/QinZhuo/FogOfWar_ForUnity/tree/master/Assets/FogOfWar/Shaders" title="Shaders">此</a>
+:::</p>
+<p><img src="https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/20220718140207.png" alt="效果展示"></p>
+<p>:::default
+意外的实现了一个草丛呢…真是世事难料。
+在本章节中的MapGrid可以基于此上进一步来实现寻路系统，敬请期待。
+:::</p>
+<section data-footnotes="" class="footnotes"><h2 class="sr-only" id="footnote-label">Footnotes</h2>
+<ol>
+<li id="user-content-fn-1">
+<p>对于3D项目，使用<code>Physics.CheckBox()</code> <a href="#user-content-fnref-1" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>   </main> <footer class="flex flex-col my-8 mx-auto w-max gap-4"> <div class="text-sm flex flex-col gap-1 items-center"> <span class=" ">
+© 2021 – 2023 ⚪ Author @ Site </span> <span></span> <span>Powered by <a href="https://astro.build/">Astro</a></span> </div> </footer> </body></html> 

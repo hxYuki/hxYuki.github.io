@@ -1,0 +1,267 @@
+<!DOCTYPE html><html lang="zh" data-theme> <head><meta charset="utf-8"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="viewport" content="width=device-width"><meta name="generator" content="Astro v4.4.13"><title>游戏开发日志 (其六)：武器、投射物</title><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><link rel="stylesheet" href="/_astro/about.C5B0C2h6.css" />
+<style>a[data-astro-cid-gjtny2mx]{color:#00539f}.tags[data-astro-cid-gjtny2mx]{display:flex;flex-wrap:wrap}.tag[data-astro-cid-gjtny2mx]{margin:.25em;border:dotted 1px #a1a1a1;border-radius:.5em;padding:.5em 1em;font-size:1.15em;background-color:#f8fcfd}
+</style>
+<link rel="stylesheet" href="/_astro/_slug_.CYO6en0k.css" /><script type="module" src="/_astro/hoisted.BJ2QysRc.js"></script><style>[data-astro-transition-scope="astro-f64ip3ln-1"] { view-transition-name: astro-f64ip3ln-1; }@layer astro { ::view-transition-old(astro-f64ip3ln-1) { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(astro-f64ip3ln-1) { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(astro-f64ip3ln-1) { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(astro-f64ip3ln-1) { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-f64ip3ln-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-f64ip3ln-1"] { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-f64ip3ln-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-f64ip3ln-1"] { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-f64ip3ln-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-f64ip3ln-1"] { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-f64ip3ln-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-f64ip3ln-1"] { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-n5gwkkpg-2"] { view-transition-name: astro-n5gwkkpg-2; }@layer astro { ::view-transition-old(astro-n5gwkkpg-2) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(astro-n5gwkkpg-2) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(astro-n5gwkkpg-2) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(astro-n5gwkkpg-2) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-n5gwkkpg-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-n5gwkkpg-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-n5gwkkpg-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-n5gwkkpg-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-n5gwkkpg-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-n5gwkkpg-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-n5gwkkpg-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-n5gwkkpg-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body class="bg-basement text-neutral font-default leading-loose mx-auto w-full"> <header class="w-full h-[45vh] shadow-lg overflow-hidden bg-center" data-astro-cid-3ef6ksr2 style="--bgImg: url('https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/4ac9e89ebedbc831ce278f4ad5bbfc58.jpg');"> <nav class=" w-full h-14 flex items-center fixed"> <div class="inner flex flex-row items-center w-full sm:w-[--blank-width] mx-auto"> <div class="hamburger hidden flex flex-col justify-between text-default" data-astro-cid-3weo6hls> <span class="line" data-astro-cid-3weo6hls></span> <span class="line" data-astro-cid-3weo6hls></span> <span class="line" data-astro-cid-3weo6hls></span> </div>   <ul class="nav-links grow flex flex-row"> <li class="group/item relative p-2 font-medium text-base text-white"> <a href="/" class="text-center p-2 uppercase"> 首页  </a>  </li> <!-- <style>
+    ul {
+        width: max-content;
+    }
+</style> --><li class="group/item relative p-2 font-medium text-base text-white"> <a href="/blog/" class="text-center p-2 uppercase"> 博客 &gt; </a> <ul data-theme="dark" class="group/menu absolute hidden group-hover/item:block w-max bg-basement bg-opacity-85 text-white shadow-lg rounded-es-xl rounded-se-xl overflow-hidden z-10 left-0 top-full"> <li class="group/item relative p-2 font-medium text-base text-white hover:bg-primary px-4 first:pt-3 last:pb-3 font-normal text-base tracking-widest"> <a href="/archive/" class="text-center p-2 uppercase"> 归档  </a>  </li> <!-- <style>
+    ul {
+        width: max-content;
+    }
+</style> --><li class="group/item relative p-2 font-medium text-base text-white hover:bg-primary px-4 first:pt-3 last:pb-3 font-normal text-base tracking-widest"> <a href="/tags/" class="text-center p-2 uppercase"> 标签  </a>  </li> <!-- <style>
+    ul {
+        width: max-content;
+    }
+</style> --><li class="group/item relative p-2 font-medium text-base text-white hover:bg-primary px-4 first:pt-3 last:pb-3 font-normal text-base tracking-widest"> <a href="/categories/" class="text-center p-2 uppercase"> 分类  </a>  </li> <!-- <style>
+    ul {
+        width: max-content;
+    }
+</style> --> </ul> </li> <!-- <style>
+    ul {
+        width: max-content;
+    }
+</style> --><li class="group/item relative p-2 font-medium text-base text-white"> <a href="/about/" class="text-center p-2 uppercase"> 关于  </a>  </li> <!-- <style>
+    ul {
+        width: max-content;
+    }
+</style> --> </ul> <button id="themeToggle"> <svg width="24px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"> <path class="sun" fill-rule="evenodd" fill="currentColor" d="M12 17.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm0 1.5a7 7 0 1 0 0-14 7 7 0 0 0 0 14zm12-7a.8.8 0 0 1-.8.8h-2.4a.8.8 0 0 1 0-1.6h2.4a.8.8 0 0 1 .8.8zM4 12a.8.8 0 0 1-.8.8H.8a.8.8 0 0 1 0-1.6h2.5a.8.8 0 0 1 .8.8zm16.5-8.5a.8.8 0 0 1 0 1l-1.8 1.8a.8.8 0 0 1-1-1l1.7-1.8a.8.8 0 0 1 1 0zM6.3 17.7a.8.8 0 0 1 0 1l-1.7 1.8a.8.8 0 1 1-1-1l1.7-1.8a.8.8 0 0 1 1 0zM12 0a.8.8 0 0 1 .8.8v2.5a.8.8 0 0 1-1.6 0V.8A.8.8 0 0 1 12 0zm0 20a.8.8 0 0 1 .8.8v2.4a.8.8 0 0 1-1.6 0v-2.4a.8.8 0 0 1 .8-.8zM3.5 3.5a.8.8 0 0 1 1 0l1.8 1.8a.8.8 0 1 1-1 1L3.5 4.6a.8.8 0 0 1 0-1zm14.2 14.2a.8.8 0 0 1 1 0l1.8 1.7a.8.8 0 0 1-1 1l-1.8-1.7a.8.8 0 0 1 0-1z"></path> <path class="moon" fill-rule="evenodd" d="M16.5 6A10.5 10.5 0 0 1 4.7 16.4 8.5 8.5 0 1 0 16.4 4.7l.1 1.3zm-1.7-2a9 9 0 0 1 .2 2 9 9 0 0 1-11 8.8 9.4 9.4 0 0 1-.8-.3c-.4 0-.8.3-.7.7a10 10 0 0 0 .3.8 10 10 0 0 0 9.2 6 10 10 0 0 0 4-19.2 9.7 9.7 0 0 0-.9-.3c-.3-.1-.7.3-.6.7a9 9 0 0 1 .3.8z"></path> </svg> </button> <!-- <style>
+    #themeToggle {
+        border: 0;
+        background: none;
+    }
+    .sun {
+        fill: black;
+    }
+    .moon {
+        fill: transparent;
+    }
+
+    :global(.dark) .sun {
+        fill: transparent;
+    }
+    :global(.dark) .moon {
+        fill: white;
+    }
+</style> --> <script>
+  document.addEventListener('astro:page-load', () => {
+    const theme = (() => {
+      if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+        return localStorage.getItem("theme");
+      }
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        return "dark";
+      }
+      return "light";
+    })();
+
+    // if (theme === "light") {
+    //   delete document.documentElement.dataset.theme;
+    // } else {
+    //   document.documentElement.dataset.theme = "dark";
+    // }
+    document.documentElement.dataset.theme = theme;
+
+    window.localStorage.setItem("theme", theme);
+
+    const handleToggleClick = () => {
+      const element = document.documentElement;
+      // element.classList.toggle("dark");
+      const isDark = element.dataset.theme === "dark";
+      element.dataset.theme = isDark ? "light" : "dark";
+      localStorage.setItem("theme", !isDark ? "dark" : "light");
+
+    };
+
+    document
+      .getElementById("themeToggle")
+      .addEventListener("click", handleToggleClick);
+  });
+</script>  </div> </nav>  <div class="fixed z-[-1] w-full h-[45vh] pt-[15vh] flex flex-col text-center items-center justify-center" data-astro-cid-3ef6ksr2 style="--bgImg: url('https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/4ac9e89ebedbc831ce278f4ad5bbfc58.jpg');"> <h1 class="text-4xl text-white font-bold font-serif-sc h-max w-max" data-astro-cid-3ef6ksr2 style="--bgImg: url('https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/4ac9e89ebedbc831ce278f4ad5bbfc58.jpg');" data-astro-transition-scope="astro-n5gwkkpg-2"> 游戏开发日志 (其六)：武器、投射物 </h1> </div> <ul class="fixed -z-10 w-full h-full before:block before:absolute before:-z-0 before:bg-black before:bg-opacity-50 before:w-full before:h-full" data-astro-cid-3ef6ksr2 style="--bgImg: url('https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/4ac9e89ebedbc831ce278f4ad5bbfc58.jpg');"> <!-- <img src={headerImage} alt="Header Image" class="object-fill object-center h-[45vh] w-full -z-10" /> --> <li class="absolute h-[45vh] w-full -z-10 bg-center" style="background-image: url('https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/4ac9e89ebedbc831ce278f4ad5bbfc58.jpg');; --bgImg: url('https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/4ac9e89ebedbc831ce278f4ad5bbfc58.jpg');" data-astro-cid-3ef6ksr2></li> </ul> </header>  <!-- <h1 transition:animate="slide" class="text-4xl text-white font-bold font-serif-sc">{pageTitle}</h1> --> <aside class="bg-basement z-0 sm:px-[20rem] py-10 float-right"> <ul data-astro-cid-gjtny2mx> <li data-astro-cid-gjtny2mx><a href="#万物皆可发射的终极“火炮”" data-astro-cid-gjtny2mx>万物皆可发射的终极“火炮”</a></li><li data-astro-cid-gjtny2mx><a href="#枪" data-astro-cid-gjtny2mx>枪</a></li><li data-astro-cid-gjtny2mx><a href="#弹" data-astro-cid-gjtny2mx>弹</a></li><li data-astro-cid-gjtny2mx><a href="#外题" data-astro-cid-gjtny2mx>外题</a></li> </ul> </aside> <main class="bg-basement z-0 sm:px-[20rem] py-10">   <p data-astro-cid-gjtny2mx>发表于： 4/18/2023</p> <p data-astro-cid-gjtny2mx data-astro-transition-scope="astro-f64ip3ln-1"><em data-astro-cid-gjtny2mx></em></p>   <div class="tags" data-astro-cid-gjtny2mx> <p class="tag" data-astro-cid-gjtny2mx><a href="/tags/Weapon" data-astro-cid-gjtny2mx>Weapon</a></p><p class="tag" data-astro-cid-gjtny2mx><a href="/tags/Projectile" data-astro-cid-gjtny2mx>Projectile</a></p> </div>  <p>好了，我们已经有了一个系统来把输入指令传递给我们的舰队了，那么，我们的舰队又将如何执行命令呢？
+更具体一点，进行攻击？
+<del>是以豪迈的气魄向敌人发起冲锋，胆怯的人将迎来粉身碎骨的命运！</del>
+既然我们都已经登上太空了，当然要避免这种原始低效的杀戮方式。真理部的工程师们给我们带来了更好的选择。</p>
+<h2 id="万物皆可发射的终极火炮">万物皆可发射的终极“火炮”</h2>
+<h3 id="枪">枪</h3>
+<p>先考虑一些基本参数</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> Weapon</span><span style="color:#E1E4E8"> : </span><span style="color:#B392F0">MonoBehaviour</span><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#F97583">    string</span><span style="color:#B392F0"> Name</span><span style="color:#E1E4E8"> { </span><span style="color:#F97583">get</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#F97583">    float</span><span style="color:#B392F0"> BaseDamage</span><span style="color:#E1E4E8"> { </span><span style="color:#F97583">get</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#F97583">    float</span><span style="color:#B392F0"> BaseRange</span><span style="color:#E1E4E8"> { </span><span style="color:#F97583">get</span><span style="color:#E1E4E8">; } </span></span>
+<span class="line"><span style="color:#6A737D">    // 攻击间隔，防止过热，需要冷却才能进行下次攻击</span></span>
+<span class="line"><span style="color:#F97583">    float</span><span style="color:#B392F0"> BaseCooldown</span><span style="color:#E1E4E8"> { </span><span style="color:#F97583">get</span><span style="color:#E1E4E8">; } </span></span>
+<span class="line"><span style="color:#6A737D">    // “热身”过程，而当我们停止攻击，又逐渐变得需要重新进行预热</span></span>
+<span class="line"><span style="color:#F97583">    float</span><span style="color:#B392F0"> BasePrepareTime</span><span style="color:#E1E4E8"> { </span><span style="color:#F97583">get</span><span style="color:#E1E4E8">; } </span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p><del>改改参数就可以说自己推出了一款新武器</del></p>
+<p>为了保护武器延长使用寿命，为其加上限制</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> Weapon</span><span style="color:#E1E4E8"> : </span><span style="color:#B392F0">MonoBehaviour</span><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#6A737D">    // ...</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> float</span><span style="color:#B392F0"> IsCoolingDown</span><span style="color:#E1E4E8">() </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> cooldown;</span></span>
+<span class="line"><span style="color:#F97583">    float</span><span style="color:#B392F0"> Cooldown</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> cooldown </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Mathf.</span><span style="color:#B392F0">Clamp</span><span style="color:#E1E4E8">(cooldown </span><span style="color:#F97583">-</span><span style="color:#E1E4E8"> Time.dltaTime, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, BaseCooldown);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#F97583">    float</span><span style="color:#B392F0"> cooldown</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    bool</span><span style="color:#B392F0"> Prepared</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#E1E4E8">        prepared </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        prepareTime </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Mathf.</span><span style="color:#B392F0">Clamp</span><span style="color:#E1E4E8">(prepareTime </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> Time.deltaTime, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, BasePrepareTime);</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> prepareTime </span><span style="color:#F97583">>=</span><span style="color:#E1E4E8"> BasePrepareTime;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#F97583">    bool</span><span style="color:#B392F0"> prepared</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">    float</span><span style="color:#B392F0"> prepareTime</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> Update</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#B392F0">        Cooldown</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> LateUpdate</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8">(prepared)</span></span>
+<span class="line"><span style="color:#E1E4E8">            prepared </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">        else</span></span>
+<span class="line"><span style="color:#F97583">            if</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">IsCoolingDown</span><span style="color:#E1E4E8">() </span><span style="color:#F97583">==</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">                prepareTime </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Mathf.</span><span style="color:#B392F0">Clamp</span><span style="color:#E1E4E8">(prepareTime </span><span style="color:#F97583">-</span><span style="color:#E1E4E8"> Time.deltaTime</span><span style="color:#F97583">*</span><span style="color:#79B8FF">0.3f</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, BasePrepareTime);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>我们在“开火！”时检测Prepare和Cooldown (顺便进行了Prepare)，当可以发射后就发射并设置Cooldown。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> Fire</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">Fleet</span><span style="color:#B392F0"> self</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">Fleet</span><span style="color:#B392F0"> target</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">!</span><span style="color:#B392F0">Prepared</span><span style="color:#E1E4E8">() </span><span style="color:#F97583">||</span><span style="color:#B392F0"> IsCoolingDown</span><span style="color:#E1E4E8">() </span><span style="color:#F97583">></span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">    LaunchProjectile</span><span style="color:#E1E4E8">(self, target);</span></span>
+<span class="line"><span style="color:#E1E4E8">    cooldown </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> BaseCooldown;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#F97583">void</span><span style="color:#B392F0"> LaunchProjectile</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">Fleet</span><span style="color:#B392F0"> self</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">Fleet</span><span style="color:#B392F0"> target</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="弹">弹</h3>
+<p>枪已经准备好了，只需要子弹了，那这就简单了，我们实际上只需要两个要素：</p>
+<ol>
+<li>移动路径</li>
+<li>命中判定</li>
+</ol>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> LaserProjectile</span><span style="color:#E1E4E8"> : </span><span style="color:#B392F0">Projectile</span><span style="color:#6A737D"> // 继承自 MonoBehaviour</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#B392F0">    Vector2</span><span style="color:#B392F0"> from</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#B392F0">    Vector2</span><span style="color:#B392F0"> to</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#B392F0">    Action</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">Fleet</span><span style="color:#E1E4E8">> </span><span style="color:#B392F0">OnHit</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#6A737D">    // Update is called once per frame</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> LateUpdate</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#F97583">        var</span><span style="color:#B392F0"> collider</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> GetComponent</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">Collider2D</span><span style="color:#E1E4E8">>();</span></span>
+<span class="line"><span style="color:#F97583">        var</span><span style="color:#B392F0"> hitList</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Collider2D</span><span style="color:#E1E4E8">[</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">];</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (collider.</span><span style="color:#B392F0">OverlapCollider</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#E1E4E8">() { layerMask </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> LayerMask.</span><span style="color:#B392F0">GetMask</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"PlayerControls"</span><span style="color:#E1E4E8">) }, hitList) </span><span style="color:#F97583">></span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">        {</span></span>
+<span class="line"><span style="color:#F97583">            if</span><span style="color:#E1E4E8"> (hitList[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">].gameObject.</span><span style="color:#B392F0">GetComponent</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">Fleet</span><span style="color:#E1E4E8">>() </span><span style="color:#F97583">is</span><span style="color:#B392F0"> Fleet</span><span style="color:#B392F0"> fleet</span><span style="color:#F97583"> &#x26;&#x26;</span><span style="color:#E1E4E8"> fleet </span><span style="color:#F97583">!=</span><span style="color:#E1E4E8"> self </span><span style="color:#F97583">&#x26;&#x26;</span><span style="color:#E1E4E8"> fleet.Team </span><span style="color:#F97583">!=</span><span style="color:#E1E4E8"> self.Team</span><span style="color:#6A737D">/*friendly fire*/</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">            {</span></span>
+<span class="line"><span style="color:#E1E4E8">                OnHit</span><span style="color:#F97583">?</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">Invoke</span><span style="color:#E1E4E8">(fleet);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">                Destroy</span><span style="color:#E1E4E8">(gameObject);</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> Update</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#E1E4E8">        transform.position </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Vector2.</span><span style="color:#B392F0">MoveTowards</span><span style="color:#E1E4E8">(transform.position, to, speed </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> Time.deltaTime);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> static</span><span style="color:#B392F0"> LaserProjectile</span><span style="color:#B392F0"> Create</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">Fleet</span><span style="color:#B392F0"> self</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">Fleet</span><span style="color:#B392F0"> target</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">Action</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">Fleet</span><span style="color:#E1E4E8">> </span><span style="color:#B392F0">onHit</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#F97583">        var</span><span style="color:#B392F0"> r</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> Quaternion.</span><span style="color:#B392F0">LookRotation</span><span style="color:#E1E4E8">(Vector3.forward, target.transform.position </span><span style="color:#F97583">-</span><span style="color:#E1E4E8"> self.transform.position);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        var</span><span style="color:#B392F0"> projectile</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> Instantiate</span><span style="color:#E1E4E8">(LaserProjectilePrefab, self.transform.position, r).</span><span style="color:#B392F0">GetComponent</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">LaserProjectile</span><span style="color:#E1E4E8">>();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        projectile.transform.position </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> self.transform.position;</span></span>
+<span class="line"><span style="color:#E1E4E8">        projectile.self </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> self;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        projectile.from </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> self.transform.position;</span></span>
+<span class="line"><span style="color:#E1E4E8">        projectile.to </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> target.transform.position;</span></span>
+<span class="line"><span style="color:#E1E4E8">        projectile.OnHit </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> onHit;</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> projectile;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>这里简单制作了一枚弹药：直线运动，不能追踪目标
+在Update中进行移动，在LateUpdate中进行命中判定，在创建时设置目标等一系列参数。
+命中时触发命中事件进行诸如造成伤害之类的行为。</p>
+<h4 id="外题">外题</h4>
+<p>近来有对Shader进行一定了解，将投射物整体运动也交给Shader不知道是否可行？
+使用一张覆盖整个地图的材质，在上面绘制弹道，对大量的，规则运动的 “弹幕” 应该是个很好的优化办法。</p>
+<p>——由此延申，战争迷雾也可以直接在Shader中计算范围，而非是基于网格的循环遍历，不过遮挡的处理或许略有复杂。
+这大概能挽回我丢失的200多帧吧，是的，之前的实现要消耗掉200多帧，甚至略有卡顿。</p>   </main> <footer class="flex flex-col my-8 mx-auto w-max gap-4"> <div class="text-sm flex flex-col gap-1 items-center"> <span class=" ">
+© 2021 – 2023 ⚪ Author @ Site </span> <span></span> <span>Powered by <a href="https://astro.build/">Astro</a></span> </div> </footer> </body></html> 

@@ -1,0 +1,201 @@
+<!DOCTYPE html><html lang="zh" data-theme> <head><meta charset="utf-8"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="viewport" content="width=device-width"><meta name="generator" content="Astro v4.4.13"><title>你知道安利吗之 ECS</title><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><link rel="stylesheet" href="/_astro/about.C5B0C2h6.css" />
+<style>a[data-astro-cid-gjtny2mx]{color:#00539f}.tags[data-astro-cid-gjtny2mx]{display:flex;flex-wrap:wrap}.tag[data-astro-cid-gjtny2mx]{margin:.25em;border:dotted 1px #a1a1a1;border-radius:.5em;padding:.5em 1em;font-size:1.15em;background-color:#f8fcfd}
+</style>
+<link rel="stylesheet" href="/_astro/_slug_.CYO6en0k.css" /><script type="module" src="/_astro/hoisted.BJ2QysRc.js"></script><style>[data-astro-transition-scope="astro-f64ip3ln-1"] { view-transition-name: astro-f64ip3ln-1; }@layer astro { ::view-transition-old(astro-f64ip3ln-1) { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(astro-f64ip3ln-1) { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(astro-f64ip3ln-1) { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(astro-f64ip3ln-1) { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-f64ip3ln-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-f64ip3ln-1"] { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-f64ip3ln-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-f64ip3ln-1"] { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-f64ip3ln-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-f64ip3ln-1"] { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-f64ip3ln-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-f64ip3ln-1"] { 
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-n5gwkkpg-2"] { view-transition-name: astro-n5gwkkpg-2; }@layer astro { ::view-transition-old(astro-n5gwkkpg-2) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(astro-n5gwkkpg-2) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(astro-n5gwkkpg-2) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(astro-n5gwkkpg-2) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-n5gwkkpg-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-n5gwkkpg-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-n5gwkkpg-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-n5gwkkpg-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-n5gwkkpg-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-n5gwkkpg-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-n5gwkkpg-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-n5gwkkpg-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body class="bg-basement text-neutral font-default leading-loose mx-auto w-full"> <header class="w-full h-[45vh] shadow-lg overflow-hidden bg-center" data-astro-cid-3ef6ksr2 style="--bgImg: url('https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/4ac9e89ebedbc831ce278f4ad5bbfc58.jpg');"> <nav class=" w-full h-14 flex items-center fixed"> <div class="inner flex flex-row items-center w-full sm:w-[--blank-width] mx-auto"> <div class="hamburger hidden flex flex-col justify-between text-default" data-astro-cid-3weo6hls> <span class="line" data-astro-cid-3weo6hls></span> <span class="line" data-astro-cid-3weo6hls></span> <span class="line" data-astro-cid-3weo6hls></span> </div>   <ul class="nav-links grow flex flex-row"> <li class="group/item relative p-2 font-medium text-base text-white"> <a href="/" class="text-center p-2 uppercase"> 首页  </a>  </li> <!-- <style>
+    ul {
+        width: max-content;
+    }
+</style> --><li class="group/item relative p-2 font-medium text-base text-white"> <a href="/blog/" class="text-center p-2 uppercase"> 博客 &gt; </a> <ul data-theme="dark" class="group/menu absolute hidden group-hover/item:block w-max bg-basement bg-opacity-85 text-white shadow-lg rounded-es-xl rounded-se-xl overflow-hidden z-10 left-0 top-full"> <li class="group/item relative p-2 font-medium text-base text-white hover:bg-primary px-4 first:pt-3 last:pb-3 font-normal text-base tracking-widest"> <a href="/archive/" class="text-center p-2 uppercase"> 归档  </a>  </li> <!-- <style>
+    ul {
+        width: max-content;
+    }
+</style> --><li class="group/item relative p-2 font-medium text-base text-white hover:bg-primary px-4 first:pt-3 last:pb-3 font-normal text-base tracking-widest"> <a href="/tags/" class="text-center p-2 uppercase"> 标签  </a>  </li> <!-- <style>
+    ul {
+        width: max-content;
+    }
+</style> --><li class="group/item relative p-2 font-medium text-base text-white hover:bg-primary px-4 first:pt-3 last:pb-3 font-normal text-base tracking-widest"> <a href="/categories/" class="text-center p-2 uppercase"> 分类  </a>  </li> <!-- <style>
+    ul {
+        width: max-content;
+    }
+</style> --> </ul> </li> <!-- <style>
+    ul {
+        width: max-content;
+    }
+</style> --><li class="group/item relative p-2 font-medium text-base text-white"> <a href="/about/" class="text-center p-2 uppercase"> 关于  </a>  </li> <!-- <style>
+    ul {
+        width: max-content;
+    }
+</style> --> </ul> <button id="themeToggle"> <svg width="24px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"> <path class="sun" fill-rule="evenodd" fill="currentColor" d="M12 17.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm0 1.5a7 7 0 1 0 0-14 7 7 0 0 0 0 14zm12-7a.8.8 0 0 1-.8.8h-2.4a.8.8 0 0 1 0-1.6h2.4a.8.8 0 0 1 .8.8zM4 12a.8.8 0 0 1-.8.8H.8a.8.8 0 0 1 0-1.6h2.5a.8.8 0 0 1 .8.8zm16.5-8.5a.8.8 0 0 1 0 1l-1.8 1.8a.8.8 0 0 1-1-1l1.7-1.8a.8.8 0 0 1 1 0zM6.3 17.7a.8.8 0 0 1 0 1l-1.7 1.8a.8.8 0 1 1-1-1l1.7-1.8a.8.8 0 0 1 1 0zM12 0a.8.8 0 0 1 .8.8v2.5a.8.8 0 0 1-1.6 0V.8A.8.8 0 0 1 12 0zm0 20a.8.8 0 0 1 .8.8v2.4a.8.8 0 0 1-1.6 0v-2.4a.8.8 0 0 1 .8-.8zM3.5 3.5a.8.8 0 0 1 1 0l1.8 1.8a.8.8 0 1 1-1 1L3.5 4.6a.8.8 0 0 1 0-1zm14.2 14.2a.8.8 0 0 1 1 0l1.8 1.7a.8.8 0 0 1-1 1l-1.8-1.7a.8.8 0 0 1 0-1z"></path> <path class="moon" fill-rule="evenodd" d="M16.5 6A10.5 10.5 0 0 1 4.7 16.4 8.5 8.5 0 1 0 16.4 4.7l.1 1.3zm-1.7-2a9 9 0 0 1 .2 2 9 9 0 0 1-11 8.8 9.4 9.4 0 0 1-.8-.3c-.4 0-.8.3-.7.7a10 10 0 0 0 .3.8 10 10 0 0 0 9.2 6 10 10 0 0 0 4-19.2 9.7 9.7 0 0 0-.9-.3c-.3-.1-.7.3-.6.7a9 9 0 0 1 .3.8z"></path> </svg> </button> <!-- <style>
+    #themeToggle {
+        border: 0;
+        background: none;
+    }
+    .sun {
+        fill: black;
+    }
+    .moon {
+        fill: transparent;
+    }
+
+    :global(.dark) .sun {
+        fill: transparent;
+    }
+    :global(.dark) .moon {
+        fill: white;
+    }
+</style> --> <script>
+  document.addEventListener('astro:page-load', () => {
+    const theme = (() => {
+      if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+        return localStorage.getItem("theme");
+      }
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        return "dark";
+      }
+      return "light";
+    })();
+
+    // if (theme === "light") {
+    //   delete document.documentElement.dataset.theme;
+    // } else {
+    //   document.documentElement.dataset.theme = "dark";
+    // }
+    document.documentElement.dataset.theme = theme;
+
+    window.localStorage.setItem("theme", theme);
+
+    const handleToggleClick = () => {
+      const element = document.documentElement;
+      // element.classList.toggle("dark");
+      const isDark = element.dataset.theme === "dark";
+      element.dataset.theme = isDark ? "light" : "dark";
+      localStorage.setItem("theme", !isDark ? "dark" : "light");
+
+    };
+
+    document
+      .getElementById("themeToggle")
+      .addEventListener("click", handleToggleClick);
+  });
+</script>  </div> </nav>  <div class="fixed z-[-1] w-full h-[45vh] pt-[15vh] flex flex-col text-center items-center justify-center" data-astro-cid-3ef6ksr2 style="--bgImg: url('https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/4ac9e89ebedbc831ce278f4ad5bbfc58.jpg');"> <h1 class="text-4xl text-white font-bold font-serif-sc h-max w-max" data-astro-cid-3ef6ksr2 style="--bgImg: url('https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/4ac9e89ebedbc831ce278f4ad5bbfc58.jpg');" data-astro-transition-scope="astro-n5gwkkpg-2"> 你知道安利吗之 ECS </h1> </div> <ul class="fixed -z-10 w-full h-full before:block before:absolute before:-z-0 before:bg-black before:bg-opacity-50 before:w-full before:h-full" data-astro-cid-3ef6ksr2 style="--bgImg: url('https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/4ac9e89ebedbc831ce278f4ad5bbfc58.jpg');"> <!-- <img src={headerImage} alt="Header Image" class="object-fill object-center h-[45vh] w-full -z-10" /> --> <li class="absolute h-[45vh] w-full -z-10 bg-center" style="background-image: url('https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/4ac9e89ebedbc831ce278f4ad5bbfc58.jpg');; --bgImg: url('https://fastly.jsdelivr.net/gh/hxYuki/im-base@master/4ac9e89ebedbc831ce278f4ad5bbfc58.jpg');" data-astro-cid-3ef6ksr2></li> </ul> </header>  <!-- <h1 transition:animate="slide" class="text-4xl text-white font-bold font-serif-sc">{pageTitle}</h1> --> <aside class="bg-basement z-0 sm:px-[20rem] py-10 float-right"> <ul data-astro-cid-gjtny2mx> <li data-astro-cid-gjtny2mx><a href="#敷衍的介绍" data-astro-cid-gjtny2mx>敷衍的介绍</a></li><li data-astro-cid-gjtny2mx><a href="#“反人类”的另一面" data-astro-cid-gjtny2mx>“反人类”的另一面</a></li><li data-astro-cid-gjtny2mx><a href="#纯粹的目的" data-astro-cid-gjtny2mx>纯粹的目的</a></li> </ul> </aside> <main class="bg-basement z-0 sm:px-[20rem] py-10">   <p data-astro-cid-gjtny2mx>发表于： 5/20/2023</p> <p data-astro-cid-gjtny2mx data-astro-transition-scope="astro-f64ip3ln-1"><em data-astro-cid-gjtny2mx></em></p>   <div class="tags" data-astro-cid-gjtny2mx> <p class="tag" data-astro-cid-gjtny2mx><a href="/tags/ECS" data-astro-cid-gjtny2mx>ECS</a></p><p class="tag" data-astro-cid-gjtny2mx><a href="/tags/游戏开发" data-astro-cid-gjtny2mx>游戏开发</a></p><p class="tag" data-astro-cid-gjtny2mx><a href="/tags/conquest of star" data-astro-cid-gjtny2mx>conquest of star</a></p> </div>  <p>:::info
+本文又名 <a href="/categories/%E5%BC%80%E5%8F%91%E9%9A%8F%E8%AE%B0/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/conquest-of-star/">游戏开发日志 (其3𝒾)</a>
+:::</p>
+<h2 id="敷衍的介绍">敷衍的介绍</h2>
+<p>ECS 即 Entity-Component-System 的缩写，是一种将世界抽象为：
+组件 (Component): 持有完成特定功能所需的数据的结构
+系统 (System): 通过查询、修改{数据^组件}实现想要的行为的“函数”
+实体 (Entity): 持有一系列组件的个体的标识</p>
+<p>一个简单的例子：对于一个实体 “Car”，要实现移动、载人这两样功能的话，则需要组件 “Movable”、“Loadable” 其中可以存储 “速度 (Movable)” 或 “乘员数 (Loadable)” 诸如此类的数据，这样就可以通过系统获取所有 “Movable” 和某种“目标”、“方向”一类的数据，进而移动实体的 “Transform” ；载人功能亦如此，你也可以多查询一个 “Movable” ，配合 “Loadable” 在乘员变化时影响 “速度 (Movable)” 让空车更快。</p>
+<p>显而易见，这样的范式与主流的面向对象的思路大相径庭，将数据与行为隔离开，编写行为来影响不特定范围的数据，数据既是行为的结果又是行为的原因，此为面向数据编程 (Data Oriented Programing - DOP)。</p>
+<p>其显著的特点<del>是设计思路反人类</del>
+是高性能，得益于其数据组织方式，{系统^System}在运行时访问整块连续的同种数据，欢呼吧，缓存！
+:::default
+有这样的一种说法：对现代CPU而言，整体运行速度的瓶颈在于存储访问——你的某算法的优化版本很可能不如其对缓存友好的暴力循环版本
+:::
+而且还有一种潜藏的优化空间——批量重复的数据可以很好的被GPU处理，或许你能更轻松的利用到在看戏的GPU。</p>
+<h2 id="反人类的另一面">“反人类”的另一面</h2>
+<p>确实有相当的声音：ECS 的代码组织方式有悖人类直觉。
+而这也确实不是空穴来风，不过如果使用ECS的优势仅仅只是在性能方面的话，那么也不会有本文出现了。<del>性能，它值几个钱？</del> !!也不是很配谈性能的说!!</p>
+<p>回到上面的例子，直觉来想，“Car” 需要能跑能载人，有了 “载具” 这一概念，我实现一个载具，能跑能装人，写完收工，也没什么不好的，轻松又愉快，而仅仅写一个 “Loadable” 可不能实现载人，你很可能需要给人添加一个 “TakeCar” 组件再交给某个系统处理而不是 <code>car.Load(people)</code>，何异于褪裤而放屁者？</p>
+<p>不过生活未必总是会一帆风顺，问题总是会来的，让我们更进一步。
+“Car” 是要来开的，在此先假设载具与玩家本人的控制方式一致，这里就需要先解除控制玩家单位转而控制载具，稍有不慎，可能两套控制代码就来了，而将玩家身上的 <code>Controllable</code> 或者叫别的什么移动到载具上是很自然的一件事情——你总需要一个方式在茫茫的Entities中找出你要控制的那个。
+如果有很多载具的话，还是让一部分动起来比较自然，有没有想过要怎么用<code>car.MoveTo(..)</code>来组织一个交通网？我有一计，不如放弃思考，看我用一个{系统^System}查询 <code>AutoRun</code>，给没有<code>MoveTo</code>的实体添加一个新目标<code>MoveTo</code>，随后等着掌管 “Movable” 的系统移动到位删除<code>MoveTo</code>便好。日后若是想给玩家的载具添加自动驾驶也不必如现实里一样苦苦研发一番。
+很不巧，刚刚拍脑袋想到我们应该加入地堡：单位进入可以获得庇护。哎呀，这不是没有 “Movable” 的 “Car” 么，这下我们比拼一下下班速度吧 ;)。</p>
+<p>到此，不知各位是否已经有些许既视感，ECS-way真的就与我们的直觉——或者说我们已经熟悉的某种范式想去甚远吗？比较擅长抽象（狭义）多少已经主动或被动的接触到“组合优于继承”、“Is A 与 Has A 的纠缠”一类的纷纭。
+在此暴论：<strong>DOP就是在完全控制的场面下适合于大量广泛相互作用场景的OOP的极限值</strong>。</p>
+<p>当我们想到 “载具” 的概念，再进一步，切至不可分的 “Movable”、“Loadable” 以至于更多需要的部分，这一过程实际上就是输出代码的前置准备工作，即便并未拆分出组件也是如此。
+得益于数据完全被拆分出去，行为代码可以完全复用，再也不需要纠结涉及到多个组件时到底把功能实现到什么地方，需要改动时通常只需要涉及有限的区域——平铺的线性流程，而不是柳暗花明的嵌套调用，更是可以通过玩弄{标签^组件}来实现新功能。</p>
+<p>能够如此拆分数据的一个原因是游戏的世界有一个很重要的性质：这里面的一切都是完全封闭的，完全由我们——程序员来控制，而玩家，则仅能通过有限的输入事件来操作，而不是几十个API，实在只能算作外人<del>要被骗到底裤都不剩的</del>。
+正是因为封闭，不会有访问到不该访问的数据这种情况，而恰好这里面的数据随时有可能彼此产生联系——灵感来啦！
+限制访问——在数据堆在一起时不得已而为之的手段，终于得以摆脱，于是给予我们极大的灵活性。</p>
+<p>:::default no-icon
+突然有了一个邪恶的想法，通过C#的扩展方法也可以实现类似的效果。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> static</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> ExtMethods</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> static</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> DoSometing</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">T</span><span style="color:#E1E4E8">>(</span><span style="color:#F97583">this</span><span style="color:#B392F0"> T</span><span style="color:#B392F0"> entity</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">where</span><span style="color:#B392F0"> T</span><span style="color:#E1E4E8">: </span><span style="color:#B392F0">Interface1</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">Interface2</span><span style="color:#E1E4E8">, .. {</span></span>
+<span class="line"><span style="color:#6A737D">        // ...</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>避开了接口不方便带实现的限制，一些工具方法完全可以通过给<code>T</code>添加约束来实现，我干，感觉还真有那么些可行性。
+:::</p>
+<h2 id="纯粹的目的">纯粹的目的</h2>
+<p>所以回到思考方式上来，ECS 或者说 DOP，相比于“直觉”，只是在抽象上更进了一步——将我们的想法，分解成一个个简单的逻辑，再组合起来。
+就如前文所举的 “Movable” ，其实玩家的角色、自动行动的 NPC、乃至联机中其他玩家操控的角色，它们的移动都没有什么不同，其真正的区别在于 “行动意图” 的来源：</p>
+<ul>
+<li>玩家的角色的移动由玩家的输入驱动</li>
+<li>自动行动的 NPC 的移动由 AI 的决策驱动</li>
+<li>联机中其他玩家操控的角色的移动由网络读取的数据驱动</li>
+</ul>
+<p>于是我们真正要做的就是区分这些类型的单位，分别为它们实现产生 “MoveTo” 的系统。并且借助这个控制 Movable 的系统，在之后的开发中我们都不必再考虑一个实体要如何移动的问题，即使是子弹，即使是进行优美曲线运动的弹幕，只有如何产生 “MoveTo” ，以及它如何变化的问题。</p>   </main> <footer class="flex flex-col my-8 mx-auto w-max gap-4"> <div class="text-sm flex flex-col gap-1 items-center"> <span class=" ">
+© 2021 – 2023 ⚪ Author @ Site </span> <span></span> <span>Powered by <a href="https://astro.build/">Astro</a></span> </div> </footer> </body></html> 
